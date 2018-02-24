@@ -58,9 +58,10 @@ public class dbMethods {
 
 //              removeProduct("car3");
 //              removeUser("dd");
+resultSet=getProductInfo("car1");
 
 while (resultSet.next()) {
-    System.out.println("dataBaseFunction.dbMethods.main()-->  "+resultSet.getString(2));    
+    System.out.println("dataBaseFunction.dbMethods.main()-->  "+resultSet.getString(2)+resultSet.getString(3)+rs.getString("qyn"));    
 }
         } catch (SQLException ex) {
             Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,6 +102,12 @@ while (resultSet.next()) {
             rs = stmt2.executeQuery(queryString);
        return  rs;
     }
+      public static ResultSet getProductInfo(String pname) throws SQLException {
+          stmt2 = conn.createStatement();
+            String queryString = new String("Select * from product where name='"+pname+"'");
+            rs = stmt2.executeQuery(queryString);
+       return  rs;
+    }
       
       
       
@@ -120,12 +127,13 @@ while (resultSet.next()) {
     
     
    
-       public static void editProduct(int id,String pname,double price,int qyn,String cat) throws SQLException {
+       public static void editProduct(String pname,double price,int qyn,String cat) throws SQLException {
         
-           String query = "update product set name=?, price=?,qyn=?,cat=? where productid=?;";
+           String query = "update product set name=?, price=?,qyn=?,cat=? where name=?;";
         
             stmt = conn.prepareStatement(query);
             stmt.setString(1, pname);
+            stmt.setString(5, pname);
             stmt.setDouble(2, price);
             stmt.setInt(3, qyn);
             stmt.setString(4, cat);

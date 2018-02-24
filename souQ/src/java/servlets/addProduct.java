@@ -17,35 +17,94 @@ import static dataBaseFunction.dbMethods.connectToDatabase;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * @author Muhammad Sami
  */
 @WebServlet(name = "addProduct", urlPatterns = {"/addProduct"})
 public class addProduct extends HttpServlet {
-    String pname,cost,amount,cat;
+
+    String pname, cost, amount, cat, desc, update;
+    boolean $update=false;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-             connectToDatabase();
-            
-         pname=request.getParameter("pname");
-            cost=request.getParameter("cost");
-            amount=request.getParameter("amount");
-            cat=request.getParameter("cat").toLowerCase();
-            System.out.println("servlets.addProduct.processRequest()" +pname+Double.parseDouble(cost)+amount+cat);
-            response.sendRedirect("/souQ/jsp/adminPage.jsp?s=yes&d=add");
-            try {
-                dbMethods.addProduct(pname,Double.parseDouble(cost),Integer.parseInt(amount), cat);
-//            /souQ/jsp/adminPage.jsp
-            } catch (SQLException ex) {
-                
-                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=no&d=add");
-                Logger.getLogger(addProduct.class.getName()).log(Level.SEVERE, null, ex);
+            throws ServletException {
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            connectToDatabase();
+            HttpSession session = request.getSession();
+            pname = request.getParameter("pname");
+            cost = request.getParameter("cost");
+            amount = request.getParameter("amount");
+            cat = request.getParameter("cat").toLowerCase();
+            desc = request.getParameter("desc");
+            update = request.getParameter("update");
+            if(update!=null){  
+                $update=update.equals("yes");
+                System.out.println($update);
             }
-        }
+            if ($update) {
+                System.out.println("servlets.addProduct.processRequest()-----> UPDATE");
+                pname = (String) session.getAttribute("pname");
+                cost = (String) session.getAttribute("cost");
+                cat = (String) session.getAttribute("cat");
+                amount = (String) session.getAttribute("amount");
+                desc = (String) session.getAttribute("desc");
+
+                dbMethods.editProduct(pname, Double.parseDouble(cost), Integer.valueOf(amount), cat);
+
+                session.setAttribute("pnameExist", "no");
+                session.setAttribute("pname", " ");
+                session.setAttribute("cost", " ");
+                session.setAttribute("amount", " ");
+                session.setAttribute("cat", "cars");
+                session.setAttribute("desc", " ");
+                 session.setAttribute("edit", "no");
+
+                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=yes&d=add");
+                
+            } else if (dbMethods.isProductExist(pname)) {
+                
+                System.out.println("servlets.addProduct.processRequest()  -----> item exists " + desc);
+                session.setAttribute("pnameExist", "yes");
+                session.setAttribute("edit", "no");
+                session.setAttribute("pname", pname);
+                session.setAttribute("cost", cost);
+                session.setAttribute("amount", amount);
+                session.setAttribute("cat", cat);
+                session.setAttribute("desc", desc);
+
+                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=&d=");
+            } else {
+                
+                System.out.println("servlets.addProduct.processRequest() ----> NEW ITEM" + amount + cat);
+                dbMethods.addProduct(pname, Double.parseDouble(cost), Integer.parseInt(amount), cat);
+                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=yes&d=add");
+            }
+//            /souQ/jsp/adminPage.jsp
+        } 
+//        catch ( ) {
+//           
+//            Logger.getLogger(addProduct.class.getName()).log(Level.SEVERE, null, ex);
+//            try {
+//                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=no&d=add");
+//            } catch (IOException ex1) {
+//                Logger.getLogger(addProduct.class.getName()).log(Level.SEVERE, null, ex1);
+//            }
+
+        
+    catch (IOException|SQLException ex) {
+        ex.printStackTrace();
+            try {
+                response.sendRedirect("/souQ/jsp/adminPage.jsp?s=no&d=add");
+            } catch (IOException ex1) {
+                Logger.getLogger(addProduct.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } 
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

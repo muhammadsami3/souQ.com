@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%!String pname = " ", cost = " ", cat = " ", amount = " ", desc = "", edit, update;%>
 <%
     pname = (String) session.getAttribute("pname");
@@ -7,6 +8,21 @@
     desc = (String) session.getAttribute("desc");
     edit = request.getParameter("edit");
     update = request.getParameter("update");
+    String[] paString={pname,cost,cat,amount,desc,update} ;
+    
+//    Enumeration keys=session.getAttributeNames();
+//    while (keys.hasMoreElements()) {
+//        String key = (String)keys.nextElement();
+//         String value=(String)session.getValue(key);
+//          key= (key !=null )? key : " ";  
+//            System.out.println("className.methodName() settinh value if its null "+value);
+//        }
+
+pname=(pname==null)?" ":pname;
+cost=(cost==null)?" ":cost;
+cat=(cat==null)?" ":cat;
+amount=(amount==null)?" ":amount;
+desc=(desc==null)?" ":desc;
 
     System.out.println("className.methodName()" + pname + cost + cat + amount);
 %>
@@ -32,15 +48,18 @@
 
                 <select  name="cat" >
                     <option >Cars</option>
-                    <option <%if (cat.equals("tv")) {%><%="selected"%> <% }%> >TV</option>
+                    <option <%if (cat!=null&&cat.equals("tv")) {%><%="selected"%> <% }%> >TV</option>
                 </select>
                 </br><br>
+                Description
+                <br>
                 <textarea id="desc" cols="48" rows="5" name="desc"><%=desc%></textarea>
                 <br> 
 
                 <input type="reset" value="Clear" class="btn" >
                 &nbsp;
                 <%if (update != null && update.equals("yes")) {%>
+                
                 <input type="button" value="Add" onclick="validateAdd()" class="btn" style="margin-left: 28px;" > 
                 <br>
                 <ul type="circle" id="errMsg">
@@ -52,9 +71,16 @@
                 <%}%>
 
                 <%if (edit != null && edit.equals("yes")) {%>
-                <a href="/souQ/addProduct?update=yes&cat=&pname="> 
-                    <input class="btn" type="button" onclick="validateAdd()" value="Edit" style="margin-left: 28px;"  />
-                </a>
+                <!--<a href="/souQ/addProduct?update=yes&cat=&pname=">--> 
+                    
+                <input type="text"  name="update" value="yes" style="display: none" > 
+        <input type="text"  name="cat" value=" "  style="display: none"> 
+        <input type="text"  name="pname" value=" "  style="display: none"> 
+        <input type="button" value="Add" onclick="validateAdd()" class="btn" style="margin-left: 28px;" > 
+        
+
+                    <!--<input class="btn" type="button" onclick="validateAdd()" value="Edit" style="margin-left: 28px;"  />-->
+                <!--</a>-->
                 <%}%>
             </div>
         </form>

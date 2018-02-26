@@ -45,27 +45,19 @@ public class dbMethods {
     }
       
       public static void main(String[] args) {
-        connectToDatabase();
-          try {
-            
-            ResultSet resultSet=showUsers();
-            
-//        ResultSet resultSet=showUserInfo("admin");
-//        addProduct("car1",1000,3,"cars");
-//              if (isProductExist("car")) {
-//                  System.out.println("dataBaseFunction.dbMethods.main()");
-//              }
-
-//              removeProduct("car3");
-//              removeUser("dd");
-resultSet=getProductInfo("car1");
-
-while (resultSet.next()) {
-    System.out.println("dataBaseFunction.dbMethods.main()-->  "+resultSet.getString(2)+resultSet.getString(3)+rs.getString("qyn"));    
-}
-        } catch (SQLException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        connectToDatabase();
+//          try {
+//            
+//            ResultSet resultSet=showUsers();
+//            
+//resultSet=getProductInfo("car1");
+//
+//while (resultSet.next()) {
+//    System.out.println("dataBaseFunction.dbMethods.main()-->  "+resultSet.getString(2)+resultSet.getString(3)+rs.getString("qyn"));    
+//}
+//        } catch (SQLException ex) {
+//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
       
     public static ResultSet showUsers() {
@@ -112,31 +104,33 @@ while (resultSet.next()) {
       
       
       
-    public static void addProduct(String pname,double price,int qyn,String cat) throws SQLException {
+    public static void addProduct(String pname,double price,int qyn,String cat,String desc) throws SQLException {
         
-           String query = " insert into product (name,price,qyn,cat) values (?,?,?,?)";
+           String query = " insert into product (name,price,qyn,cat,description) values (?,?,?,?,?)";
         
             stmt = conn.prepareStatement(query);
             stmt.setString(1, pname);
             stmt.setDouble(2, price);
             stmt.setInt(3, qyn);
             stmt.setString(4, cat);
+            stmt.setString(5, desc);
             stmt.execute();
 
     }
     
     
    
-       public static void editProduct(String pname,double price,int qyn,String cat) throws SQLException {
+       public static void editProduct(String pname,double price,int qyn,String cat,String desc) throws SQLException {
         
-           String query = "update product set name=?, price=?,qyn=?,cat=? where name=?;";
+           String query = "update product set name=?, price=?,qyn=?,cat=?,description=? where name=?;";
         
             stmt = conn.prepareStatement(query);
             stmt.setString(1, pname);
-            stmt.setString(5, pname);
+            stmt.setString(6, pname);
             stmt.setDouble(2, price);
             stmt.setInt(3, qyn);
             stmt.setString(4, cat);
+            stmt.setString(5, desc);
             stmt.execute();
 
     }

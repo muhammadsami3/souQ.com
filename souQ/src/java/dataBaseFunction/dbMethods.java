@@ -35,7 +35,7 @@ public class dbMethods {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "1022591400");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "java", "password");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

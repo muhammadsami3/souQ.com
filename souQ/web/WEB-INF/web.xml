@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	 version="3.1">
-    
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>java</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>password</param-value>
+    </context-param>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.usersServlets.ContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>trialServlet</servlet-name>
+        <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trialServlet</servlet-name>
+        <url-pattern>/trialServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
-        
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

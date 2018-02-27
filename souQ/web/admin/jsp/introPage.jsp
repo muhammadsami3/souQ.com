@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page  %>
 <%@include file="../html/adminheader.html" %>
-welcome to admin page 
+
 <%dbMethods.connectToDatabase();%>
 <%@include file="../html/footer.html" %>
 

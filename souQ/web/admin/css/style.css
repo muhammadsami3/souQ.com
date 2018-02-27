@@ -22,7 +22,11 @@ th,tr,td{
     margin: auto;
     padding: 10px;
 }
+.container {
+    position: relative;
+    text-align: center;
 
+}
 .dropbtn {
     background-color: #228eab;
     color: white;
@@ -98,9 +102,18 @@ th,tr,td{
     background-color: #2194ddcc;
 
 }
-
-#header {
+footer{
+    text-align: center;
+    text-align: center;
+    color: wheat;
+}
+#header,#footer {
     background-color:aliceblue;
 }
 
 
+#text{
+    position: absolute;
+    top: 40%;
+    left: 26%;
+}

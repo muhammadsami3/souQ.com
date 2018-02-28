@@ -118,3 +118,26 @@ footer{
     top: 40%;
     left: 26%;
 }
+#adminProfile{
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+#logoutContainer{   
+    position: absolute;
+    top: 8px;
+    right: 16px;
+
+}
+
+#logout{
+
+    font-size: 16px;
+    background-color: #228eab;
+    border: 0px;
+    color: white;
+}
+
+#logout:hover{
+    background-color: #2194ddcc;
+}

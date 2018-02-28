@@ -33,7 +33,6 @@ public class removeProduct extends HttpServlet {
             HttpSession session=request.getSession(false);
             String pname = (String) session.getAttribute("pname");
             System.out.println(new Date() +"admin.servlets.removeProduct.processRequest() --> remove servlet pname="+pname);
-            dbMethods.connectToDatabase();
              dbMethods.removeProduct(pname);
 
             
@@ -46,7 +45,7 @@ public class removeProduct extends HttpServlet {
                 session.setAttribute("edit", "no");
                 session.setAttribute("found", " ");
                 session.setAttribute("success", "yes");
-                
+//                
                 response.sendRedirect("/souQ/admin/jsp/removePage.jsp");
           
         } catch (SQLException ex) {

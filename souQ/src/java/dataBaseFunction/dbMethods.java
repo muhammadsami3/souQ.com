@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class dbMethods {
 
-    static Connection conn;
+   public static Connection conn;
     static PreparedStatement stmt;
     static Statement stmt2;
     static PreparedStatement stmt3;

@@ -38,7 +38,6 @@ public class getproductInfo extends HttpServlet {
             requestFrom = (requestFrom == null) ? " " : requestFrom;
 
             try {
-                dbMethods.connectToDatabase();
                 HttpSession session = request.getSession(false);
 
                 if (dbMethods.isProductExist(pname)) {

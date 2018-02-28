@@ -12,7 +12,7 @@
     <div class="center">
 
         <form action="/souQ/admin/getproductInfo" method="Get">
-            <div class="center">
+            <div class="center"  >
 
                 Product Name to remove &nbsp;
                 <input type="text" name="pname"> &nbsp;
@@ -25,8 +25,8 @@
         <% String success = (String) session.getAttribute("success");
             success = (success == null) ? "" : success;
             if (success.equals("yes")) {%>
-        <div class="msg center"> 
-            <font style="color: green;margin-left: 23%; " class="center">product removed successfully </font>
+        <div class="msg center" style="height: 320px;"> 
+            <font style="color: green;margin-left: 23%;height: 320px; " class="center" >product removed successfully </font>
         </div>
 
         <%System.out.println("className.methodName() --> item deleted successfuly");
@@ -45,7 +45,7 @@
     if (found.equals("no")) {
         session.setAttribute("found", " ");
         System.out.println("className.methodName() --> name not found");%>
-<div class="msg center"> 
+<div class="msg center" style="height: 320px;"> 
     <font style="color: red;margin-left: 40%;" class="center" >product not found </font>
 </div>
 
@@ -109,6 +109,11 @@
         </div>
     </form> 
 </div>
-<% }%> 
+<% }else{
+%> 
+<div style="height: 320px;">
+    
+</div>
 
+<%}%>
 <%@include file="../html/footer.html" %>

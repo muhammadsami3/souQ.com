@@ -9,6 +9,9 @@
 <%@page  %>
 <%@include file="../html/adminheader.html" %>
 
-<%dbMethods.connectToDatabase();%>
+<div style="height: 470px;">
+    
+</div>
+
 <%@include file="../html/footer.html" %>
 

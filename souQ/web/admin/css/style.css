@@ -5,7 +5,7 @@ input,select{
     border-bottom: 2px solid #2194ddcc;
 }
 input:hover ,select:hover{
-    border-bottom: 2px solid deeppink;  
+    border-bottom: 1px solid deeppink;  
 }
 input:focus,select:hover{
     background-color: #ffd7fd;
@@ -21,6 +21,11 @@ table{
 th,tr,td{
     margin: auto;
     padding: 10px;
+}
+footer{
+    text-align: center;
+    color: white;
+    background-color: #005e9e;
 }
 .container {
     position: relative;
@@ -102,11 +107,7 @@ th,tr,td{
     background-color: #2194ddcc;
 
 }
-footer{
-    text-align: center;
-    text-align: center;
-    color: wheat;
-}
+
 #header,#footer {
     background-color:aliceblue;
 }

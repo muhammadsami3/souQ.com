@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dataBaseFunction.dbMethods;
-import static dataBaseFunction.dbMethods.connectToDatabase;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +34,7 @@ public class addProduct extends HttpServlet {
         try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            connectToDatabase();
+            
             HttpSession session = request.getSession();
             pname = request.getParameter("pname");
             cost = request.getParameter("cost");

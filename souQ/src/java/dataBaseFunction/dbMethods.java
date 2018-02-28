@@ -43,20 +43,23 @@ public class dbMethods {
         }
     }
 
-    public static void main(String[] args) {
-//        connectToDatabase();
+    public static void main(String[] args) throws SQLException {
+        connectToDatabase();
+        addOrder(1, 1500);
+//        addCart(1, 28, 5);
 //          try {
-//            
+            
 //            ResultSet resultSet=showUsers();
-//            
-//resultSet=getProductInfo("car1");
+            
+//  rs2=getProductInfoById(28);
 //
-//while (resultSet.next()) {
-//    System.out.println("dataBaseFunction.dbMethods.main()-->  "+resultSet.getString(2)+resultSet.getString(3)+rs.getString("qyn"));    
+//while (rs2.next()) {
+//    System.out.println("dataBaseFunction.dbMethods.main()-->  "+rs2.getString(2)+"  "+rs2.getString(3)+" "+rs2.getString(4));    
 //}
 //        } catch (SQLException ex) {
 //            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        
     }
 
     public static ResultSet showUsers() {
@@ -101,7 +104,33 @@ public class dbMethods {
         rs = stmt2.executeQuery(queryString);
         return rs;
     }
+  public static ResultSet getProductInfoById(int id) throws SQLException {
+        stmt2 = conn.createStatement();
+        String queryString = new String("Select * from product where productid=" + id + "");
+        rs = stmt2.executeQuery(queryString);
+        return rs;
+    }
+ public static void addCart(int orderid,int productid,int quantity) throws SQLException {
 
+        String query = "insert into cart (orderid,productid,quantity) values(?,?,?)";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setInt(1, orderid);
+        stmt.setInt(2, productid);
+        stmt.setInt(3, quantity);
+        stmt.execute();
+
+    }
+  public static void addOrder(int customerID, int totalamount ) throws SQLException {
+
+        String query = "insert into orders ( customerid,totalamount) values (?,?)";
+
+        stmt = conn.prepareStatement(query);
+        stmt.setInt(1, customerID);
+        stmt.setInt(2, totalamount);
+        stmt.execute();
+
+    }
     public static void addProduct(String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {
 
         String query = " insert into product (name,price,qyn,cat,description,img) values (?,?,?,?,?,?)";

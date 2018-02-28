@@ -51,13 +51,14 @@
 
 
 <% } else if (found.equals("yes")) {%>
-<%!String pname, cost, cat, amount, desc;%>
+<%!String pname, cost, cat, amount, desc,img;%>
 
 <% pname = (String) session.getAttribute("pname");
     cost = (String) session.getAttribute("cost");
     cat = (String) session.getAttribute("cat");
     amount = (String) session.getAttribute("amount");
     desc = (String) session.getAttribute("desc");
+    img = (String) session.getAttribute("img");
 %>
 <div class="center">
     <table class="center" >
@@ -73,7 +74,7 @@
                 <td>Name</td>
                 <td><%=pname%></td>
                 <td rowspan="4">
-                    <img src="../../imgs/Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg.jpg" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
+                    <img src="../../imgs/<%=img%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
 
                 </td>
 

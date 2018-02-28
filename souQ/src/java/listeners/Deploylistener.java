@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpSession;
 
 /**
  * Web application lifecycle listener.
@@ -29,6 +30,7 @@ public class Deploylistener implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent sce) {
         try {
             dbMethods.conn.close();
+//             HttpSession session = sce.getServletContext().get;
         } catch (SQLException ex) {
             Logger.getLogger(Deploylistener.class.getName()).log(Level.SEVERE, null, ex);
         }

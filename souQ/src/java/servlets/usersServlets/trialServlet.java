@@ -65,7 +65,7 @@ public class trialServlet extends HttpServlet {
            boolean inserted=prepareStatement.execute();
            System.out.println("inserted "+inserted);
            if(!inserted){
-           response.sendRedirect("html/usersHTML/login.html");
+           response.sendRedirect("jsp/usersJSP/login.jsp");
            }
            else{
                PrintWriter out = response.getWriter();

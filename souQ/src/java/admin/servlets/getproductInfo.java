@@ -27,6 +27,7 @@ import javax.servlet.http.HttpSession;
 public class getproductInfo extends HttpServlet {
 
     ResultSet rs;
+    dbMethods doQuery = new dbMethods();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,9 +41,9 @@ public class getproductInfo extends HttpServlet {
             try {
                 HttpSession session = request.getSession(false);
 
-                if (dbMethods.isProductExist(pname)) {
+                if (doQuery.isProductExist(pname)) {
 
-                    rs = dbMethods.getProductInfo(pname);
+                    rs = doQuery.getProductInfo(pname);
                     rs.next();
                     session.setAttribute("pname", rs.getString("name"));
                     session.setAttribute("cost", rs.getString("price"));
@@ -52,9 +53,9 @@ public class getproductInfo extends HttpServlet {
                     session.setAttribute("img", rs.getString("img"));
                     session.setAttribute("id", rs.getString("productid"));
 
-                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid"+rs.getString("productid"));
-                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid"+rs.getString("img"));
-                    
+                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid" + rs.getString("productid"));
+                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid" + rs.getString("img"));
+
                     session.setAttribute("found", "yes");
 
                     if (requestFrom.equals("remove")) {
@@ -71,9 +72,7 @@ public class getproductInfo extends HttpServlet {
                     session.setAttribute("desc", "");
                     session.setAttribute("img", "");
                     session.setAttribute("found", "no");
-                    session.setAttribute("id","-1");
-                    
-                    
+                    session.setAttribute("id", "-1");
 
                     if (requestFrom.equals("remove")) {
                         response.sendRedirect("/souQ/admin/jsp/removePage.jsp");

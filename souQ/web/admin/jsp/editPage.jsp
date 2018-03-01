@@ -61,8 +61,7 @@
     <font style="color: green;margin-left: 34%; " class="center">product Information updated </font>
 </div>
 
-<%}
-%>
+<%}%>
 
 <div class="mainOption" id="editProduct">           
     <div class="center">

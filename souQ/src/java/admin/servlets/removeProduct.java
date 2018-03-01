@@ -24,6 +24,8 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "removeProduct", urlPatterns = {"/admin/removeProduct"})
 public class removeProduct extends HttpServlet {
+    
+    dbMethods doQuery=new dbMethods();
 
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +35,7 @@ public class removeProduct extends HttpServlet {
             HttpSession session=request.getSession(false);
             String pname = (String) session.getAttribute("pname");
             System.out.println(new Date() +"admin.servlets.removeProduct.processRequest() --> remove servlet pname="+pname);
-             dbMethods.removeProduct(pname);
+             doQuery.removeProduct(pname);
 
             
                 session.setAttribute("pnameExist", "no");

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class dbMethods {
 
-   public static Connection conn;
+    public static Connection conn;
     static PreparedStatement stmt;
     static Statement stmt2;
     static PreparedStatement stmt3;
@@ -45,26 +45,21 @@ public class dbMethods {
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
-        addOrder(1, 1500);
-//        addCart(1, 28, 5);
-//          try {
-            
-//            ResultSet resultSet=showUsers();
-            
-//  rs2=getProductInfoById(28);
-//
-//while (rs2.next()) {
-//    System.out.println("dataBaseFunction.dbMethods.main()-->  "+rs2.getString(2)+"  "+rs2.getString(3)+" "+rs2.getString(4));    
-//}
-//        } catch (SQLException ex) {
-//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        
+        try {
+            dbMethods db = new dbMethods();
+            rs2 = db.getCartInfo(1);
+            while (rs2.next()) {
+                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(2) + "  " + rs2.getString(3) + " " + rs2.getString(4));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public static ResultSet showUsers() {
+    public ResultSet showUsers() {
+        ResultSet rs = null;
         try {
-            stmt2 = conn.createStatement();
+            Statement stmt2 = conn.createStatement();
             String queryString = new String("Select * from customer");
             rs = stmt2.executeQuery(queryString);
         } catch (SQLException ex) {
@@ -73,69 +68,82 @@ public class dbMethods {
         return rs;
     }
 
-    public static ResultSet showUserInfo(String uname) throws SQLException {
+    public ResultSet showUserInfo(String uname) throws SQLException {
 
-        stmt2 = conn.createStatement();
+        Statement stmt2 = conn.createStatement();
         String queryString = new String("Select * from customer where uname='" + uname + "' ");
-        rs = stmt2.executeQuery(queryString);
+        ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
 
     }
 
-    public static void removeUser(String uname) throws SQLException {
+    public void removeUser(String uname) throws SQLException {
         String query = "delete from customer where uname=?";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, uname);
         stmt.execute();
 
     }
 
-    public static ResultSet showProducts() throws SQLException {
-        stmt2 = conn.createStatement();
+    public ResultSet showProducts() throws SQLException {
+        Statement stmt2 = conn.createStatement();
         String queryString = new String("Select name from product");
-        rs = stmt2.executeQuery(queryString);
+        ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
 
-    public static ResultSet getProductInfo(String pname) throws SQLException {
-        stmt2 = conn.createStatement();
+    public ResultSet getProductInfo(String pname) throws SQLException {
+        Statement stmt2 = conn.createStatement();
         String queryString = new String("Select * from product where name='" + pname + "'");
-        rs = stmt2.executeQuery(queryString);
+        ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
-  public static ResultSet getProductInfoById(int id) throws SQLException {
-        stmt2 = conn.createStatement();
+
+    public ResultSet getCartInfo(int orderid) throws SQLException {
+
+        String queryString = "select * from cart where orderid=?";
+        PreparedStatement stmt = conn.prepareStatement(queryString);
+        stmt.setInt(1, orderid);
+        ResultSet rs = stmt.executeQuery();
+        return rs;
+    }
+
+    public ResultSet getProductInfoById(int id) throws SQLException {
+        Statement stmt2 = conn.createStatement();
         String queryString = new String("Select * from product where productid=" + id + "");
-        rs = stmt2.executeQuery(queryString);
+        ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
- public static void addCart(int orderid,int productid,int quantity) throws SQLException {
+
+    public void addCart(int orderid, int productid, int quantity) throws SQLException {
 
         String query = "insert into cart (orderid,productid,quantity) values(?,?,?)";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, orderid);
         stmt.setInt(2, productid);
         stmt.setInt(3, quantity);
         stmt.execute();
 
     }
-  public static void addOrder(int customerID, int totalamount ) throws SQLException {
+
+    public void addOrder(int customerID, int totalamount) throws SQLException {
 
         String query = "insert into orders ( customerid,totalamount) values (?,?)";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, customerID);
         stmt.setInt(2, totalamount);
         stmt.execute();
 
     }
-    public static void addProduct(String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {
+
+    public void addProduct(String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {
 
         String query = " insert into product (name,price,qyn,cat,description,img) values (?,?,?,?,?,?)";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);
         stmt.setDouble(2, price);
         stmt.setInt(3, qyn);
@@ -146,11 +154,11 @@ public class dbMethods {
 
     }
 
-    public static void editProduct(int id, String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {
+    public void editProduct(int id, String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {
 
         String query = "update product set name=?, price=?,qyn=?,cat=?,description=?,img=? where  productid=?";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);
         stmt.setDouble(2, price);
         stmt.setInt(3, qyn);
@@ -163,17 +171,17 @@ public class dbMethods {
 
     }
 
-    public static void removeProduct(String pname) throws SQLException {
+    public void removeProduct(String pname) throws SQLException {
 
         String query = "delete from product where name=?";
 
-        stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);
         stmt.execute();
 
     }
 
-    public static boolean isProductExist(String pname) throws SQLException {
+    public boolean isProductExist(String pname) throws SQLException {
 
         boolean isProductExist = false;
         ResultSet rs = showProducts();

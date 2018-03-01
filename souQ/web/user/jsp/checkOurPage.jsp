@@ -4,19 +4,18 @@
     Author     : Muhammad Sami
 --%>
 
+<%@page import="dataBaseFunction.dbMethods"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%!String pname, cost, cat, amount, desc, img;
-    Integer id;
+<%!
+    Integer id, amount;
+    dbMethods doQuery = new dbMethods();
+    ResultSet rs;
+    ResultSet rs2;
 %>
 
-<% pname = (String) session.getAttribute("pname");
-    cost = (String) session.getAttribute("cost");
-    cat = (String) session.getAttribute("cat");
-    amount = (String) session.getAttribute("amount");
-    desc = (String) session.getAttribute("desc");
-    img = (String) session.getAttribute("img");
-//    id = (Integer) session.getAttribute("id");
+<%
 %>
 <html>
     <head>
@@ -25,7 +24,21 @@
     </head>
     <body>
         <div>
+
             <form action="/souQ/CheckOut">
+                <%                       
+                    rs = doQuery.getCartInfo(1);
+                    System.out.println("className.methodName()");
+                    while (rs.next()) {
+                        String tempId = rs.getString("productid");
+                        String tempQyn = rs.getString("quantity");
+                        int id = Integer.parseInt(tempId);
+                        amount = Integer.parseInt(tempQyn);
+                        rs2 = doQuery.getProductInfoById(id);
+                        while (rs2.next()) {
+                            
+                        
+                %>
                 <div class="center">
                     <table class="center" >
 
@@ -38,23 +51,23 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td><%=pname%></td>
+                                <td><%=rs2.getString("name")%></td>
                                 <td rowspan="4">
-                                    <img src="../../imgs/<%=img%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
+                                    <img src="../../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
 
                                 </td>
 
                             </tr>
                             <tr>
                                 <td>Cost/Item</td>
-                                <td><%=cost%></td>
+                                <td><%=rs2.getString("price")%></td>
 
                             </tr>
                             <tr>
                                 <td>Amount</td>
                                 <td>
                                     <select name="qyn">
-                                        <% for (int i = 1; i <= Integer.parseInt(amount); i++) {%>
+                                        <% for (int i = 1; i <= amount; i++) {%>
                                         <option><%=i%></option>
                                         <%}%>                        
                                     </select>
@@ -64,24 +77,23 @@
                             </tr>
                             <tr>
                                 <td>Cat</td>
-                                <td><%=cat%></td>
+                                <td><%=rs2.getString("cat")%></td>
 
                             </tr>
                         </tbody>
                     </table>
-                    <div class="center">
-                        <%=desc%>
-
-                    </div>       
                 </div>
-                        <div>
-                <input type="submit"/>
+                <%}
+                            }%>
+                <div>
+                    <input type="submit"/>
 
-            </div>
+                </div>
             </form>
 
 
-            
+
         </div>
+
     </body>
 </html>

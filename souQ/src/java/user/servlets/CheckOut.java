@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CheckOut", urlPatterns = {"/CheckOut"})
 public class CheckOut extends HttpServlet {
+    dataBaseFunction.dbMethods doQuery;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -30,7 +31,7 @@ public class CheckOut extends HttpServlet {
 //            String id = (String) request.getAttribute("id1");
             String qyn = (String) request.getParameter("qyn");
 
-            dataBaseFunction.dbMethods.addCart(1,28, Integer.valueOf(qyn));
+            doQuery.addCart(1,28, Integer.valueOf(qyn));
             response.sendRedirect("/souQ/user/jsp/checkOurPage.jsp?success=yes");
 
         } catch (Exception e) {

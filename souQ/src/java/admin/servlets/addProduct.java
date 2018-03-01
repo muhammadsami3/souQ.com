@@ -25,16 +25,18 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "addProduct", urlPatterns = {"/admin/addProduct"})
 public class addProduct extends HttpServlet {
 
-    String pname, cost, amount, cat, desc, edit,img,tempID;
+    String pname, cost, amount, cat, desc, edit, img, tempID;
     Integer id;
     boolean $edit = false;
+    dbMethods doQuery=new dbMethods();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
+
         try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            
+
             HttpSession session = request.getSession();
             pname = request.getParameter("pname");
             cost = request.getParameter("cost");
@@ -54,12 +56,11 @@ public class addProduct extends HttpServlet {
                 cat = request.getParameter("cat");
                 desc = request.getParameter("desc");
                 img = request.getParameter("img");
-                tempID=(String)session.getAttribute("id");
-                tempID=(tempID==null)?"-1":tempID;
-                id=Integer.parseInt(tempID);
-                
+                tempID = (String) session.getAttribute("id");
+                tempID = (tempID == null) ? "-1" : tempID;
+                id = Integer.parseInt(tempID);
 
-                dbMethods.editProduct(id,pname, Double.parseDouble(cost), Integer.valueOf(amount), cat, desc,img);
+                doQuery.editProduct(id, pname, Double.parseDouble(cost), Integer.valueOf(amount), cat, desc, img);
 
                 session.setAttribute("pnameExist", "no");
                 session.setAttribute("pname", " ");
@@ -69,11 +70,11 @@ public class addProduct extends HttpServlet {
                 session.setAttribute("desc", " ");
                 session.setAttribute("img", " ");
                 session.setAttribute("edit", "no");
-                session.setAttribute("id","-1");
+                session.setAttribute("id", "-1");
 
                 response.sendRedirect("/souQ/admin/jsp/editPage.jsp?success=yes");
 
-            } else if (dbMethods.isProductExist(pname)) {
+            } else if (doQuery.isProductExist(pname)) {
 
                 System.out.println("servlets.addProduct.processRequest()  -----> item exists " + desc);
                 session.setAttribute("pnameExist", "yes");
@@ -88,10 +89,10 @@ public class addProduct extends HttpServlet {
 
                 response.sendRedirect("/souQ/admin/jsp/addPage.jsp");
             } else {
-                             session.setAttribute("pnameExist", "no");
+                session.setAttribute("pnameExist", "no");
 
                 System.out.println("servlets.addProduct.processRequest() ----> NEW ITEM  " + amount + cat);
-                dbMethods.addProduct(pname, Double.parseDouble(cost), Integer.parseInt(amount), cat, desc,img);
+                doQuery.addProduct(pname, Double.parseDouble(cost), Integer.parseInt(amount), cat, desc, img);
                 response.sendRedirect("/souQ/admin/jsp/addPage.jsp?s=yes");
             }
         } catch (IOException | SQLException ex) {
@@ -111,7 +112,6 @@ public class addProduct extends HttpServlet {
         processRequest(request, response);
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

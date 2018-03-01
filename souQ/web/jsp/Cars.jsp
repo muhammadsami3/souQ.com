@@ -18,30 +18,26 @@
 
     <ul id="gallery">
       <li>
-        <a href="../img/car1.jpg">
-        <img src="../img/car1.jpg" alt="car1"> 
-        <p>add to cart </p>
-       </a>
+        
+          <form action="/souQ/cart">
+              <input type="image" src="../img/car1.jpg" alt="car1" width="100" height="100" name="car1" value="1">
+              <input type="hidden" name="id" value="1">
+         <br><br>
+            <input type="submit" value="Add to cart">
+          </form>
+          
      </li>
-     <li>
-        <a href="../img/car2.jpg">
-        <img src="../img/car2.jpg" alt="car2"> 
-        <p>add to cart</p>
-       </a>
+     
+     <li>  
+         <form action="/souQ/cart">
+             
+             <input type="image" src="../img/car2.jpg" alt="car1" width="100" height="100" name="car2" value="2">
+             <input type="hidden" name="id" value="2">
+         <br><br>
+            <input type="submit" value="Add to cart">
+        </form>
      </li>
-      <li>
-        <a href="../img/car3.jpg">
-        <img src="../img/car3.jpg" alt="car3"> 
-        <p>add to cart</p>
-       </a>
-     </li>
-     <li>
-        <a href="../img/car4.jpg">
-        <img src="../img/car4.jpg" alt="car4"> 
-        <p>add to cart</p>
-       </a>
-     </li>
-
+     
    </ul>
   </div>
      </section>

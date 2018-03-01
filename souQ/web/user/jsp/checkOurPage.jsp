@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%!
-    Integer id, amount;
+    Integer id, amount,totalPrice;
     dbMethods doQuery = new dbMethods();
     ResultSet rs;
     ResultSet rs2;
@@ -26,6 +26,7 @@
         <div>
 
             <form action="/souQ/CheckOut">
+                <div class="cartContainer">
                 <%                       
                     rs = doQuery.getCartInfo(1);
                     System.out.println("className.methodName()");
@@ -66,7 +67,7 @@
                             <tr>
                                 <td>Amount</td>
                                 <td>
-                                    <select name="qyn">
+                                    <select name="qyn<%=rs2.getString("productid")%>">
                                         <% for (int i = 1; i <= amount; i++) {%>
                                         <option><%=i%></option>
                                         <%}%>                        
@@ -89,6 +90,12 @@
                     <input type="submit"/>
 
                 </div>
+                
+                <%
+                
+
+
+                %>
             </form>
 
 

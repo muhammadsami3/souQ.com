@@ -1,7 +1,7 @@
 <%-- 
     Document   : getproductInfo
     Created on : Mar 1, 2018, 4:32:37 PM
-    Author     : User
+    Author     : raghda
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,9 +23,13 @@
     id = request.getParameter("id");
 %>
 
-<% if (id.equals("1")) { %>
+<% if (id.equals("1")) {
+response.sendRedirect("geteachproductInfo");
+%>
 <h1>1</h1>
- <% }else if (id.equals("2")){ %>
+ <% }else if (id.equals("2")){ 
+ response.sendRedirect("geteachproductInfo");
+ %>
  <h1>2</h1>
     
 <% } %>

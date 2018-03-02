@@ -34,9 +34,9 @@ public class cart extends HttpServlet {
            
             String id=request.getParameter("id");
             switch (id){
-                case "1":response.sendRedirect("/souQ/jsp/getproductInfo.jsp?id=1");
+                case "1":response.sendRedirect("/souQ/jsp/getproductId.jsp?id=1");
                 break;
-                case "2":response.sendRedirect("/souQ/jsp/getproductInfo.jsp?id=2");
+                case "2":response.sendRedirect("/souQ/jsp/getproductId.jsp?id=2");
                 break;
                 
            

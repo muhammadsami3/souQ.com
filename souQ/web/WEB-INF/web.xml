@@ -4,14 +4,20 @@
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
-    <!--    <filter>
-        <filter-name>adminpageFilter</filter-name>
-        <filter-class>filters.adminpageFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>adminpageFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
-    </filter-mapping>-->
+    
+<context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>java</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>password</param-value>
+    </context-param>
+ 
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listeners.Deploylistener</listener-class>
@@ -20,6 +26,20 @@
         <description>ServletContextListener</description>
         <listener-class>listeners.sessionListener</listener-class>
     </listener>
+
+    
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.usersServlets.ContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>trialServlet</servlet-name>
+        <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trialServlet</servlet-name>
+        <url-pattern>/trialServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

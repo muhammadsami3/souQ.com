@@ -142,6 +142,17 @@ while (resultSet.next()) {
 
         
     }
+        
+        
+        public static ResultSet getProductInfoById(int id) throws SQLException {
+         stmt2 = conn.createStatement();
+        String queryString = new String("Select * from product where productid=" + id + "");
+         rs = stmt2.executeQuery(queryString);
+        return rs;
+    }
+        
+        
+        
      
       public  static boolean isProductExist(String pname) throws SQLException{
       

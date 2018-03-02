@@ -32,11 +32,11 @@ public class CheckOut extends HttpServlet {
             String qyn = (String) request.getParameter("qyn");
 
             doQuery.addCart(1,28, Integer.valueOf(qyn));
-            response.sendRedirect("/souQ/user/jsp/checkOurPage.jsp?success=yes");
+            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp?success=yes");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("/souQ/user/jsp/checkOurPage.jsp?success=no");
+            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp?success=no");
 
         }
     }
@@ -48,7 +48,7 @@ public class CheckOut extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("/souQ/user/jsp/checkOurPage.jsp?success=no");
+            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp?success=no");
 
         }
     }
@@ -60,7 +60,7 @@ public class CheckOut extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect("/souQ/user/jsp/checkOurPage.jsp?success=no");
+            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp?success=no");
 
         }
     }

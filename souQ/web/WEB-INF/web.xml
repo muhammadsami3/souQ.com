@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!--
     <context-param>
         <param-name>cat</param-name>
         <param-value>0</param-value>
     </context-param>
+    -->
+        
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>java</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>password</param-value>
+    </context-param>
+
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
+
     <servlet>
         <servlet-name>carts</servlet-name>
         <servlet-class>servlets.carts</servlet-class>
@@ -23,10 +40,36 @@
     <servlet-mapping>
         <servlet-name>cart</servlet-name>
         <url-pattern>/cart</url-pattern>
+
+    </servlet-mapping>
+ 
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>listeners.Deploylistener</listener-class>
+    </listener>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>listeners.sessionListener</listener-class>
+    </listener>
+
+    
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.usersServlets.ContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>trialServlet</servlet-name>
+        <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trialServlet</servlet-name>
+        <url-pattern>/trialServlet</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+        
 </web-app>

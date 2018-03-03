@@ -20,7 +20,7 @@
         <%  dbMethods.connectToDatabase();
         
         
-        dbMethods.getProductInfoById(id);
+  
         
         
         

@@ -59,4 +59,5 @@ REFERENCES Orders (OrderID);
 ALTER TABLE cart ADD CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID)
 REFERENCES Product (ProductID);
 
-
+ALTER TABLE product
+ADD COLUMN description text ,ADD COLUMN img varchar(256);

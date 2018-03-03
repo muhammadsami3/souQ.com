@@ -27,6 +27,9 @@
     dbMethods.connectToDatabase();
     ResultSet rs= dbMethods.getProductInfoById(id2);
     rs.next();
+   String stock_amount= rs.getString("qyn");
+   int qyn=Integer.parseInt(stock_amount);
+   
 %>
 
 <% if (id.equals("1")) {
@@ -43,6 +46,13 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
+
+<select name="userqyn">
+                                        <% for (int i = 1; i <= qyn; i++) {%>
+                                        <option><%=i%></option>
+                                        <%}%>                        
+                                    </select>
+
  <% }else if (id.equals("2")){ 
  
 
@@ -55,6 +65,12 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
+
+<select name="userqyn">
+                                        <% for (int i = 1; i <= qyn; i++) {%>
+                                        <option><%=i%></option>
+                                        <%}%>                        
+                                    </select>
     
 <% } %>
       

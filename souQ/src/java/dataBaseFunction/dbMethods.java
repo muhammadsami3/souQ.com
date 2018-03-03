@@ -170,4 +170,19 @@ while (resultSet.next()) {
       return isProductExist;
       }
     
+      
+      
+      public static void addCart(int orderid, int productid, int quantity) throws SQLException {
+
+        String query = "insert into cart (orderid,productid,quantity) values(?,?,?)";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, orderid);
+        stmt.setInt(2, productid);
+        stmt.setInt(3, quantity);
+        stmt.execute();
+
+    }
+      
+      
 }

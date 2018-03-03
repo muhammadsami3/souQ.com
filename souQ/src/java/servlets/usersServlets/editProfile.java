@@ -43,7 +43,7 @@ public class editProfile extends HttpServlet {
         
         session.invalidate();
         
-          Connection conn = DBConnector.getConnection();
+            Connection conn = DBConnector.getConnection();
             String query = " update Customer set uname=?,fname=?,lname=?,birthday=?,email=?,job=?,address=?,interests=? where id="+id+"";
             PreparedStatement prepareStatement = null;
             prepareStatement = conn.prepareStatement(query);

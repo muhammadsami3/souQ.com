@@ -45,57 +45,70 @@
                                 String tempQyn = rs2.getString("qyn");
                                 qyn = Integer.parseInt(tempQyn);
                                 Integer price = Integer.parseInt(rs2.getString("price"));
-                                totalPrice += price*userqyn;
+                                totalPrice += price * userqyn;
                     %>
-                    
-                    <div class="center">
-                        <table class="center" >
+                    <div class="container">
+                        <div class="center" style="border: 1px solid #c9c4ea;width: 600px;margin-bottom: 2%;">
+                            <table class="center" style="width: 600px;" >
 
-                            <tr>
-                                <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
-                                <th></th>
-                                <th></th>
-                            </tr>
+                                <tr>
+                                    <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
+                                    <th></th>
+                                    <th style="width: 210px;"></th>
+                                </tr>
 
 
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td rowspan="4">
-                                    <img src="../../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td rowspan="4">
+                                        <img src="../../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
 
-                                </td>
+                                    </td>
 
-                            </tr>
-                            <tr>
-                                <td>Cost/Item</td>
-                                <td  style="width: 100px;display: block;">
+                                </tr>
+                                <tr>
+                                    <td>Cost/Item</td>
+                                    <td  style="width: 100px;display: block;">
 
-                                    <%=rs2.getString("price")%></td>
+                                        <%=rs2.getString("price")%></td>
 
-                            </tr>
-                            <tr>
-                                <td>Amount</td>
-                                <td>
-                                    <select name="qyn<%=rs2.getString("productid")%>">
-                                        <% for (int i = 1; i <= qyn; i++) {%>
-                                        <option <% if (i == userqyn) {%>
-                                            <%="selected"%>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>
 
-                                            <%}%>
-                                            ><%=i%></option>
-                                        <%}%>                        
-                                    </select>
+                                        <select name="qyn<%=rs2.getString("productid")%>" onchange="location = this.value;">
+                                            <% for (int i = 1; i <= qyn; i++) {%>
 
-                                </td>
+                                            <a href="/souQ/user/jsp/checkOutPage.jsp">
+                                                <option value="/souQ/ChangeQyn?userqyn=<%=i%>&id=<%=id%>"<% if (i == userqyn) {%>
+                                                        <%="selected"%>
 
-                            </tr>
-                            <tr>
-                                <td>Category</td>
-                                <td><%=rs2.getString("cat")%></td>
+                                                        <%}%>
+                                                        ><%=i%></option>
+                                            </a>
+                                            <%}%>   
 
-                            </tr>
-                        </table>
+
+                                        </select>
+
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Category</td>
+                                    <td><%=rs2.getString("cat")%></td>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <div id="removeFromCart">
+                            <a href="/souQ/removeFromCart?id=<%=id%>">
+                                <input type="button" value="X" name="removeFromCart" style="height: 30px;"/>
+                            </a>
+                        </div>
                     </div>
                     <%
                             }

@@ -34,7 +34,7 @@ public class dbMethods {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "1022591400");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -128,7 +128,18 @@ public class dbMethods {
 
     }
 
+    public void ChangeQyn(int productid, int quantity) throws SQLException {
+
+        String query = "update cart set quantity=? where productid=? ";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, quantity);
+        stmt.setInt(2, productid);
+        stmt.execute();
+
+    }
     
+
     public void addCartTemp(int productid, int quantity) throws SQLException {
 
         String query = "insert into cart (productid,quantity) values(?,?)";
@@ -139,10 +150,7 @@ public class dbMethods {
         stmt.execute();
 
     }
-    
-    
-    
-    
+
     public void addOrder(int customerID, int totalamount) throws SQLException {
 
         String query = "insert into orders ( customerid,totalamount) values (?,?)";
@@ -192,6 +200,16 @@ public class dbMethods {
 
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);
+        stmt.execute();
+
+    }
+
+    public void removeProductFromCart(int id) throws SQLException {
+
+        String query = "delete from cart where productid=?";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, id);
         stmt.execute();
 
     }

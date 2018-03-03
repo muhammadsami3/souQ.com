@@ -6,7 +6,6 @@
         <param-value>0</param-value>
     </context-param>
     -->
-        
     <context-param>
         <param-name>dbUrl</param-name>
         <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
@@ -19,12 +18,10 @@
         <param-name>dbPassword</param-name>
         <param-value>password</param-value>
     </context-param>
-
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
-
     <servlet>
         <servlet-name>carts</servlet-name>
         <servlet-class>servlets.carts</servlet-class>
@@ -33,6 +30,10 @@
         <servlet-name>cart</servlet-name>
         <servlet-class>servlets.cart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addtoCart</servlet-name>
+        <servlet-class>user.servlets.addtoCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>carts</servlet-name>
         <url-pattern>/carts</url-pattern>
@@ -40,9 +41,7 @@
     <servlet-mapping>
         <servlet-name>cart</servlet-name>
         <url-pattern>/cart</url-pattern>
-
     </servlet-mapping>
- 
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listeners.Deploylistener</listener-class>
@@ -51,8 +50,6 @@
         <description>ServletContextListener</description>
         <listener-class>listeners.sessionListener</listener-class>
     </listener>
-
-    
     <listener>
         <description>ServletContextListener</description>
         <listener-class>servlets.usersServlets.ContextListener</listener-class>
@@ -64,12 +61,14 @@
     <servlet-mapping>
         <servlet-name>trialServlet</servlet-name>
         <url-pattern>/trialServlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addtoCart</servlet-name>
+        <url-pattern>/addtoCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-        
 </web-app>

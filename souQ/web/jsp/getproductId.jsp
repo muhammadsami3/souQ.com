@@ -33,12 +33,12 @@
    
 %>
 
-
+<form action="/souQ/addtoCart">
 <h1>product name</h1>
 <h2><%=rs.getString("name").toUpperCase() %></h2>
 <h1>price</h1>
 <h2><%=rs.getString("price").toUpperCase() %></h2>
-<h1>amount remaininng in stock</h1>
+<h1>amount remaining in stock</h1>
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
@@ -47,9 +47,10 @@
                                         <% for (int i = 1; i <= qyn; i++) {%>
                                         <option><%=i%></option>
                                         <%}%>                        
-                                    </select>
-
- 
-      
+   </select> 
+   
+   <input type="hidden" name="product_id" value=<%= request.getParameter("id")%>>
+   <input type="submit" value="Add to cart">
+</from>
     </body>
 </html>

@@ -45,7 +45,7 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
-
+<h1>select quantity</h1>
 <select name="userqyns">
                                         <% for (int i = 1; i <= qyn; i++) {%>
                                         <option><%=i%></option>
@@ -64,7 +64,7 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
-
+<h1>select quantity</h1>
 <select name="userqyns">
                                         <% for (int i = 1; i <= qyn; i++) {%>
                                         <option><%=i%></option>

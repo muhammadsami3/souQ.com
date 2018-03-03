@@ -4,6 +4,10 @@
     Author     : Raghda
 --%>
 
+<%@page import="dataBaseFunction.dbMethods"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +16,19 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
+        <%  dbMethods.connectToDatabase();
+        
+        
+        dbMethods.getProductInfoById(id);
+        
+        
+        
+        
+        
+    } %>
+        
+        
         <h1>Hello World!</h1>
     </body>
 </html>

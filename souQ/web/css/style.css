@@ -5,7 +5,7 @@ input,select{
     border-bottom: 2px solid #2194ddcc;
 }
 input:hover ,select:hover{
-    border-bottom: 1px solid deeppink;  
+    border-bottom: 2px solid deeppink;  
 }
 input:focus,select:hover{
     background-color: #ffd7fd;
@@ -79,7 +79,7 @@ footer{
 /* Change color of dropdown links on hover */
 
 .dropdown-content a:hover {
-    background-color: #ddd
+    background-color:  #2fce7c
 }
 
 

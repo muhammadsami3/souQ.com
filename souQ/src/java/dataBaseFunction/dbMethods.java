@@ -189,7 +189,6 @@ public class dbMethods {
         while (rs.next()) {
 
             if (pname.equals(rs.getString("name"))) {
-
                 isProductExist = true;
                 break;
             }

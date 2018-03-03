@@ -24,16 +24,18 @@
 <%
     id = request.getParameter("id");
     int id2=Integer.parseInt(id);
+    dbMethods dbobj=new dbMethods();
     dbMethods.connectToDatabase();
-    ResultSet rs= dbMethods.getProductInfoById(id2);
+    ResultSet rs= dbobj.getProductInfoById(id2);
     rs.next();
+   String stock_amount= rs.getString("qyn");
+   int qyn=Integer.parseInt(stock_amount);
+   
 %>
 
 <% if (id.equals("1")) {
     
-    
-    
-                    
+                
 %>
 <h1>product name</h1>
 <h2><%=rs.getString("name").toUpperCase() %></h2>
@@ -43,6 +45,13 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
+
+<select name="userqyns">
+                                        <% for (int i = 1; i <= qyn; i++) {%>
+                                        <option><%=i%></option>
+                                        <%}%>                        
+                                    </select>
+
  <% }else if (id.equals("2")){ 
  
 
@@ -55,6 +64,12 @@
 <h2><%=rs.getString("qyn").toUpperCase() %></h2>
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
+
+<select name="userqyns">
+                                        <% for (int i = 1; i <= qyn; i++) {%>
+                                        <option><%=i%></option>
+                                        <%}%>                        
+                                    </select>
     
 <% } %>
       

@@ -8,14 +8,14 @@
 <%@include file="../html/adminheader.html" %>
 
 
-<div class="mainOption" id="removeProduct" >
+<div class="mainOption" id="removeProduct"  style="height: 150px;">
     <div class="center">
 
-        <form action="/souQ/admin/getproductInfo" method="Get">
+        <form action="/souQ/admin/getproductInfo" method="post">
             <div class="center"  >
 
                 Product Name to remove &nbsp;
-                <input type="text" name="pname"> &nbsp;
+                <input type="text" name="pname" required=""> &nbsp;
                 <br>
                 
                 <input class="center btn " type="submit" value="view information" style="margin-left: 25%;">
@@ -104,13 +104,13 @@
 <br>
 <br>
 <div class="center">
-    <form class="center" action="/souQ/admin/removeProduct">
+    <form class="center" action="/souQ/admin/removeProduct" style="height: 90px;" method="post">
         <div class="center">
             <input type="submit" value="Remove"  class="btn center" style="margin-left: 25%;" >
         </div>
     </form> 
 </div>
-<% }else{
+<% session.setAttribute("found", "wait another request"); }else{
 %> 
 <div style="height: 320px;">
     

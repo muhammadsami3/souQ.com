@@ -25,12 +25,12 @@
     img = (img == null) ? "" : img;
 %>
 
-<div class="mainOption" id="editProduct" >
+<div class="mainOption" id="editProduct"  style="height: 150px;">
     <div class="center">
         <form   id="editform" action="/souQ/admin/getproductInfo" method="Get">
             <div class="center">
                 Product Name to edit &nbsp;
-                <input calss="btn" type="text" name="pname"> 
+                <input calss="btn" type="text" name="pname" required=""> 
                 &nbsp;
                 <br>
                 <input class="center btn " type="submit" value="view information" style="margin-left: 25%;">
@@ -46,13 +46,24 @@
     found = (found == null) ? "" : found;
 
     if (found.equals("no")) {
+        session.setAttribute("found", "");
         System.out.println("className.methodName() --> name not found");%>
 <div class="msg center"> 
     <font style="color: red;margin-left: 35%; " class="center">Product Not Found</font>
 </div>
 
 
-<% }
+<% }else if(found.equals("yes")){
+
+session.setAttribute("found", "");
+}else{
+pname = "";
+    cost = "";
+    cat = "";
+    amount = "";
+    desc = "";
+    id = "-1";
+}
 
     String success = request.getParameter("success");
     success = (success == null) ? "" : success;
@@ -63,10 +74,10 @@
 
 <%}%>
 
-<div class="mainOption" id="editProduct">           
+<div class="mainOption" id="editProduct2" style="height: 600px;">           
     <div class="center">
 
-        <form  action="/souQ/admin/addProduct" method="Get" >
+        <form  action="/souQ/admin/addProduct" method="post" >
             <div class="center">
 
                 Product Name </br>
@@ -89,7 +100,7 @@
                 </select>
                 </br><br>
                 Image
-                <input  type="file" name="img" value="<%=img%>" >
+                <input  type="file" name="img" value="../../imgs/<%=img%>" >
                 <br>
                 <br>
                 Description

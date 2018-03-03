@@ -61,3 +61,5 @@ REFERENCES Product (ProductID);
 
 ALTER TABLE product
 ADD COLUMN description text ,ADD COLUMN img varchar(256);
+ALTER TABLE product
+ADD COLUMN orderdate date;

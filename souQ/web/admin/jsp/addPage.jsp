@@ -6,16 +6,45 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../html/adminheader.html" %>
-<%!String update;%>
-<%    update = request.getParameter("update");
-    update = (update == null) ? "" : update;
 
-%>
 
-<div class="mainOption" id="addProduct">           
+<div class="mainOption" id="addProduct" style="height: 600px;" >           
     <div class="center">
 
-        <form  action="/souQ/admin/addProduct" method="Get" >
+        <% String success = request.getParameter("s");
+            success = (success == null) ? "" : success;
+            if (success.equals("yes")) {%>
+        <div class="msg center"> 
+            <font style="color: green;margin-left: 15%; " class="center">product successfully added to Database </font>
+        </div>
+
+        <%} else if (success.equals("no")) {%>
+        <div class="msg center"> 
+            <font style="color: red;margin-left: 15%; " class="center">FATAL ERROR !! Must call Support</font>
+        </div>
+        <%}%>
+
+        <%
+            String pnameExist = (String) session.getAttribute("pnameExist");
+            pnameExist = (pnameExist == null) ? "" : pnameExist;
+
+            if (pnameExist.equals("yes")) { %>
+        <div class="msg center"> 
+            <font style="color: red;margin-left: 15%; " class="center">This Product Already Exist !</font>
+        </div>
+
+        <div >
+            <a href="/souQ/admin/jsp/editPage.jsp"> 
+            <input type="button" class="btn" value=">> click here to update information <<" />
+        </a>
+        
+        </div>
+        
+        <br>
+        <br>
+        <% }%>
+
+        <form  action="/souQ/admin/addProduct" method="post" >
             <div class="center">
 
                 Product Name </br>
@@ -37,26 +66,14 @@
                 <br>
                 Description
                 <br><textarea id="desc" cols="48" rows="5" name="desc"></textarea> <br> 
+                <br>
 
                 <input type="reset" value="reset" class="btn" >                &nbsp;
                 <input type="button" value="Add" onclick="validateAdd()" class="btn" style="margin-left: 28px;" > 
                 <br>
                 <ul type="circle" id="errMsg">
-                    <%                        
-                        String pnameExist = (String) session.getAttribute("pnameExist");
-                        pnameExist = (pnameExist == null) ? "" : pnameExist;
 
-                        if (pnameExist.equals("yes")) { %>
-                    <li>This item already exist </li>
                 </ul>
-                <br>
-
-                <a href="/souQ/admin/jsp/editPage.jsp"> 
-                    <input type="button" class="btn" value=">> click here to update information <<" />
-                </a>
-
-                <% }%>
-
             </div>
         </form>
     </div>

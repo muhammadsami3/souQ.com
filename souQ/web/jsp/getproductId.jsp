@@ -35,9 +35,7 @@
 
 <% if (id.equals("1")) {
     
-    
-    
-                    
+                
 %>
 <h1>product name</h1>
 <h2><%=rs.getString("name").toUpperCase() %></h2>
@@ -48,7 +46,7 @@
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
 
-<select name="userqyn">
+<select name="userqyns">
                                         <% for (int i = 1; i <= qyn; i++) {%>
                                         <option><%=i%></option>
                                         <%}%>                        
@@ -67,7 +65,7 @@
 <h1>category</h1>
 <h2><%=rs.getString("cat").toUpperCase() %></h2>
 
-<select name="userqyn">
+<select name="userqyns">
                                         <% for (int i = 1; i <= qyn; i++) {%>
                                         <option><%=i%></option>
                                         <%}%>                        

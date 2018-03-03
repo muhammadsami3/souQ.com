@@ -33,13 +33,19 @@
             <font style="color: red;margin-left: 15%; " class="center">This Product Already Exist !</font>
         </div>
 
-        <div >
-            <a href="/souQ/admin/jsp/editPage.jsp"> 
-            <input type="button" class="btn" value=">> click here to update information <<" />
-        </a>
-        
+        <div class="center">
+            <form   id="editform" action="/souQ/admin/getproductInfo" method="Get">
+                <div class="center">
+                    <input calss="btn" type="text"  value="<%=%>" name="pname" style="display: none"> 
+                    &nbsp;
+                    <br>
+                    <input class="center btn " type="submit" value=">> click here to update information <<" style="margin-left: 25%;">
+                    <input tybe="text" value="edit" name="requestFrom" style="display: none">
+
+                </div>
+            </form>
         </div>
-        
+
         <br>
         <br>
         <% }%>

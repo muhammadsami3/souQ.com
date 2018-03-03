@@ -46,9 +46,8 @@
                                 qyn = Integer.parseInt(tempQyn);
                                 Integer price = Integer.parseInt(rs2.getString("price"));
                                 totalPrice += price*userqyn;
-
-
                     %>
+                    
                     <div class="center">
                         <table class="center" >
 

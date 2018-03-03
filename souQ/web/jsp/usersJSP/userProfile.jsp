@@ -16,6 +16,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/
+                                     css/font-awesome.min.css">
+       
         <!--        <link rel="stylesheet" href="../../css/style2.css">    -->
         <title><%out.println((String) session.getAttribute("uname"));%></title>
     </head>
@@ -42,86 +46,88 @@
             <a class="w3-bar-item w3-button w3-hover-black" href="#">Watches</a>
             <a class="w3-bar-item w3-button w3-hover-black" href="#">Perfumes</a>
             <a class="w3-bar-item w3-button w3-hover-black" href="#">Electronics</a>
-            <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-            <h4 class="w3-bar-item"><b>Contact Us</b></h4>
-            <h4 class="w3-bar-item"><b>Logout</b></h4>
+            <h4><a class="w3-bar- w3-button w3-hover-black"><b>Contact Us</b></a></h4>
+            <h4><a class="w3-bar-item w3-button w3-hover-black" href="logout.jsp"><b>Logout</b><a></h4>
 
         </nav>
         <div class="w3-main" style="margin-left:250px">
-
-            <div class="w3-row w3-padding-64">
-                <div class="w3-twothird w3-container">
-                    <h4 class="w3-text-teal">User Name</h4>
-                    <p><%out.println(uname);
-                         out.flush();
-                        %></p>
-                </div>
-<!--                <div class="w3-third w3-container">
-                    <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-                    <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-                </div>-->
-            </div>
-
             <div class="w3-row">
-                <div class="w3-twothird w3-container">
-                    <h4 class="w3-text-teal">E-mail</h4>
-                    <p><% out.println(email);
-                        out.flush();
-                       %>                    
-                    </p>
-                </div>
-<!--                <div class="w3-third w3-container">
-                    <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-                    <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-                </div>-->
-            </div>
+                <br><br>
+              <div class="w3-twothird w3-container">
+              <h6 class="w3-text-teal">
+                  <a href="editProfile.jsp"><i style="font-size:24px" class="fa">&#xf044;</i></a>
+               Edit Profile</h6>
+               <i class="fa fa-user" style="font-size:48px;"></i> 
+              </div>
+        </div>
 
-            <div class="w3-row">
-                <div class="w3-twothird w3-container">
-                    <h4 class="w3-text-teal">Birthday</h4>
-                    <p><% out.println(birthday);
-                          out.flush();
-                    %>     
-                    </p>
-                </div>
-<!--                <div class="w3-third w3-container">
-                    <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-                    <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-                </div>-->
-            </div>
-                    <div class="w3-row">
-                        <div class="w3-twothird w3-container">
-                            <h4 class="w3-text-teal">Job</h4>
-                            <p><% out.println(job);
-                                out.flush();
-                                %>                    
-                            </p>
-                        </div>
-                        <div class="w3-row">
-                            <div class="w3-twothird w3-container">
-                                <h4 class="w3-text-teal">Interests</h4>
-                                <p><% out.println(interests);
-                                    out.flush();
-                                    %>                    
-                                </p>
+              <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">User Name</h4>
+                                    <p><% out.println(uname);
+                                        out.flush();
+                                        %>                    
+                                    </p>
+                                </div>
                             </div>
-            <!--        <h2>Two Equal Columns</h2>
-            
-                    <div class="row">
-                        <div class="column" style="background-color:#aaa;">
-                            <h2>Column 1</h2>
-                            <p>Some text..</p>
-                        </div>
-                        <div class="column1" >
-                            <h2>Column 2</h2>-->
-<!--            <p><--%out.println(s);%></p>-->
-            <!--            </div>
-    
-            </div>-->
-    <%
-    RequestDispatcher r2 = request.getRequestDispatcher("../../html/usersHTML/footer.html");
-    r2.include(request, response);
-    out.flush();
-    %>
-        </body>
-</html>
+             <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">First Name</h4>
+                                    <p><% out.println(fname);
+                                        out.flush();
+                                        %>                    
+                                    </p>
+                                </div>
+                            </div>                        
+              
+             <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">Last Name</h4>
+                                    <p><% out.println(lname);
+                                        out.flush();
+                                        %>                    
+                                    </p>
+                                </div>
+                            </div>                        
+              <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">E-mail</h4>
+                                    <p><% out.println(email);
+                                        out.flush();
+                                        %>                    
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">Birthday</h4>
+                                    <p><% out.println(birthday);
+                                        out.flush();
+                                        %>     
+                                    </p>
+                                </div>
+                                <!--                <div class="w3-third w3-container">
+                                                    <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
+                                                    <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
+                                                </div>-->
+                            </div>
+                            <div class="w3-row">
+                                <div class="w3-twothird w3-container">
+                                    <h4 class="w3-text-teal">Job</h4>
+                                    <p><% out.println(job);
+                                        out.flush();
+                                        %>                    
+                                    </p>
+                                </div>
+                                <div class="w3-row">
+                                    <div class="w3-twothird w3-container">
+                                        <h4 class="w3-text-teal">Interests</h4>
+                                        <p><% out.println(interests);
+                                            out.flush();
+                                            %>                    
+                                        </p>
+                                    </div>
+                                 
+                                    </body>
+                                    </html>

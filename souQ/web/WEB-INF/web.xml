@@ -24,9 +24,25 @@
         <servlet-name>trialServlet</servlet-name>
         <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>checkRegistred</servlet-name>
+        <servlet-class>servlets.usersServlets.checkRegistred</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editProfile</servlet-name>
+        <servlet-class>servlets.usersServlets.editProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>trialServlet</servlet-name>
         <url-pattern>/trialServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>checkRegistred</servlet-name>
+        <url-pattern>/checkRegistred</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfile</servlet-name>
+        <url-pattern>/editProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

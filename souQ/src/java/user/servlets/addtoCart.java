@@ -5,8 +5,12 @@
  */
 package user.servlets;
 
+import dataBaseFunction.dbMethods;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +38,19 @@ public class addtoCart extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String quantity=request.getParameter("userqyn");
              String id=request.getParameter("product_id");
-              out.println(quantity);
-              out.println(id);
+             int qyn=Integer.parseInt(quantity);
+             int p_id=Integer.parseInt(id);
+             
+             
+             dbMethods dbobj=new dbMethods();
+            try {
+                dbobj.addCartTemp(p_id, qyn);
+                
+                
+                //addCart(int orderid, int productid, int quantity)
+            } catch (SQLException ex) {
+                Logger.getLogger(addtoCart.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
     }

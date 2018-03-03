@@ -128,6 +128,21 @@ public class dbMethods {
 
     }
 
+    
+    public void addCartTemp(int productid, int quantity) throws SQLException {
+
+        String query = "insert into cart (productid,quantity) values(?,?)";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, productid);
+        stmt.setInt(2, quantity);
+        stmt.execute();
+
+    }
+    
+    
+    
+    
     public void addOrder(int customerID, int totalamount) throws SQLException {
 
         String query = "insert into orders ( customerid,totalamount) values (?,?)";

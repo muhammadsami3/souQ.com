@@ -25,7 +25,7 @@
     id = request.getParameter("id");
     int id2=Integer.parseInt(id);
     dbMethods dbobj=new dbMethods();
-    dbMethods.connectToDatabase();
+    
     ResultSet rs= dbobj.getProductInfoById(id2);
     rs.next();
    String stock_amount= rs.getString("qyn");

@@ -32,15 +32,15 @@ public class cart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
            
-            String id=request.getParameter("id");
-            switch (id){
-                case "1":response.sendRedirect("/souQ/jsp/getproductId.jsp?id=1");
-                break;
-                case "2":response.sendRedirect("/souQ/jsp/getproductId.jsp?id=2");
-                break;
+            //String id2=request.getParameter("id");
+           // switch (id){
+                response.sendRedirect("/souQ/jsp/getproductId.jsp?id="+request.getParameter("id"));
+               
+               // case "2":response.sendRedirect("/souQ/jsp/getproductId.jsp?id=2");
+               // break;
                 
            
-            }
+           // }
       
         }
     }

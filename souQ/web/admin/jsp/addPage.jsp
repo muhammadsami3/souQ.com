@@ -36,7 +36,7 @@
         <div class="center">
             <form   id="editform" action="/souQ/admin/getproductInfo" method="Get">
                 <div class="center">
-                    <input calss="btn" type="text"  value="<%=%>" name="pname" style="display: none"> 
+                    <input calss="btn" type="text"  value="" name="pname" style="display: none"> 
                     &nbsp;
                     <br>
                     <input class="center btn " type="submit" value=">> click here to update information <<" style="margin-left: 25%;">

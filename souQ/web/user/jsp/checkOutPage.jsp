@@ -52,8 +52,9 @@
                             <table class="center" style="width: 600px;" >
 
                                 <tr>
-                                    <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
                                     <th></th>
+                                    <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
+
                                     <th style="width: 210px;"></th>
                                 </tr>
 
@@ -76,7 +77,7 @@
                                 </tr>
                                 <tr>
                                     <td>Amount</td>
-                                    <td>
+                                    <td >
 
                                         <select name="qyn<%=rs2.getString("productid")%>" onchange="location = this.value;">
                                             <% for (int i = 1; i <= qyn; i++) {%>

@@ -28,7 +28,7 @@
     </servlet>
     <servlet>
         <servlet-name>cart</servlet-name>
-        <servlet-class>servlets.cart</servlet-class>
+        <servlet-class>user.servlets.cart</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>addtoCart</servlet-name>

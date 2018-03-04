@@ -196,7 +196,7 @@ public class dbMethods {
 
     public void removeProduct(String pname) throws SQLException {
 
-        String query = "delete from product where name=?";
+        String query = "update product set qyn=0 where name=?";
 
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);

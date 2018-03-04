@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
  <%
     out.flush();
-    RequestDispatcher r1 = request.getRequestDispatcher("../../html/usersHTML/header.html");
+    RequestDispatcher r1 = request.getRequestDispatcher("../html/header.html");
     r1.include(request, response);
     out.flush();
   %>
@@ -71,7 +71,7 @@
                 </div>
             </div>
     <%
-    RequestDispatcher r2 = request.getRequestDispatcher("../../html/usersHTML/footer.html");
+    RequestDispatcher r2 = request.getRequestDispatcher("../html/footer.html");
     r2.include(request, response);
     out.flush();
    %>

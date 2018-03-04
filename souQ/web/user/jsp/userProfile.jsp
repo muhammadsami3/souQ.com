@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     out.flush();
-    RequestDispatcher r1 = request.getRequestDispatcher("../../html/usersHTML/header.html");
+    RequestDispatcher r1 = request.getRequestDispatcher("../html/header.html");
     r1.include(request, response);
     out.flush();
 %>
@@ -16,7 +16,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--        <link rel="stylesheet" href="../../css/style2.css">    -->
         <title><%out.println((String) session.getAttribute("uname"));%></title>
     </head>
     <body>
@@ -119,7 +118,7 @@
     
             </div>-->
     <%
-    RequestDispatcher r2 = request.getRequestDispatcher("../../html/usersHTML/footer.html");
+    RequestDispatcher r2 = request.getRequestDispatcher("../html/footer.html");
     r2.include(request, response);
     out.flush();
     %>

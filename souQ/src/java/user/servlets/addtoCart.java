@@ -44,7 +44,7 @@ public class addtoCart extends HttpServlet {
              
              dbMethods dbobj=new dbMethods();
             try {
-                dbobj.addCartTemp(p_id, qyn);
+                dbobj.addCart(1,p_id,qyn);
                 
                 
                 //addCart(int orderid, int productid, int quantity)

@@ -12,11 +12,11 @@
     </context-param>
     <context-param>
         <param-name>dbUserName</param-name>
-        <param-value>java</param-value>
+        <param-value>postgres</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>password</param-value>
+        <param-value>123@home</param-value>
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>

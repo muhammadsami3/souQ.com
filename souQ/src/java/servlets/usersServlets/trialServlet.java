@@ -39,7 +39,7 @@ public class trialServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
 //          response.sendRedirect("html/usersHTML/registration.html");
             Connection conn = DBConnector.getConnection();
-            String query = " insert into Customer (uname,fname,lname,passwd,birthday,email,job,address,interests) values (?,?,?,?,?,?,?,?,?)";
+            String query = " insert into customer (uname,fname,lname,passwd,birthday,email,job,address,interests) values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement prepareStatement = null;
             prepareStatement = conn.prepareStatement(query);
             String uname = request.getParameter("uname");

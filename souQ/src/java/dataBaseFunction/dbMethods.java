@@ -10,25 +10,45 @@ package dataBaseFunction;
  *
  * @author Muhammad Sami
  */
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.Clob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.NClob;
+import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
+import java.sql.Ref;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.RowId;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
 import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class dbMethods {
 
     public static Connection conn;
-    static PreparedStatement stmt;
-    static Statement stmt2;
-    static PreparedStatement stmt3;
-    static PreparedStatement stmt_getpasswd;
-    static ResultSet rs;
-    static ResultSet rs2;
+     PreparedStatement stmt;
+     Statement stmt2;
+     ResultSet rs;
 
+    public dbMethods() {
+        
+    }
+
+    
     public static void connectToDatabase() {
         conn = null;
 
@@ -45,15 +65,15 @@ public class dbMethods {
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
-        try {
-            dbMethods db = new dbMethods();
-            rs2 = db.getCartInfo(1);
-            while (rs2.next()) {
-                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(2) + "  " + rs2.getString(3) + " " + rs2.getString(4));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            dbMethods db = new dbMethods();
+//            rs2 = db.getCartInfo(1);
+//            while (rs2.next()) {
+//                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(2) + "  " + rs2.getString(3) + " " + rs2.getString(4));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public ResultSet showUsers() {
@@ -100,11 +120,11 @@ public class dbMethods {
         return rs;
     }
 
-    public ResultSet getCartInfo(int orderid) throws SQLException {
+    public ResultSet getCartInfo(int customerid) throws SQLException {
 
-        String queryString = "select * from cart where orderid=?";
+        String queryString = "select * from cart where customerid=?";
         PreparedStatement stmt = conn.prepareStatement(queryString);
-        stmt.setInt(1, orderid);
+        stmt.setInt(1, customerid);
         ResultSet rs = stmt.executeQuery();
         return rs;
     }
@@ -116,14 +136,24 @@ public class dbMethods {
         return rs;
     }
 
-    public void addCart(int orderid, int productid, int quantity) throws SQLException {
+    public void addCart(int customerid, int productid, int quantity) throws SQLException {
 
-        String query = "insert into cart (orderid,productid,quantity) values(?,?,?)";
+        String query = "insert into cart (productid,quantity,customerid) values(?,?,?)";
 
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, orderid);
-        stmt.setInt(2, productid);
-        stmt.setInt(3, quantity);
+        stmt.setInt(1, productid);
+        stmt.setInt(2, quantity);
+        stmt.setInt(3, customerid);
+
+        stmt.execute();
+
+    }
+
+    public void removeCart(int customerid) throws SQLException {
+        String query = "delete from cart where customerid=? ";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, customerid);
+
         stmt.execute();
 
     }
@@ -138,28 +168,38 @@ public class dbMethods {
         stmt.execute();
 
     }
-    
 
-    public void addCartTemp(int productid, int quantity) throws SQLException {
+    public void addFinalCart(Integer orderid,Integer productid, Integer quantity) throws SQLException {
 
-        String query = "insert into cart (productid,quantity) values(?,?)";
+        String query = "insert into finalcart (orderid,productid,quantity) values(?,?,?)";
 
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, productid);
-        stmt.setInt(2, quantity);
+        stmt.setInt(1,orderid);
+        stmt.setInt(2, productid);
+        stmt.setInt(3, quantity);
         stmt.execute();
 
+    }
+
+    public int getHisOrderID(int customerid) throws SQLException {
+        
+        String query = "select orderid from orders where customerid=? order by orderid desc limit 1";
+         PreparedStatement stmt = conn.prepareStatement(query);
+                stmt.setInt(1, customerid);
+                rs= stmt.executeQuery();
+                rs.next();
+                String idString=rs.getString("orderid");
+                int id =Integer.parseInt(idString);
+                return id;  
     }
 
     public void addOrder(int customerID, int totalamount) throws SQLException {
 
         String query = "insert into orders ( customerid,totalamount) values (?,?)";
-
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, customerID);
         stmt.setInt(2, totalamount);
         stmt.execute();
-
     }
 
     public void addProduct(String pname, double price, int qyn, String cat, String desc, String img) throws SQLException {

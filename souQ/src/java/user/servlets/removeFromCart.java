@@ -29,7 +29,9 @@ public class removeFromCart extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
           String idString=request.getParameter("id");
+          
           int id=Integer.parseInt(idString);
             dbMethods doQuery=new dbMethods();
             doQuery.removeProductFromCart(id);

@@ -28,9 +28,9 @@ CREATE TABLE Orders (
 
 CREATE TABLE cart (
     cartID serial  NOT NULL ,
-    OrderID int  NOT NULL ,
     ProductID int  NOT NULL ,
     Quantity int  NOT NULL ,
+ CustomerID int  NOT NULL ,
     CONSTRAINT pk_cart PRIMARY KEY (
         cartID
     )
@@ -48,16 +48,35 @@ CREATE TABLE Product (
     )
 );
 
+
+CREATE TABLE finalcart (
+    cartID serial  NOT NULL ,
+    OrderID int  NOT NULL ,
+    ProductID int  NOT NULL ,
+    Quantity int  NOT NULL ,
+    CONSTRAINT pk_finalcart PRIMARY KEY (
+        cartID
+    )
+);
+
+CREATE TABLE home_page (
+    id integer ,
+    image_path text
+);
+
 ALTER TABLE Orders ADD CONSTRAINT fk_Order_CustomerID FOREIGN KEY(CustomerID)
 REFERENCES Customer (id);
 
 
 
-ALTER TABLE cart ADD CONSTRAINT fk_cart_OrderID FOREIGN KEY(OrderID)
+ALTER TABLE finalcart ADD CONSTRAINT fk_cart_OrderID FOREIGN KEY(OrderID)
 REFERENCES Orders (OrderID);
 
+ALTER TABLE cart ADD CONSTRAINT fk_cart_customerID FOREIGN KEY(CustomerID)
+REFERENCES Customer (id);
 
-ALTER TABLE cart ADD CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID)
+
+ALTER TABLE finalcart ADD CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID)
 REFERENCES Product (ProductID);
 
 ALTER TABLE product
@@ -65,4 +84,9 @@ ADD COLUMN description text ,ADD COLUMN img varchar(256);
 
 ALTER TABLE orders
 ADD COLUMN orderdate timestamp DEFAULT now();
+
+
+INSERT INTO home_page(image_path)
+VALUES
+ ('../../imgs/slideShow/perfumelogos2'),('../../imgs/slideShow/watchlogos3.jpg'),('../../imgs/slideShow/Ad6.png'),('../../imgs/slideShow/Ad11.jpg'),('../../imgs/slideShow/Ad3.jpg'),('../../imgs/slideShow/Ad1.png'),('../../imgs/slideShow/Ad2.png'),('../../imgs/slideShow/watch10.jpeg'),('../../imgs/slideShow/perfumelogos4.jpeg');
 

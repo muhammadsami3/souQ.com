@@ -110,7 +110,7 @@ ALTER SEQUENCE customer_id_seq OWNED BY customer.id;
 --
 
 CREATE TABLE home_page (
-    id integer NOT NULL,
+    id integer ,
     image_path text
 );
 

@@ -8,21 +8,24 @@ package user.servlets;
 import dataBaseFunction.dbMethods;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Muhammad Sami
  */
-@WebServlet(name = "ChangeQyn", urlPatterns = {"/ChangeQyn"})
-public class ChangeQyn extends HttpServlet {
+public class addFinalCart extends HttpServlet {
+
+    ResultSet rs;
+    dbMethods doQuery;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,16 +40,27 @@ public class ChangeQyn extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            
-            int userQyn = Integer.parseInt(request.getParameter("userqyn"));
-            int id = Integer.parseInt(request.getParameter("id"));
-            dbMethods doQuery = new dbMethods();
-            doQuery.ChangeQyn(id, userQyn);
-            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp");
+            doQuery = new dbMethods();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(ChangeQyn.class.getName()).log(Level.SEVERE, null, ex);
+            int customerid = 1;
+
+            try {
+                HttpSession session = request.getSession(false);
+                int totalPrice = (int) session.getAttribute("totalPrice");
+                
+                rs = doQuery.getCartInfo(customerid);
+                doQuery.addOrder(customerid,totalPrice);
+                
+                Integer orderid=doQuery.getHisOrderID(customerid);
+                while (rs.next()) {
+                    doQuery.addFinalCart(orderid, Integer.parseInt(rs.getString("productid")),Integer.parseInt(rs.getString("quantity")) );
+                }
+                doQuery.removeCart(customerid);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(addFinalCart.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }
 

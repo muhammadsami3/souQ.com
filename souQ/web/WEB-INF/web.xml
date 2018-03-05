@@ -34,6 +34,10 @@
         <servlet-name>addtoCart</servlet-name>
         <servlet-class>user.servlets.addtoCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>addFinalCart</servlet-name>
+        <servlet-class>user.servlets.addFinalCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>carts</servlet-name>
         <url-pattern>/carts</url-pattern>
@@ -71,18 +75,19 @@
         <url-pattern>/trialServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>addtoCart</servlet-name>
         <url-pattern>/addtoCart</url-pattern>
-<!--        
+        <!--        
         <servlet-name>checkRegistred</servlet-name>
         <url-pattern>/checkRegistred</url-pattern>-->
-        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/editProfile</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addFinalCart</servlet-name>
+        <url-pattern>/addFinalCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

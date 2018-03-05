@@ -71,17 +71,17 @@
         <url-pattern>/trialServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
+<<<<<<< HEAD
         <servlet-name>addtoCart</servlet-name>
         <url-pattern>/addtoCart</url-pattern>
-
+=======
         <servlet-name>checkRegistred</servlet-name>
         <url-pattern>/checkRegistred</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/editProfile</url-pattern>
-
+>>>>>>> Maryam
     </servlet-mapping>
     <session-config>
         <session-timeout>

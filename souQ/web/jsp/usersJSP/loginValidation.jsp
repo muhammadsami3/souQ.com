@@ -12,6 +12,7 @@
 <%
     Connection conn = DBConnector.getConnection();
     Statement stmt = conn.createStatement();
+    request.getSession(false);
     String name = request.getParameter("uname");
     String pass = request.getParameter("passwd");
 
@@ -45,7 +46,7 @@
         session.setAttribute("job", job);
         session.setAttribute("address", address);
         session.setAttribute("interests", interests);
-
+        
         response.sendRedirect("home.jsp");
     }
 %>

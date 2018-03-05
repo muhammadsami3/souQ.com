@@ -52,6 +52,7 @@ ALTER TABLE Orders ADD CONSTRAINT fk_Order_CustomerID FOREIGN KEY(CustomerID)
 REFERENCES Customer (id);
 
 
+
 ALTER TABLE cart ADD CONSTRAINT fk_cart_OrderID FOREIGN KEY(OrderID)
 REFERENCES Orders (OrderID);
 
@@ -61,5 +62,7 @@ REFERENCES Product (ProductID);
 
 ALTER TABLE product
 ADD COLUMN description text ,ADD COLUMN img varchar(256);
-ALTER TABLE product
-ADD COLUMN orderdate date;
+
+ALTER TABLE orders
+ADD COLUMN orderdate timestamp DEFAULT now();
+

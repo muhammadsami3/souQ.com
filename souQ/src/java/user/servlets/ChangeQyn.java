@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets.usersServlets;
+package user.servlets;
 
+import dataBaseFunction.dbMethods;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author maryam
+ * @author Muhammad Sami
  */
-public class trialServlet extends HttpServlet {
+@WebServlet(name = "ChangeQyn", urlPatterns = {"/ChangeQyn"})
+public class ChangeQyn extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,52 +35,17 @@ public class trialServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            response.setContentType("text/html;charset=UTF-8");
-//          response.sendRedirect("html/usersHTML/registration.html");
-            Connection conn = DBConnector.getConnection();
-            String query = " insert into customer (uname,fname,lname,passwd,birthday,email,job,address,interests) values (?,?,?,?,?,?,?,?,?)";
-            PreparedStatement prepareStatement = null;
-            PreparedStatement prepareStatement2 = null;
-            prepareStatement = conn.prepareStatement(query);
-            String uname = request.getParameter("uname");
-            String fname = request.getParameter("fname");
-            String lname = request.getParameter("lname");
-            String passwd = request.getParameter("passwd");
-            String bday = request.getParameter("bday");
-            String email = request.getParameter("email");
-            String job = request.getParameter("job");
-            String address = request.getParameter("address");
-            String interests = request.getParameter("interests");
-
-            prepareStatement.setString(1, uname);
-            prepareStatement.setString(2, fname);
-            prepareStatement.setString(3, lname);
-            prepareStatement.setString(4, passwd);
-            prepareStatement.setString(5, bday);
-            prepareStatement.setString(6, email);
-            prepareStatement.setString(7, job);
-            prepareStatement.setString(8, address);
-            prepareStatement.setString(9, interests);
-
-            PrintWriter out = response.getWriter();
-            RequestDispatcher r1;
-
-            boolean inserted = prepareStatement.execute();
-            System.out.println("inserted " + inserted);
-
-            if (!inserted) {
-                response.sendRedirect("jsp/usersJSP/login.jsp");
-            } else {
-                out.println("Failed To create account !");
-                r1 = request.getRequestDispatcher("html/usersHTML/registration.html");
-                r1.include(request, response);
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            int userQyn = Integer.parseInt(request.getParameter("userqyn"));
+            int id = Integer.parseInt(request.getParameter("id"));
+            dbMethods doQuery = new dbMethods();
+            doQuery.ChangeQyn(id, userQyn);
+            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp");
 
         } catch (SQLException ex) {
-            Logger.getLogger(trialServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChangeQyn.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

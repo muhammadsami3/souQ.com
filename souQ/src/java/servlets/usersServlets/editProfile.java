@@ -66,7 +66,7 @@ public class editProfile extends HttpServlet {
             prepareStatement.setString(8, interests);
 
             int updated = prepareStatement.executeUpdate();
-            System.out.println("updated");
+            System.out.println(updated);
             response.sendRedirect("jsp/usersJSP/login.jsp");
     }
 

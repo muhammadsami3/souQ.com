@@ -24,8 +24,8 @@
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="../../html/usersHTML/registration.html" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Register</a>
-    <a href="../../jsp/usersJSP/login.jsp" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Login</a>
+    <a id="reg" href="" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Register</a>
+    <a id="login" href="" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Login</a>
     <a href="../../jsp/usersJSP/home.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Home</a>
     <a href="../../jsp/usersJSP/userProfile.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Profile</a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">
@@ -34,4 +34,9 @@
   </div>
  
 </div>
-
+<script>
+var registration=document.getElementById("reg");
+var login=document.getElementById("login");
+registration.setAttribute("href","../../html/usersHTML/registration.html");
+login.setAttribute("href","../../jsp/usersJSP/login.jsp");
+</script>

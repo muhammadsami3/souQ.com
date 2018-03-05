@@ -7,7 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
+<% 
+if(session.getAttribute("isLoggedin")!=null){
 session.invalidate();
+session.setAttribute("isLoggedIn", "no");
+}
 response.sendRedirect("home.jsp");
 %>

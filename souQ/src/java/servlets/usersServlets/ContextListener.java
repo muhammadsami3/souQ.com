@@ -23,7 +23,7 @@ public class ContextListener implements ServletContextListener {
         String dbusername=context.getInitParameter("dbUserName");
         String dbpassword=context.getInitParameter("dbPassword");
 
-//        DBConnector.createConnection(dburl, dbusername, dbpassword);
+        DBConnector.createConnection(dburl, dbusername, dbpassword);
         System.out.println("Connection Establised.........");
     }
 

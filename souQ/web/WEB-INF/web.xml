@@ -16,7 +16,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>123@home</param-value>
+        <param-value>1022591400</param-value>
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
@@ -74,9 +74,10 @@
 
         <servlet-name>addtoCart</servlet-name>
         <url-pattern>/addtoCart</url-pattern>
-
+<!--        
         <servlet-name>checkRegistred</servlet-name>
-        <url-pattern>/checkRegistred</url-pattern>
+        <url-pattern>/checkRegistred</url-pattern>-->
+        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>editProfile</servlet-name>

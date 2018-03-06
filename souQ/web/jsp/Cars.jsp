@@ -18,13 +18,15 @@
 
 <html>
     <head>
-        <link rel="stylesheet"   type="text/css" href="../css/style.css">
+        <link rel="stylesheet"   type="text/css" href="../css/style3.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cars Page</title>
     </head>
     <body>
         
-        
+        <div id="wrapper">
+                <section>
+                    <ul id="gallery">
           
           <% 
            rs=doQuery.getallProductInfo();
@@ -39,42 +41,38 @@
           %>
           
           
-          <div class="container">
-                <div class="center" style="border: 1px solid #c9c4ea;width: 600px;margin-bottom: 2%;">
+          
                    
           
           
-          <form action="/souQ/cart">
-               <table class="center" style="width: 600px;" >
-                   <tr>
-                            <th></th>
-                            <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
-
-                            <th style="width: 210px;"></th>
-                        </tr>
-                        
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td rowspan="4">
-              <input type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+      <li>
+          <form  action="/souQ/cart">
+               
               
-               </td>
+                   <h2><%=rs2.getString("name").toUpperCase()%></h2></th>
 
-                        </tr>
-                        <tr>
+                            
+          <br><br>
+  
+              <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+              
+              
+              <br>
+                       
 
               <p><%=rs2.getString("description")%></p>
               
-              <input type="hidden" name="id" value=<%=rs2.getString("productid")%>>
+            
+              
+              <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
             <input type="submit" value="more information">
-          </table>
+            
+          
           </form>
           
-                   
-                </div>
-          </div>
+      </li>       
+                
     
      
      <%
@@ -82,7 +80,8 @@
                 }%>
      
   
- 
-  
+                </ul>
+  </section>
+          </div>
     </body>
 </html>

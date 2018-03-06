@@ -131,9 +131,9 @@ public class dbMethods {
     
     
     
-    public ResultSet getallProductInfo() throws SQLException {
+    public ResultSet getallProductInfo(String cat) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from product");
+        String queryString = new String("Select * from product where cat='" + cat + "'");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }

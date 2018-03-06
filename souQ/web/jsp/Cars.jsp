@@ -16,6 +16,8 @@
    
 %>
 
+
+
 <html>
     <head>
         <link rel="stylesheet"   type="text/css" href="../css/style3.css">
@@ -28,8 +30,8 @@
                 <section>
                     <ul id="gallery">
           
-          <% 
-           rs=doQuery.getallProductInfo();
+          <%  String category = request.getParameter("c");
+           rs=doQuery.getallProductInfo(category);
            while (rs.next()) {
                     String tempId = rs.getString("productid");
                     int id = Integer.parseInt(tempId);
@@ -40,41 +42,23 @@
                         
           %>
           
-          
-          
-                   
-          
-          
       <li>
           <form  action="/souQ/cart">
-               
-              
-                   <h2><%=rs2.getString("name").toUpperCase()%></h2></th>
-
-                            
+                   <h2><%=rs2.getString("name").toUpperCase()%></h2>  
           <br><br>
   
               <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
-              
-              
+    
               <br>
-                       
-
               <p><%=rs2.getString("description")%></p>
-              
-            
               
               <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
             <input type="submit" value="more information">
-            
-          
           </form>
           
       </li>       
-                
-    
-     
+               
      <%
                     }
                 }%>

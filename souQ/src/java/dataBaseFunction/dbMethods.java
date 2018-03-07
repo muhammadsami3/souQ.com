@@ -40,15 +40,14 @@ import java.util.logging.Logger;
 public class dbMethods {
 
     public static Connection conn;
-     PreparedStatement stmt;
-     Statement stmt2;
-     ResultSet rs;
+    PreparedStatement stmt;
+    Statement stmt2;
+    ResultSet rs;
 
     public dbMethods() {
-        
+
     }
 
-    
     public static void connectToDatabase() {
         conn = null;
 
@@ -122,7 +121,7 @@ public class dbMethods {
 
     public ResultSet getCartInfo(int customerid) throws SQLException {
 
-        String queryString = "select * from cart where customerid=?";
+        String queryString = "select * from cart where customerid=? order by cartid ";
         PreparedStatement stmt = conn.prepareStatement(queryString);
         stmt.setInt(1, customerid);
         ResultSet rs = stmt.executeQuery();
@@ -134,6 +133,18 @@ public class dbMethods {
         String queryString = new String("Select * from product where productid=" + id + "");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
+    }
+
+    public int getProductQyn(int id) throws SQLException {
+        int qyn;
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("Select * from product where productid=" + id + "");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        rs.next();
+        String qynString = rs.getString("qyn");
+        qyn = Integer.parseInt(qynString);
+        return qyn;
+
     }
 
     public void addCart(int customerid, int productid, int quantity) throws SQLException {
@@ -158,7 +169,7 @@ public class dbMethods {
 
     }
 
-    public void ChangeQyn(int productid, int quantity) throws SQLException {
+    public void ChangeCartQyn(int productid, int quantity) throws SQLException {
 
         String query = "update cart set quantity=? where productid=? ";
 
@@ -169,12 +180,43 @@ public class dbMethods {
 
     }
 
-    public void addFinalCart(Integer orderid,Integer productid, Integer quantity) throws SQLException {
+    public void ChangeStoreQyn(int productid, int quantity) throws SQLException {
+
+        String query = "update product set qyn=? where productid=? ";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, getProductQyn(productid)-quantity);
+        stmt.setInt(2, productid);
+        stmt.execute();
+
+    }
+
+    public void reduceCredit(int customerid, Double credit) throws SQLException {
+        String query = "update customer set balance=? where id=? ";
+
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setDouble(1, credit);
+        stmt.setInt(2, customerid);
+        stmt.execute();
+
+    }
+
+    public double getCredit(int customerid) throws SQLException {
+
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("Select balance from customer where id='" + customerid + "' ");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        rs.next();
+        String creString = rs.getString("balance");
+        return Double.parseDouble(creString);
+    }
+
+    public void addFinalCart(Integer orderid, Integer productid, Integer quantity) throws SQLException {
 
         String query = "insert into finalcart (orderid,productid,quantity) values(?,?,?)";
 
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1,orderid);
+        stmt.setInt(1, orderid);
         stmt.setInt(2, productid);
         stmt.setInt(3, quantity);
         stmt.execute();
@@ -182,23 +224,23 @@ public class dbMethods {
     }
 
     public int getHisOrderID(int customerid) throws SQLException {
-        
+
         String query = "select orderid from orders where customerid=? order by orderid desc limit 1";
-         PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setInt(1, customerid);
-                rs= stmt.executeQuery();
-                rs.next();
-                String idString=rs.getString("orderid");
-                int id =Integer.parseInt(idString);
-                return id;  
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, customerid);
+        rs = stmt.executeQuery();
+        rs.next();
+        String idString = rs.getString("orderid");
+        int id = Integer.parseInt(idString);
+        return id;
     }
 
-    public void addOrder(int customerID, int totalamount) throws SQLException {
+    public void addOrder(int customerID, Double totalamount) throws SQLException {
 
         String query = "insert into orders ( customerid,totalamount) values (?,?)";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, customerID);
-        stmt.setInt(2, totalamount);
+        stmt.setDouble(2, totalamount);
         stmt.execute();
     }
 

@@ -42,7 +42,7 @@ public class ChangeQyn extends HttpServlet {
             int userQyn = Integer.parseInt(request.getParameter("userqyn"));
             int id = Integer.parseInt(request.getParameter("id"));
             dbMethods doQuery = new dbMethods();
-            doQuery.ChangeQyn(id, userQyn);
+            doQuery.ChangeCartQyn(id, userQyn);
             response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp");
 
         } catch (SQLException ex) {

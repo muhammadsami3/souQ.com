@@ -41,21 +41,29 @@ public class addFinalCart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             doQuery = new dbMethods();
-
+//customerid =(int)session.getAttribute("ID");
             int customerid = 1;
 
             try {
                 HttpSession session = request.getSession(false);
-                int totalPrice = (int) session.getAttribute("totalPrice");
+                Double totalPrice = (Double) session.getAttribute("totalPrice");
                 
                 rs = doQuery.getCartInfo(customerid);
                 doQuery.addOrder(customerid,totalPrice);
                 
                 Integer orderid=doQuery.getHisOrderID(customerid);
                 while (rs.next()) {
+                    
                     doQuery.addFinalCart(orderid, Integer.parseInt(rs.getString("productid")),Integer.parseInt(rs.getString("quantity")) );
+                    doQuery.ChangeStoreQyn( Integer.parseInt(rs.getString("productid")),Integer.parseInt(rs.getString("quantity")));
                 }
                 doQuery.removeCart(customerid);
+                //reduce credite771
+                double credit=doQuery.getCredit(customerid);
+                double newcredit=credit-totalPrice;
+                doQuery.reduceCredit(customerid,newcredit);
+                response.sendRedirect("/souQ/user/jsp/afterBuying.jsp");
+                
 
             } catch (SQLException ex) {
                 Logger.getLogger(addFinalCart.class.getName()).log(Level.SEVERE, null, ex);

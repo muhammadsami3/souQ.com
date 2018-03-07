@@ -8,9 +8,8 @@
 <!DOCTYPE html>
 
 <% 
-if(session.getAttribute("isLoggedin")!=null){
+if(session.getAttribute("status")!=null){
 session.invalidate();
-session.setAttribute("isLoggedIn", "no");
 }
 response.sendRedirect("home.jsp");
 %>

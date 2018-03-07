@@ -4,43 +4,68 @@
     Author     : Raghda
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="dataBaseFunction.dbMethods"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%!
+    Integer id;
+    dbMethods doQuery = new dbMethods();
+    ResultSet rs;
+    ResultSet rs2;
+   
+%>
+
+
+
 <html>
     <head>
-        <link rel="stylesheet"   type="text/css" href="../css/style.css">
+        <link rel="stylesheet"   type="text/css" href="../css/style3.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>cars Page</title>
     </head>
     <body>
-         <div id="wrapper">
-    <section>
-
-    <ul id="gallery">
-      <li>
         
-          <form action="/souQ/cart">
-              <input type="image" src="../img/car1.jpg" alt="car1" width="100" height="100" name="car1" value="1">
-              <input type="hidden" name="id" value="1">
+        <div id="wrapper">
+                <section>
+                    <ul id="gallery">
+          
+          <%  String category = request.getParameter("c");
+           rs=doQuery.getallProductInfo(category);
+           while (rs.next()) {
+                    String tempId = rs.getString("productid");
+                    int id = Integer.parseInt(tempId);
+                    rs2 = doQuery.getProductInfoById(id);
+                    
+
+                    while (rs2.next()) {
+                        
+          %>
+          
+      <li>
+          <form  action="/souQ/cart">
+                   <h2><%=rs2.getString("name").toUpperCase()%></h2>  
+          <br><br>
+  
+              <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+    
+              <br>
+              <p><%=rs2.getString("description")%></p>
+              
+              <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
-            <input type="submit" value="Add to cart">
+            <input type="submit" value="more information">
           </form>
           
-          
-     </li>
+      </li>       
+               
+     <%
+                    }
+                }%>
      
-     <li>  
-         <form action="/souQ/cart">
-             
-             <input type="image" src="../img/car2.jpg" alt="car1" width="100" height="100" name="car2" value="2">
-             <input type="hidden" name="id" value="2">
-         <br><br>
-            <input type="submit" value="Add to cart">
-        </form>
-     </li>
-     
-   </ul>
-  </div>
-     </section>
+  
+                </ul>
+  </section>
+          </div>
     </body>
 </html>

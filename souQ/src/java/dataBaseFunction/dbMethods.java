@@ -53,7 +53,7 @@ public class dbMethods {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "1022591400");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -125,6 +125,15 @@ public class dbMethods {
         PreparedStatement stmt = conn.prepareStatement(queryString);
         stmt.setInt(1, customerid);
         ResultSet rs = stmt.executeQuery();
+        return rs;
+    }
+    
+    
+    
+    public ResultSet getallProductInfo(String cat) throws SQLException {
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("Select * from product where cat='" + cat + "'");
+        ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
 

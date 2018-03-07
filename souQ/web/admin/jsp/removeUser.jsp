@@ -10,7 +10,7 @@
 <% //int Id=(Integer)session.getAttribute("UID");
     int id=Integer.parseInt(request.getParameter("userid"));
         out.println(id);
-        dbMethods.connectToDatabase();
-        dbMethods.removeUser(id);
+        dbMethods dbQMethods=new dbMethods();
+               dbQMethods.removeUser(id);
     
 %>

@@ -8,7 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page  %>
 <%@include file="../html/adminheader.html" %>
-welcome to admin page 
-<%dbMethods.connectToDatabase();%>
+
+<div style="height: 470px;">
+    
+</div>
+
 <%@include file="../html/footer.html" %>
 

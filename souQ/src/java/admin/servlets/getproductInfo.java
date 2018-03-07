@@ -27,6 +27,7 @@ import javax.servlet.http.HttpSession;
 public class getproductInfo extends HttpServlet {
 
     ResultSet rs;
+    dbMethods doQuery = new dbMethods();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,37 +36,43 @@ public class getproductInfo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String pname = request.getParameter("pname");
             String requestFrom = request.getParameter("requestFrom");
-            requestFrom=(requestFrom == null)? " ":requestFrom;
-            
+            requestFrom = (requestFrom == null) ? " " : requestFrom;
+
             try {
-                dbMethods.connectToDatabase();
                 HttpSession session = request.getSession(false);
 
-                if (dbMethods.isProductExist(pname)) {
+                if (doQuery.isProductExist(pname)) {
 
-                    rs = dbMethods.getProductInfo(pname);
+                    rs = doQuery.getProductInfo(pname);
                     rs.next();
                     session.setAttribute("pname", rs.getString("name"));
                     session.setAttribute("cost", rs.getString("price"));
                     session.setAttribute("amount", rs.getString("qyn"));
                     session.setAttribute("cat", rs.getString("cat"));
                     session.setAttribute("desc", rs.getString("description"));
+                    session.setAttribute("img", rs.getString("img"));
+                    session.setAttribute("id", rs.getString("productid"));
+
+                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid" + rs.getString("productid"));
+                    System.out.println("admin.servlets.getproductInfo.processRequest() --> productid" + rs.getString("img"));
 
                     session.setAttribute("found", "yes");
-                    
+
                     if (requestFrom.equals("remove")) {
                         response.sendRedirect("/souQ/admin/jsp/removePage.jsp");
                     } else if (requestFrom.equals("edit")) {
                         response.sendRedirect("/souQ/admin/jsp/editPage.jsp");
                     }
                 } else {
-                    
-                      session.setAttribute("pname", "");
-                    session.setAttribute("cost","");
+
+                    session.setAttribute("pname", "");
+                    session.setAttribute("cost", "");
                     session.setAttribute("amount", "");
                     session.setAttribute("cat", "car");
-                    session.setAttribute("desc","");
+                    session.setAttribute("desc", "");
+                    session.setAttribute("img", "");
                     session.setAttribute("found", "no");
+                    session.setAttribute("id", "-1");
 
                     if (requestFrom.equals("remove")) {
                         response.sendRedirect("/souQ/admin/jsp/removePage.jsp");
@@ -82,43 +89,16 @@ public class getproductInfo extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

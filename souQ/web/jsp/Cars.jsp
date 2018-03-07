@@ -18,6 +18,7 @@
 
 
 
+
 <html>
     <head>
         <link rel="stylesheet"   type="text/css" href="../css/style3.css">
@@ -36,8 +37,6 @@
                     String tempId = rs.getString("productid");
                     int id = Integer.parseInt(tempId);
                     rs2 = doQuery.getProductInfoById(id);
-                    
-
                     while (rs2.next()) {
                         
           %>
@@ -54,6 +53,8 @@
               
               <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
+         
+         <%  %>
             <input type="submit" value="more information">
           </form>
           

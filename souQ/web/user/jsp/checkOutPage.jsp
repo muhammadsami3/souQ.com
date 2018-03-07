@@ -9,24 +9,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%!
-    Integer id, qyn, totalPrice, NumOfProducts;
+    Integer id, qyn, NumOfProducts;
+    double totalPrice, credit;
     dbMethods doQuery = new dbMethods();
     ResultSet rs;
     ResultSet rs2;
     Integer userqyn;
+    int customerid;
 %>
 
 <%totalPrice = 0;
+//customerid =(int)session.getAttribute("ID");
+customerid=1;//just for tring
+    credit = doQuery.getCredit(customerid);
 %>
 
-<div class="container">
+<div class="container" style="top: 33px;">
     <div>
         <h1>Shopping Cart </h1>
     </div>
     <form action="/souQ/addFinalCart" style="width: 75%;">
         <div class="cartContainer">
             <%
-                rs = doQuery.getCartInfo(1);
+                rs = doQuery.getCartInfo(customerid);
                 System.out.println("className.methodName()");
                 while (rs.next()) {
                     String tempId = rs.getString("productid");
@@ -37,7 +42,7 @@
                     while (rs2.next()) {
                         String tempQyn = rs2.getString("qyn");
                         qyn = Integer.parseInt(tempQyn);
-                        Integer price = Integer.parseInt(rs2.getString("price"));
+                        Double price = Double.parseDouble(rs2.getString("price"));
                         totalPrice += price * userqyn;
                         session.setAttribute("totalPrice", totalPrice);
             %>
@@ -109,23 +114,33 @@
                     }
                 }%>
             <div class="top_right" >
+                <%if (totalPrice != 0) {%>
                 <font style="font-size: 18px">Total:</font>
                 <font style="font-size: 17px"><b><%=totalPrice%></b> </font>  
-
-
-
                 <font style="font-size: 17px">EGP</font>  
                 <br>
                 <br>
-                <%if(totalPrice!=0){%>
                 <input type="submit" class="btn" id="checkoutbtn" value="PROCEED TO CHECKOUT"/>
-                <%}%>
+                <%} %>
+
+                <%if (credit < totalPrice) {%>
+                <br>
+                <font style="font-size: 17px;color: red"><b>ops! Credit Limit exceeded</b> </font> 
+                <%}
+                %>
             </div>
+
+         
 
 
     </form>
 
+   <%if (totalPrice == 0) {%>
+            <div style="height: 495px;">
+                <font style="font-size: 17px"><b>Add some Product and come back :D</b> </font> 
+            </div>
 
+            <%}%>
 
 </div>
 

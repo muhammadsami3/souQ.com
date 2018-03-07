@@ -15,7 +15,7 @@
     </head>
     <body>
         <div>
-            <form method="post" action="loginValidation.jsp">
+            <form method="post" action="../../LoginValidation">
                 <table align="center">
                     <tr><td>User Name</td></tr>
                     <tr><td>

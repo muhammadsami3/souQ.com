@@ -3,26 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.servlets;
+package servlets.usersServlets;
 
-import dataBaseFunction.dbMethods;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Muhammad Sami
+ * @author maryam
  */
-@WebServlet(name = "ChangeQyn", urlPatterns = {"/ChangeQyn"})
-public class ChangeQyn extends HttpServlet {
+public class CheckSessionStatus3 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +31,13 @@ public class ChangeQyn extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            
-            
-            int userQyn = Integer.parseInt(request.getParameter("userqyn"));
-            int id = Integer.parseInt(request.getParameter("id"));
-            dbMethods doQuery = new dbMethods();
-            doQuery.ChangeCartQyn(id, userQyn);
-            response.sendRedirect("/souQ/user/jsp/checkOutPage.jsp");
+        HttpSession session = request.getSession(false);
+        String status = (String) session.getAttribute("status");
+        if (status!=null) {
+            response.sendRedirect("jsp/usersJSP/userProfile.jsp");
+        } else {
+            response.sendRedirect("jsp/usersJSP/login.jsp");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(ChangeQyn.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

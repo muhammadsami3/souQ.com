@@ -1,8 +1,3 @@
-<%-- 
-    Document   : editPage
-    Created on : Feb 24, 2018, 10:02:24 PM
-    Author     : Muhammad Sami
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../html/adminheader.html" %>
@@ -30,7 +25,6 @@
         <form   id="editform" action="/souQ/admin/getproductInfo" method="Get">
             <div class="center">
                 Product Name to edit &nbsp;
-                <input calss="btn" type="text" name="pname" required=""> 
                 &nbsp;
                 <br>
                 <input class="center btn " type="submit" value="view information" style="margin-left: 25%;">
@@ -98,7 +92,37 @@ pname = "";
                     <option >Cars</option>
                     <option <%if (cat.equals("Motocycles")) {%><%="selected"%> <% }%> >Motocycles</option>
                 </select>
-                </br><br>
+                Image
+                <input  type="file" name="img" >
+                <br>
+                <br>
+                Description
+                <br>
+                <textarea id="desc" cols="48" rows="5" name="desc" required=""><%=desc%></textarea>
+                <br> 
+                <br>
+
+                <input  type="reset" value="reset" class="btn" >
+                &nbsp;
+                <input type="text"  name="edit" value="yes" style="display: none" > 
+                <input type="submit" value="Edit" class="btn" style="margin-left: 28px;" > 
+                <br>
+                <ul type="circle" id="errMsg">
+
+                </ul>
+            </div>
+        </form>
+    </div>
+    <br>
+
+
+</div>
+
+
+
+
+
+<%@include file="../html/footer.html" %> </br><br>
                 Image
                 <input  type="file" name="img" value="../../imgs/<%=img%>" >
                 <br>

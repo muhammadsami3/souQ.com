@@ -17,6 +17,7 @@
     
        
     <tbody>
+        <input type="text" name="balance" />
         <tr>
           <td>id</td>  
           <td>First Name </td>
@@ -56,8 +57,6 @@
           <td><a href=<%=s2%>> <img src="../../imgs/edit.png"> </a></td> 
           
         </tr>
-        <input type="text" name="balance" />
-
 <!--        <tr>
             <td>Balance</td>
             <td><!%=balance%></td>
@@ -70,6 +69,8 @@
 <%                
 }
 %>
+        
+
     </tbody>
 </table>
  </div>

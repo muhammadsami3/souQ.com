@@ -35,7 +35,7 @@ public class dbMethods {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "1022591400");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "334866");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -60,7 +60,7 @@ public class dbMethods {
 //        }
     }
       
-    public static ResultSet showUsers() {
+    public static ResultSet editUsers() {
         try {
             stmt2 = conn.createStatement();
             String queryString = new String("Select * from customer");
@@ -71,19 +71,23 @@ public class dbMethods {
         return rs;
     }
     
-    public static ResultSet showUserInfo(String uname) throws SQLException {
+    public static ResultSet editInfoUser(int Id,float balance ) throws SQLException {
         
           stmt2 = conn.createStatement();
-            String queryString = new String("Select * from customer where uname='"+uname+"' ");
+            String queryString = new String("Update customer set balance=? where id=?");
             rs = stmt2.executeQuery(queryString);
+            stmt.setFloat(1, balance); 
+            stmt.setInt(2, Id);
+            stmt.executeUpdate();
+            
        return  rs;
         
     }
-     public static void removeUser(String uname) throws SQLException {
-          String query = "delete from customer where uname=?";
+     public static void removeUser(int Id) throws SQLException {
+          String query = "delete from customer where id=? ";
         
             stmt = conn.prepareStatement(query);
-            stmt.setString(1, uname);
+            stmt.setInt(1, Id);
             stmt.execute();
           
         

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dataBaseFunction.dbMethods;
-import static dataBaseFunction.dbMethods.connectToDatabase;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,21 +25,25 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "addProduct", urlPatterns = {"/admin/addProduct"})
 public class addProduct extends HttpServlet {
 
-    String pname, cost, amount, cat, desc, edit;
+    String pname, cost, amount, cat, desc, edit, img, tempID;
+    Integer id;
     boolean $edit = false;
+    dbMethods doQuery=new dbMethods();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
+
         try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            connectToDatabase();
+
             HttpSession session = request.getSession();
             pname = request.getParameter("pname");
             cost = request.getParameter("cost");
             amount = request.getParameter("amount");
-            cat = request.getParameter("cat").toLowerCase();
+            cat = request.getParameter("cat");
             desc = request.getParameter("desc");
+            img = request.getParameter("img");
 
             edit = request.getParameter("edit");
             edit = (edit == null) ? "" : edit;
@@ -50,10 +53,14 @@ public class addProduct extends HttpServlet {
                 pname = request.getParameter("pname");
                 cost = request.getParameter("cost");
                 amount = request.getParameter("amount");
-                cat = request.getParameter("cat").toLowerCase();
+                cat = request.getParameter("cat");
                 desc = request.getParameter("desc");
+                img = request.getParameter("img");
+                tempID = (String) session.getAttribute("id");
+                tempID = (tempID == null) ? "-1" : tempID;
+                id = Integer.parseInt(tempID);
 
-                dbMethods.editProduct(pname, Double.parseDouble(cost), Integer.valueOf(amount), cat, desc);
+                doQuery.editProduct(id, pname, Double.parseDouble(cost), Integer.valueOf(amount), cat, desc, img);
 
                 session.setAttribute("pnameExist", "no");
                 session.setAttribute("pname", " ");
@@ -61,11 +68,13 @@ public class addProduct extends HttpServlet {
                 session.setAttribute("amount", " ");
                 session.setAttribute("cat", "cars");
                 session.setAttribute("desc", " ");
+                session.setAttribute("img", " ");
                 session.setAttribute("edit", "no");
+                session.setAttribute("id", "-1");
 
-                response.sendRedirect("/souQ/admin/jsp/editPage.jsp");
+                response.sendRedirect("/souQ/admin/jsp/editPage.jsp?success=yes");
 
-            } else if (dbMethods.isProductExist(pname)) {
+            } else if (doQuery.isProductExist(pname)) {
 
                 System.out.println("servlets.addProduct.processRequest()  -----> item exists " + desc);
                 session.setAttribute("pnameExist", "yes");
@@ -75,13 +84,15 @@ public class addProduct extends HttpServlet {
                 session.setAttribute("amount", amount);
                 session.setAttribute("cat", cat);
                 session.setAttribute("desc", desc);
+                session.setAttribute("desc", img);
+                session.setAttribute("id", tempID);
 
                 response.sendRedirect("/souQ/admin/jsp/addPage.jsp");
             } else {
-                             session.setAttribute("pnameExist", "no");
+                session.setAttribute("pnameExist", "no");
 
                 System.out.println("servlets.addProduct.processRequest() ----> NEW ITEM  " + amount + cat);
-                dbMethods.addProduct(pname, Double.parseDouble(cost), Integer.parseInt(amount), cat, desc);
+                doQuery.addProduct(pname, Double.parseDouble(cost), Integer.parseInt(amount), cat, desc, img);
                 response.sendRedirect("/souQ/admin/jsp/addPage.jsp?s=yes");
             }
         } catch (IOException | SQLException ex) {
@@ -95,43 +106,16 @@ public class addProduct extends HttpServlet {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

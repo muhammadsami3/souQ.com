@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <!--
+    <context-param>
+        <param-name>cat</param-name>
+        <param-value>0</param-value>
+    </context-param>
+    -->
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUserName</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>1022591400</param-value>
+    </context-param>
+
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
     <servlet>
+
         <servlet-name>DisplayUsers</servlet-name>
         <servlet-class>admin.servlets.DisplayUsers</servlet-class>
     </servlet>
@@ -12,9 +33,112 @@
         <servlet-name>DisplayUsers</servlet-name>
         <url-pattern>/DisplayUsers</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>carts</servlet-name>
+        <servlet-class>servlets.carts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <servlet-class>servlets.cart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addtoCart</servlet-name>
+        <servlet-class>user.servlets.addtoCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addFinalCart</servlet-name>
+        <servlet-class>user.servlets.addFinalCart</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>carts</servlet-name>
+        <url-pattern>/carts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cart</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>listeners.Deploylistener</listener-class>
+    </listener>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>listeners.sessionListener</listener-class>
+    </listener>
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>servlets.usersServlets.ContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>trialServlet</servlet-name>
+        <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>checkRegistred</servlet-name>
+        <servlet-class>servlets.usersServlets.checkRegistred</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editProfile</servlet-name>
+        <servlet-class>servlets.usersServlets.editProfile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginValidation</servlet-name>
+        <servlet-class>servlets.usersServlets.LoginValidation</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckSessionStatus</servlet-name>
+        <servlet-class>servlets.usersServlets.CheckSessionStatus</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckSessionStatus2</servlet-name>
+        <servlet-class>servlets.usersServlets.CheckSessionStatus2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckSessionStatus3</servlet-name>
+        <servlet-class>servlets.usersServlets.CheckSessionStatus3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trialServlet</servlet-name>
+        <url-pattern>/trialServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addtoCart</servlet-name>
+        <url-pattern>/addtoCart</url-pattern>
+        <!--        
+        <servlet-name>checkRegistred</servlet-name>
+        <url-pattern>/checkRegistred</url-pattern>-->
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editProfile</servlet-name>
+        <url-pattern>/editProfile</url-pattern>
+    </servlet-mapping>
+    
+   
+    <servlet-mapping>
+        <servlet-name>addFinalCart</servlet-name>
+        <url-pattern>/addFinalCart</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>LoginValidation</servlet-name>
+        <url-pattern>/LoginValidation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckSessionStatus</servlet-name>
+        <url-pattern>/CheckSessionStatus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckSessionStatus2</servlet-name>
+        <url-pattern>/CheckSessionStatus2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckSessionStatus3</servlet-name>
+        <url-pattern>/CheckSessionStatus3</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+
 </web-app>

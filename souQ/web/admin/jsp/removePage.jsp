@@ -8,14 +8,14 @@
 <%@include file="../html/adminheader.html" %>
 
 
-<div class="mainOption" id="removeProduct" >
+<div class="mainOption" id="removeProduct"  style="height: 150px;">
     <div class="center">
 
-        <form action="/souQ/admin/getproductInfo" method="Get">
-            <div class="center">
+        <form action="/souQ/admin/getproductInfo" method="post">
+            <div class="center"  >
 
                 Product Name to remove &nbsp;
-                <input type="text" name="pname"> &nbsp;
+                <input type="text" name="pname" required=""> &nbsp;
                 <br>
                 
                 <input class="center btn " type="submit" value="view information" style="margin-left: 25%;">
@@ -25,8 +25,8 @@
         <% String success = (String) session.getAttribute("success");
             success = (success == null) ? "" : success;
             if (success.equals("yes")) {%>
-        <div class="msg center"> 
-            <font style="color: green;margin-left: 23%; " class="center">product removed successfully </font>
+        <div class="msg center" style="height: 320px;"> 
+            <font style="color: green;margin-left: 23%;height: 320px; " class="center" >product removed successfully </font>
         </div>
 
         <%System.out.println("className.methodName() --> item deleted successfuly");
@@ -45,19 +45,20 @@
     if (found.equals("no")) {
         session.setAttribute("found", " ");
         System.out.println("className.methodName() --> name not found");%>
-<div class="msg center"> 
+<div class="msg center" style="height: 320px;"> 
     <font style="color: red;margin-left: 40%;" class="center" >product not found </font>
 </div>
 
 
 <% } else if (found.equals("yes")) {%>
-<%!String pname, cost, cat, amount, desc;%>
+<%!String pname, cost, cat, amount, desc,img;%>
 
 <% pname = (String) session.getAttribute("pname");
     cost = (String) session.getAttribute("cost");
     cat = (String) session.getAttribute("cat");
     amount = (String) session.getAttribute("amount");
     desc = (String) session.getAttribute("desc");
+    img = (String) session.getAttribute("img");
 %>
 <div class="center">
     <table class="center" >
@@ -73,7 +74,7 @@
                 <td>Name</td>
                 <td><%=pname%></td>
                 <td rowspan="4">
-                    <img src="../../imgs/Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg.jpg" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
+                    <img src="../../imgs/<%=img%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
 
                 </td>
 
@@ -103,12 +104,17 @@
 <br>
 <br>
 <div class="center">
-    <form class="center" action="/souQ/admin/removeProduct">
+    <form class="center" action="/souQ/admin/removeProduct" style="height: 90px;" method="post">
         <div class="center">
             <input type="submit" value="Remove"  class="btn center" style="margin-left: 25%;" >
         </div>
     </form> 
 </div>
-<% }%> 
+<% session.setAttribute("found", "wait another request"); }else{
+%> 
+<div style="height: 320px;">
+    
+</div>
 
+<%}%>
 <%@include file="../html/footer.html" %>

@@ -37,12 +37,12 @@ public class editUser extends HttpServlet {
             requestFrom=(requestFrom == null)? " ":requestFrom;
             
             try {
-                dbMethods.connectToDatabase();
+              dbMethods doQMethods=new dbMethods();
                 HttpSession session = request.getSession(false);
 
-                if (dbMethods.isProductExist(fname)) {
+                if (doQMethods.isProductExist(fname)) {
 
-                    rs = dbMethods.getProductInfo(fname);
+                    rs = doQMethods.getProductInfo(fname);
                     rs.next();
                     session.setAttribute("fname", rs.getString("fname"));
                     session.setAttribute("lname", rs.getString("lname"));

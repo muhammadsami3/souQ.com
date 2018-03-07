@@ -24,6 +24,8 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "removeProduct", urlPatterns = {"/admin/removeProduct"})
 public class removeProduct extends HttpServlet {
+    
+    dbMethods doQuery=new dbMethods();
 
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -33,8 +35,7 @@ public class removeProduct extends HttpServlet {
             HttpSession session=request.getSession(false);
             String pname = (String) session.getAttribute("pname");
             System.out.println(new Date() +"admin.servlets.removeProduct.processRequest() --> remove servlet pname="+pname);
-            dbMethods.connectToDatabase();
-             dbMethods.removeProduct(pname);
+             doQuery.removeProduct(pname);
 
             
                 session.setAttribute("pnameExist", "no");
@@ -46,7 +47,7 @@ public class removeProduct extends HttpServlet {
                 session.setAttribute("edit", "no");
                 session.setAttribute("found", " ");
                 session.setAttribute("success", "yes");
-                
+//                
                 response.sendRedirect("/souQ/admin/jsp/removePage.jsp");
           
         } catch (SQLException ex) {
@@ -54,43 +55,18 @@ public class removeProduct extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+  
 }

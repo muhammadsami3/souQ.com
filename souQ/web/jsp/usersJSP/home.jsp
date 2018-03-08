@@ -33,8 +33,8 @@
             <i class="fa fa-remove"></i>
         </a>
         <h4 class="w3-bar-item"><b>Categories</b></h4>
-        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=watches">Watches</a>
-        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=perfumes">Perfumes</a>
+        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=watch">Watches</a>
+        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=cars">cars</a>
         <h4><a class="w3-bar- w3-button w3-hover-black" href="#"><b>Contact Us</b></a></h4>
         <h4><a class="w3-bar-item w3-button w3-hover-black" href="logout.jsp"><b>Logout</b><a></h4>
     </nav>

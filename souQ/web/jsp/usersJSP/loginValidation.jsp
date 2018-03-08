@@ -46,7 +46,12 @@
         session.setAttribute("job", job);
         session.setAttribute("address", address);
         session.setAttribute("interests", interests);
+        session.setAttribute("check","2");
         
         response.sendRedirect("home.jsp");
+        
+        
+        
+        response.sendRedirect("/souQ/user.servlets/addtoCart");
     }
 %>

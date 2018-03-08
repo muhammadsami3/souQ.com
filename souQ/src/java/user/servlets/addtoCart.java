@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,10 +42,14 @@ public class addtoCart extends HttpServlet {
              int qyn=Integer.parseInt(quantity);
              int p_id=Integer.parseInt(id);
              
+             int customer_id =(int)request.getSession().getAttribute("Id");
+             //String check =(String)request.getSession().getAttribute("check");
+           //  out.println(check);
+             
              
              dbMethods dbobj=new dbMethods();
             try {
-                dbobj.addCart(1,p_id,qyn);
+                dbobj.addCart(customer_id,p_id,qyn);
                 
                 response.sendRedirect("/souQ/html/categories.html");
                 //addCart(int orderid, int productid, int quantity)

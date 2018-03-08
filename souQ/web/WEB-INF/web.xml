@@ -17,7 +17,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>1022591400</param-value>
+        <param-value>123@home</param-value>
     </context-param>
 
     <error-page>

@@ -6,7 +6,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dataBaseFunction.dbMethods"%>
-<%!String fname, lname, uname, password,s , s2;%>
+<%!String fname, lname, uname, password,s , s2 ,s3;%>
 <%!Float balance;%>
 <%!int id;%>
 
@@ -36,6 +36,7 @@
                     out.print(id + "uid");
                     s = "/souQ/admin/jsp/removeUser.jsp?userid=" + id;
                     s2 = "/souQ/admin/jsp/editInfoUser.jsp?userid=" + id;
+                    s3 = "/souQ/admin/jsp/viewHistory.jsp?userid=" + id;
             %> 
             <tr>  
                 <td><%=id%></td>
@@ -53,6 +54,7 @@
  <form action=<%=s2%> method="post" > 
                 <td><%=password%></td>
                 <td> <a href=<%=s%>><img src="../../imgs/delete.png"> </a></td>
+                <td> <a href=<%=s3%>>History </a></td>
                             <input type="text" name="balance" />
                 <td> <input type="submit" name="submit"/>
         </form>

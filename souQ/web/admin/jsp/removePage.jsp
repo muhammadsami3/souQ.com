@@ -11,7 +11,7 @@
 <div class="mainOption" id="removeProduct"  style="height: 150px;">
     <div class="center">
 
-        <form action="/souQ/admin/getproductInfo" method="post">
+        <form action="/souQ/admin/getproductInfo" method="get">
             <div class="center"  >
 
                 Product Name to remove &nbsp;

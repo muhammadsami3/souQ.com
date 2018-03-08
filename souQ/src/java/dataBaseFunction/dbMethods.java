@@ -36,6 +36,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servlets.usersServlets.DBConnector;
 
 public class dbMethods {
 
@@ -50,34 +51,35 @@ public class dbMethods {
     }
 
     public static void connectToDatabase() {
-        conn = null;
+        DBConnector dBConnector=new DBConnector();
+        conn = dBConnector.getConnection();
 
-        try {
-            Class.forName("org.postgresql.Driver");
-
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
-
-            
-
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Class.forName("org.postgresql.Driver");
+//
+//            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
+//
+//            
+//
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
-        try {
-            dbMethods db = new dbMethods();
-            rs2 = db.getUserInfo(3);
-            while (rs2.next()) {
-                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            dbMethods db = new dbMethods();
+//            rs2 = db.getUserInfo(3);
+//            while (rs2.next()) {
+//                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(1));
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public  ResultSet editUsers() throws SQLException {
@@ -120,7 +122,7 @@ public ResultSet getUserInfo(int customerid) throws SQLException {
 
     public ResultSet showProducts() throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select name from product");
+        String queryString = new String("Select * from product");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }

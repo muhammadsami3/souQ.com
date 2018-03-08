@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
     <!--
     <context-param>
         <param-name>cat</param-name>
@@ -17,15 +16,13 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>123@home</param-value>
+        <param-value>1022591400</param-value>
     </context-param>
-
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
         <location>/html/err.html </location>
     </error-page>
     <servlet>
-
         <servlet-name>DisplayUsers</servlet-name>
         <servlet-class>admin.servlets.DisplayUsers</servlet-class>
     </servlet>
@@ -57,10 +54,6 @@
         <servlet-name>cart</servlet-name>
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
-    <listener>
-        <description>ServletContextListener</description>
-        <listener-class>listeners.Deploylistener</listener-class>
-    </listener>
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listeners.sessionListener</listener-class>
@@ -112,13 +105,10 @@
         <servlet-name>editProfile</servlet-name>
         <url-pattern>/editProfile</url-pattern>
     </servlet-mapping>
-    
-   
     <servlet-mapping>
         <servlet-name>addFinalCart</servlet-name>
         <url-pattern>/addFinalCart</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>LoginValidation</servlet-name>
         <url-pattern>/LoginValidation</url-pattern>
@@ -140,5 +130,4 @@
             30
         </session-timeout>
     </session-config>
-
 </web-app>

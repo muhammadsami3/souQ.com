@@ -5,6 +5,7 @@
  */
 package servlets.usersServlets;
 
+import dataBaseFunction.dbMethods;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -24,11 +25,13 @@ public class ContextListener implements ServletContextListener {
         String dbpassword=context.getInitParameter("dbPassword");
 
         DBConnector.createConnection(dburl, dbusername, dbpassword);
+        dbMethods.connectToDatabase();
+        
         System.out.println("Connection Establised.........");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-//        DBConnector.closeConnection();
+        DBConnector.closeConnection();
     }
 }

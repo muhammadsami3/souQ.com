@@ -43,6 +43,7 @@ public class dbMethods {
     PreparedStatement stmt;
     Statement stmt2;
     ResultSet rs;
+   static ResultSet rs2;
 
     public dbMethods() {
 
@@ -53,7 +54,7 @@ public class dbMethods {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "1022591400");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "334866");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -64,15 +65,15 @@ public class dbMethods {
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
-//        try {
-//            dbMethods db = new dbMethods();
-//            rs2 = db.getCartInfo(1);
-//            while (rs2.next()) {
-//                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(2) + "  " + rs2.getString(3) + " " + rs2.getString(4));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            dbMethods db = new dbMethods();
+            rs2 = db.getUserInfo(3);
+            while (rs2.next()) {
+                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public  ResultSet editUsers() throws SQLException {
@@ -102,7 +103,16 @@ public class dbMethods {
         stmt.execute();
 
     }
+    
+   
+public ResultSet getUserInfo(int customerid) throws SQLException {
 
+        String queryString = "select orderid from orders where customerid=? order by orderdate ";
+        PreparedStatement stmt = conn.prepareStatement(queryString);
+        stmt.setInt(1, customerid);
+        ResultSet rs = stmt.executeQuery();
+        return rs;
+    }
 
     public ResultSet showProducts() throws SQLException {
         Statement stmt2 = conn.createStatement();

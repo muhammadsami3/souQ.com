@@ -63,8 +63,8 @@
 
                 Category</br>
                 <select  name="cat" >
-                    <option >Cars</option>
-                    <option >Motocycles</option>
+                    <option >watches</option>
+                    <option >perfumes</option>
                 </select></br><br>
                 Image
                 <input  type="file" name="img" >

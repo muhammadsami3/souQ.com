@@ -3,125 +3,90 @@
     Created on : Mar 8, 2018, 7:26:41 PM
     Author     : Muhammad Sami
 --%>
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dataBaseFunction.dbMethods"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@include file="../html/adminheader.html" %>
+
+
 <%!
     Integer id, qyn, NumOfProducts;
     double totalPrice, credit;
     dbMethods doQuery = new dbMethods();
     ResultSet rs;
     ResultSet rs2;
-    Integer userqyn;
-    int customerid;
-%>
-
-<%totalPrice = 0;
-//customerid =(int)session.getAttribute("ID");
-customerid=1;//just for tring
-    credit = doQuery.getCredit(customerid);
 %>
 
 <div class="container" style="top: 33px;">
-    
-    <form action="/souQ/addFinalCart" style="width: 75%;">
-        <div class="cartContainer">
-            <%
-                rs = doQuery.showProducts();
-                System.out.println("className.methodName()");
-                while (rs.next()) {
-                    String tempId = rs.getString("productid");
-                    int id = Integer.parseInt(tempId);
-                    rs2 = doQuery.getProductInfoById(id);
-                    userqyn = Integer.parseInt(rs.getString("quantity"));
+    <div class="cartContainer">
+        
+        <%
+            rs = doQuery.showProducts();
+            System.out.println("className.methodName()");
+            while (rs.next()) {
+                String tempId = rs.getString("productid");
+                int id = Integer.parseInt(tempId);
+        %>
+        <div class="container" >
+            <div class="center" style="border: 1px solid #c9c4ea;width: 390px;padding: 0px;">
+                <table class="center" style="width: 100px;" >
 
-                    while (rs2.next()) {
-                        String tempQyn = rs2.getString("qyn");
-                        qyn = Integer.parseInt(tempQyn);
-                        Double price = Double.parseDouble(rs2.getString("price"));
-                        totalPrice += price * userqyn;
-                        session.setAttribute("totalPrice", totalPrice);
-            %>
-            <div class="container">
-                <div class="center" style="border: 1px solid #c9c4ea;width: 600px;margin-bottom: 2%;">
-                    <table class="center" style="width: 600px;" >
+                    <tr>
+                        <th><%=rs.getString("name").toUpperCase()%></th>
+                        <th </th>
 
-                        <tr>
-                            <th></th>
-                            <th><h2><%=rs2.getString("name").toUpperCase()%></h2> </th>
+                        <th style="width: 210px;"></th>
+                    </tr>
 
-                            <th style="width: 210px;"></th>
-                        </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="4">
+                            <img src="../../imgs/<%=rs.getString("img")%>" width="100" height="100" />
 
+                        </td>
 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td rowspan="4">
-                                <img src="../../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="Lam1_trans_NvBQzQNjv4BqnAdySV0BR-4fDN_-_p756cVfcy8zLGPV4EhRkjQy7tg"/>
+                    </tr>
+                    <tr>
+                        <td>Cost/Item</td>
+                        <td  style="width: 100px;display: block;">
 
-                            </td>
+                            <%=rs.getString("price")%></td>
 
-                        </tr>
-                        <tr>
-                            <td>Cost/Item</td>
-                            <td  style="width: 100px;display: block;">
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>
+  <%=rs.getString("qyn")%></td>
+                        </td>
 
-                                <%=rs2.getString("price")%></td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td><%=rs.getString("cat")%></td>
 
-                        </tr>
-                        <tr>
-                            <td>Amount</td>
-                            <td >
-
-                                <select name="qyn<%=rs2.getString("productid")%>" onchange="location = this.value;">
-                                    <% for (int i = 1; i <= qyn; i++) {%>
-
-                                    <a href="/souQ/user/jsp/checkOutPage.jsp">
-                                        <option value="/souQ/ChangeQyn?userqyn=<%=i%>&id=<%=id%>"<% if (i == userqyn) {%>
-                                                <%="selected"%>
-
-                                                <%}%>
-                                                ><%=i%></option>
-                                    </a>
-                                    <%}%>   
-
-
-                                </select>
-
-
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>Category</td>
-                            <td><%=rs2.getString("cat")%></td>
-
-                        </tr>
-                    </table>
-                </div>
-                <div id="removeFromCart">
-                    <a href="/souQ/admin/getproductInfo?pname=<%=rs2.getString("name")%>&requestFrom=remove">
-                        <input type="button" value="Remove" name="removeFromCart" style="height: 30px;"/>
-                    </a>
-                </div>
-                <div id="removeFromCart">
-                    <a href="/souQ/admin/getproductInfo?pname=<%=rs2.getString("name")%>&requestFrom=edit">
-                        <input type="button" value="Edit" name="removeFromCart" style="height: 30px;"/>
-                    </a>
-                </div>
+                    </tr>
+                </table>
             </div>
-            <%
-                    }
-                }%>
-         
+            <div style="position: absolute;top: 7%;  right: 37%;">
+                <a href="/souQ/admin/getproductInfo?pname=<%=rs.getString("name")%>&requestFrom=remove">
+                    <input type="button" value="Remove" name="removeFromCart" />
+                </a>
+            </div>
+            <div style="position: absolute;top: 7%;  right: 43%;">
+                <a href="/souQ/admin/getproductInfo?pname=<%=rs.getString("name")%>&requestFrom=edit">
+                    <input type="button" value="Edit" name="removeFromCart" />
+                </a>
+            </div>
+        </div>
+        <%
+            }
+        %>
 
-         
+    </div>
+    <footer><font>Copyright &copy; SouQ.com</font></footer>
 
-
-    </form>
-
-
-</div>
+    <script src="../javascript/admin.jsx"></script>        
+</body>
+</html>

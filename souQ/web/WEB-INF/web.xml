@@ -20,7 +20,7 @@
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
-        <location>/html/err.html </location>
+        <location>/souQ/admin/html/err.html</location>
     </error-page>
     <servlet>
         <servlet-name>DisplayUsers</servlet-name>

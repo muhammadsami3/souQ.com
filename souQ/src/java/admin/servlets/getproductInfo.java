@@ -62,6 +62,8 @@ public class getproductInfo extends HttpServlet {
                         response.sendRedirect("/souQ/admin/jsp/removePage.jsp");
                     } else if (requestFrom.equals("edit")) {
                         response.sendRedirect("/souQ/admin/jsp/editPage.jsp");
+                    }else if (requestFrom.equals("ProductInfo")) {
+                        response.sendRedirect("/souQ/admin/jsp/ProductInfo.jsp");
                     }
                 } else {
 

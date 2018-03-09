@@ -11,5 +11,7 @@
         out.println(id);
         dbMethods dbQMethods=new dbMethods();
                dbQMethods.removeUser(id);
+               response.sendRedirect("/souQ/admin/jsp/editUser.jsp");
+               
     
 %>

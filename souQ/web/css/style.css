@@ -1,4 +1,6 @@
 
+html,body,h1,h2,h3,h4,h5,h6 ,font{font-family: "", sans-serif;}
+
 input,select{
     width: 100%;
     border: none;
@@ -22,7 +24,7 @@ table{
     background-color:aliceblue;   
 }
 th,tr,td{
-/*    margin: auto;*/
+    /*    margin: auto;*/
     padding: 10px;
 }
 
@@ -159,10 +161,10 @@ footer{
     font-size: 20px;
 }
 #removeFromCart{
-    
- position: absolute;
- top: 16%;
- right: 23%;
+
+    position: absolute;
+    top: 16%;
+    right: 23%;
 }
 
 

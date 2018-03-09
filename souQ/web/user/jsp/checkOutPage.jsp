@@ -8,6 +8,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<link rel="stylesheet"   type="text/css" href="../../css/style.css">
 <%!
     Integer id, qyn, NumOfProducts;
     double totalPrice, credit;
@@ -20,7 +21,7 @@
 
 <%totalPrice = 0;
 //customerid =(int)session.getAttribute("ID");
-customerid=1;//just for tring
+    customerid = 1;//just for tring
     credit = doQuery.getCredit(customerid);
 %>
 
@@ -113,7 +114,9 @@ customerid=1;//just for tring
             <%
                     }
                 }%>
+            <%if (credit < totalPrice) {%>
             <div class="top_right" >
+
                 <%if (totalPrice != 0) {%>
                 <font style="font-size: 18px">Total:</font>
                 <font style="font-size: 17px"><b><%=totalPrice%></b> </font>  
@@ -123,24 +126,24 @@ customerid=1;//just for tring
                 <input type="submit" class="btn" id="checkoutbtn" value="PROCEED TO CHECKOUT"/>
                 <%} %>
 
-                <%if (credit < totalPrice) {%>
+
                 <br>
                 <font style="font-size: 17px;color: red"><b>ops! Credit Limit exceeded</b> </font> 
                 <%}
                 %>
             </div>
 
-         
+
 
 
     </form>
 
-   <%if (totalPrice == 0) {%>
-            <div style="height: 495px;">
-                <font style="font-size: 17px"><b>Add some Product and come back :D</b> </font> 
-            </div>
+    <%if (totalPrice == 0) {%>
+    <div style="height: 495px;">
+        <font style="font-size: 17px"><b>Add some Product and come back :D</b> </font> 
+    </div>
 
-            <%}%>
+    <%}%>
 
 </div>
 

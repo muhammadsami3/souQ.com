@@ -54,7 +54,8 @@
               <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
          
-         <%  %>
+         
+     
             <input type="submit" value="more information">
           </form>
           

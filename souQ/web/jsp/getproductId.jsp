@@ -31,6 +31,8 @@
    String stock_amount= rs.getString("qyn");
    int qyn=Integer.parseInt(stock_amount);
    
+ int c_id = (int)session.getAttribute("Id");
+   
 %>
 
 <form action="/souQ/addtoCart">
@@ -50,7 +52,19 @@
    </select> 
    
    <input type="hidden" name="product_id" value=<%= request.getParameter("id")%>>
+   
+   
+   
+   <% if(!dbobj.isProductExist1(rs.getString("name"),c_id)){ %>
+   
    <input type="submit" value="Add to cart">
+   
+  <% }  else{%>
+  
+  <h1>You added this product to cart</h1>
+  
+   <%}%> 
+   
 </from>
     </body>
 </html>

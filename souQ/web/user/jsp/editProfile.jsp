@@ -82,7 +82,7 @@ int id = (Integer) session.getAttribute("Id");
                         </td>
                   </tr>
                    <tr><td>
-                           <input type="submit" value="submit"/>
+                           <input type="submit" class="w3-black" value="submit"/>
                        </td></tr>
               </table>
                </form>

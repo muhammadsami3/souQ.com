@@ -27,10 +27,7 @@
     Statement stmt = conn.createStatement();
     String queryString = new String("select * from home_page where id<4");
     rs = stmt.executeQuery(queryString);
-//    rs.next();
-//    path=rs.getString(2);
 %>
-<!--    <img class="w3-container" src=<!%out.println(path);out.flush();%> style="width:100%">-->
       <div class="w3-twothird w3-container">
              <div class="w3-content w3-display-container w3-display-container">
     <%
@@ -82,55 +79,31 @@
     setTimeout(carousel, 5000); // Change image every 2 seconds
     }
         </script> 
-         
-<!--        <p class="w3-padding-large w3-padding-64 w3-center">
-            <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%>style="width:100%">
-         </p> 
-        <p class="w3-padding-large w3-padding-64 w3-center">
-            <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%> style="width:100%">
-         </p>
-        </div>
-     <div class="w3-third w3-container">
-         <p class="w3-padding-large w3-padding-32 w3-center">
-             <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%>" style="width:100%">   
-         </p>
-         <p class="w3-padding-large w3-padding-32 w3-center">
-             <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%> style="width:100%">
-         </p>
-         <p class="w3-padding-large w3-padding-32 w3-center">
-             <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%> style="width:100%">   
-         </p>
+        <%
+         String queryString2 = new String("select * from home_page where id>3 AND id<10");
+        rs = stmt.executeQuery(queryString2);
+        while (rs.next()) {
+            path = rs.getString(2);
         
-         <p class="w3-padding-large w3-padding-32 w3-center">
-             <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%> style="width:100%">   
-             
-         </p>
-         <p class="w3-padding-large w3-padding-32 w3-center">
-             <img src=<!%rs.next();
-                              path=rs.getString(2);
-                              out.println(path);
-                              out.flush();%> style="width:100%">   
-             
-         </p>         -->
+        %>
+        <p class="w3-padding-large w3-padding-64 w3-center ">
+            <img src=<%out.print(path);out.flush();%>>
+        </p>
+<%}%>
+ 
+        </div>
 
+    <div class="w3-third w3-container">
+        <% 
+          String queryString3 = new String("select * from home_page where id>9");
+        rs = stmt.executeQuery(queryString3);
+        while (rs.next()) {
+            path = rs.getString(2);
+        %>
+    <p class="w3-padding-large w3-padding-64 w3-center">  
+         <img src=<%out.print(path);out.flush();%>>  
+    </p>
+<%}%>
     </div>
         
     </div>

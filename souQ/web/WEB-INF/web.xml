@@ -26,6 +26,10 @@
         <servlet-name>DisplayUsers</servlet-name>
         <servlet-class>admin.servlets.DisplayUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registeration</servlet-name>
+        <servlet-class>servlets.usersServlets.Registeration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DisplayUsers</servlet-name>
         <url-pattern>/DisplayUsers</url-pattern>
@@ -63,10 +67,6 @@
         <listener-class>servlets.usersServlets.ContextListener</listener-class>
     </listener>
     <servlet>
-        <servlet-name>trialServlet</servlet-name>
-        <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>editProfile</servlet-name>
         <servlet-class>servlets.usersServlets.editProfile</servlet-class>
     </servlet>
@@ -86,10 +86,6 @@
         <servlet-name>CheckSessionStatus3</servlet-name>
         <servlet-class>servlets.usersServlets.CheckSessionStatus3</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>trialServlet</servlet-name>
-        <url-pattern>/trialServlet</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addtoCart</servlet-name>
         <url-pattern>/addtoCart</url-pattern>
@@ -120,6 +116,10 @@
     <servlet-mapping>
         <servlet-name>CheckSessionStatus3</servlet-name>
         <url-pattern>/CheckSessionStatus3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registeration</servlet-name>
+        <url-pattern>/Registeration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

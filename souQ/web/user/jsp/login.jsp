@@ -4,6 +4,7 @@
     Author     : maryam
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
     </head>
     <body>
         <div>
-            <form method="post" action="../../LoginValidation">
+            <form method="post"class="w3-container w3-padding-64" action="../../LoginValidation">
                 <table align="center">
                     <tr><td>User Name</td></tr>
                     <tr><td>

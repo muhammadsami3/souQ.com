@@ -17,40 +17,20 @@
     rs.next();
     String path=rs.getString(2);
     out.flush();
-//    RequestDispatcher r1 = request.getRequestDispatcher("../../html/usersHTML/header.html");
     RequestDispatcher r1 = request.getRequestDispatcher("header.jsp");
     r1.include(request, response);
     out.flush();
+    RequestDispatcher r3 = request.getRequestDispatcher("../html/sidebar.html");
+    r3.include(request, response);
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Home Page</title>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
-        <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-            <i class="fa fa-remove"></i>
-        </a>
-        <h4 class="w3-bar-item"><b>Categories</b></h4>
-        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=watch">Watches</a>
-        <a class="w3-bar-item w3-button w3-hover-black" href="/souQ/jsp/Cars.jsp?c=cars">Perfumes</a>
-        <h4><a class="w3-bar-item w3-button w3-hover-black" href="logout.jsp"><b>Logout</b><a></h4>
-    </nav>
-
-    <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-    <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:250px"> 
     <div class="w3-row w3-padding-64">
-        <div class="search-container" style="margin-left:750px">
-            <form action="#">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search w3-bar-item"></i></button>
-            </form>    
-        </div>  
         <img src=<%out.println(path);out.flush();%> style="width:100%">          
         <div class="w3-twothird w3-container">
              <div class="w3-content w3-display-container w3-display-container">

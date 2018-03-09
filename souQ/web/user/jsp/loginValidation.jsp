@@ -16,7 +16,7 @@
     String name = request.getParameter("uname");
     String pass = request.getParameter("passwd");
 
-    String queryString = new String("select * from Customer where uname like '%" + name + "%' AND passwd like '%" + pass + "%'");
+    String queryString = new String("select * from customer where uname like '%" + name + "%' AND passwd like '%" + pass + "%'");
     ResultSet rs = stmt.executeQuery(queryString);
     boolean found = rs.next();
     System.out.println(found);

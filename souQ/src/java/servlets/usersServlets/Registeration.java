@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author maryam
  */
-public class trialServlet extends HttpServlet {
+public class Registeration extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,15 +72,15 @@ public class trialServlet extends HttpServlet {
             System.out.println("inserted " + inserted);
 
             if (!inserted) {
-                response.sendRedirect("jsp/usersJSP/login.jsp");
+                response.sendRedirect("user/jsp/login.jsp");
             } else {
                 out.println("Failed To create account !");
-                r1 = request.getRequestDispatcher("html/usersHTML/registration.html");
+                r1 = request.getRequestDispatcher("user/html/registration.html");
                 r1.include(request, response);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(trialServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Registeration.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

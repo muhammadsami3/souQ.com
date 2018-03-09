@@ -88,5 +88,17 @@ ADD COLUMN orderdate timestamp DEFAULT now();
 
 INSERT INTO home_page(image_path)
 VALUES
- ('../../imgs/slideShow/perfumelogos2'),('../../imgs/slideShow/watchlogos3.jpg'),('../../imgs/slideShow/Ad6.png'),('../../imgs/slideShow/Ad11.jpg'),('../../imgs/slideShow/Ad3.jpg'),('../../imgs/slideShow/Ad1.png'),('../../imgs/slideShow/Ad2.png'),('../../imgs/slideShow/watch10.jpeg'),('../../imgs/slideShow/perfumelogos4.jpeg');
+ ('../../imgs/slideShow/watchlogos3.jpg'),('../../imgs/slideShow/perfumelogos2'),
+('../../imgs/watches/watch1.png'),('../../imgs/watches/watch2.png'),
+('../../imgs/perfumes/212.png'),('../../imgs/watches/watch3.png'),
+('../../imgs/perfumes/gucci.png'),('../../imgs/perfumes/femme.png'),
+('../../imgs/watches/watch4.png'),('../../imgs/watches/watch4.png'),
+('../../imgs/watches/watch5.png'),('../../imgs/watches/watch6.png'),
+('../../imgs/perfumes/212_2.png'),('../../imgs/perfumes/212_men.png'),
+('../../imgs/perfumes/amarige.png'),('../../imgs/perfumes/bvlgari.png');
+	
+	
+	
+	
+
 

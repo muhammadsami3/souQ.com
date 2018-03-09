@@ -5,8 +5,8 @@
     </head>
 
     <body>
-        <div class="container w3-row w3-padding-64 w3-padding-large">
-            <form method="post"action="../../Registeration">
+        <div>
+            <form method="post" class="w3-padding-64 w3-padding-large"  action="../../Registeration">
                 <table align="center">
                     <tr><td>User Name</td></tr
                     <tr><td>
@@ -55,12 +55,8 @@
                     </tr>
                     <tr><td>
                             <input type="submit" class="w3-button w3-black" value="submit"/>
-                            </form>
-                     <form method="post" style="margin-top: 20px" action="home.jsp">
-                     <input type="submit" class="w3-button w3-black"  value="Cancel"/>
-                     </form>
-
                         </td></tr>
                 </table>
+            </form>    
         </div>
     </body>

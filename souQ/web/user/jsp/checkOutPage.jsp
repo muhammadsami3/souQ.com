@@ -114,7 +114,7 @@
             <%
                     }
                 }%>
-            <%if (credit < totalPrice) {%>
+           
             <div class="top_right" >
 
                 <%if (totalPrice != 0) {%>
@@ -123,10 +123,12 @@
                 <font style="font-size: 17px">EGP</font>  
                 <br>
                 <br>
+                 <%if (credit > totalPrice) {%>
                 <input type="submit" class="btn" id="checkoutbtn" value="PROCEED TO CHECKOUT"/>
+                <%}%>
                 <%} %>
 
-
+            <%if (credit < totalPrice) {%>
                 <br>
                 <font style="font-size: 17px;color: red"><b>ops! Credit Limit exceeded</b> </font> 
                 <%}

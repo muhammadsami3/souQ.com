@@ -59,7 +59,7 @@
    
    <input type="submit" value="Add to cart">
    
-  <% }  else{%>
+  <% }  else if(dbobj.isProductExist1(id2,c_id)){%>
   
   <h1>You added this product to cart</h1>
   

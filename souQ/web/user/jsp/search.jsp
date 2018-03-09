@@ -1,7 +1,7 @@
 <%-- 
     Document   : search
     Created on : Mar 9, 2018, 10:11:09 AM
-    Author     : maryam
+    Author     : maryam - Raghda
 --%>
 
 <%@page import="java.sql.ResultSet"%>

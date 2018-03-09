@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet"   type="text/css" href="../../css/style.css">
+<!--      <link rel="stylesheet"   type="text/css" href="../../css/style.css">-->
 
     <style>
         html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
@@ -29,8 +29,22 @@
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a id="reg" href="../../CheckSessionStatus2" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Register</a>
     <a id="login" href="../../CheckSessionStatus" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Login</a>
-    <a href="../../jsp/usersJSP/home.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Home</a>
-    <a href="../../CheckSessionStatus3" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Profile</a>
+    <a href="../../user/jsp/home.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Home</a>
+    <a href="../../CheckSessionStatus3" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">
+        <%  
+        String uname=(String)session.getAttribute("uname");
+        if(uname!=null)
+        {
+         out.flush();
+         out.print(uname);
+         out.flush();     
+        }
+        else
+        {
+         out.print("Profile");
+         out.flush();
+        }
+        %></a>
     <a href="/souQ/user/jsp/checkOutPage.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">
     <i style="font-size:24px" class="fa">&#xf07a;</i></a>
 

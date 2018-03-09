@@ -52,7 +52,7 @@ public class LoginValidation extends HttpServlet {
     if (!found) {
         PrintWriter out=response.getWriter();
         out.println("<p>Please Enter a valid user name and password</p>");
-        RequestDispatcher r1 = request.getRequestDispatcher("jsp/usersJSP/login.jsp");
+        RequestDispatcher r1 = request.getRequestDispatcher("user/jsp/login.jsp");
         r1.include(request, response);
     } else {
         int id = rs.getInt(1);
@@ -65,6 +65,7 @@ public class LoginValidation extends HttpServlet {
         String job = rs.getString(8);
         String address = rs.getString(9);
         String interests = rs.getString(10);
+        Double credit = rs.getDouble(11);
         session.setAttribute("status", "yes");
         session.setAttribute("Id", id);
         session.setAttribute("uname", uname);
@@ -76,9 +77,9 @@ public class LoginValidation extends HttpServlet {
         session.setAttribute("job", job);
         session.setAttribute("address", address);
         session.setAttribute("interests", interests);
+        session.setAttribute("credit", credit);
         
-        
-        response.sendRedirect("jsp/usersJSP/home.jsp");
+        response.sendRedirect("user/jsp/home.jsp");
     }
     }
 

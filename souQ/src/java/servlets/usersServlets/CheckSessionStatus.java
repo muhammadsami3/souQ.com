@@ -34,9 +34,9 @@ public class CheckSessionStatus extends HttpServlet {
         HttpSession session = request.getSession(false);
         String status = (String) session.getAttribute("status");
         if (status!=null) {
-            response.sendRedirect("jsp/usersJSP/home.jsp");
+            response.sendRedirect("user/jsp/home.jsp");
         } else {
-            response.sendRedirect("jsp/usersJSP/login.jsp");
+            response.sendRedirect("user/jsp/login.jsp");
 
         }
     }

@@ -3,7 +3,7 @@
     Created on : Feb 28, 2018, 9:17:56 PM
     Author     : Muhammad Sami
 --%>
-<%@include file="../../html/usersHTML/header.html" %>
+<%--<%@include file="../../jsp/usersJSP/header.jsp" %>--%>
 <%@page import="dataBaseFunction.dbMethods"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

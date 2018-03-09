@@ -8,15 +8,15 @@
     -->
     <context-param>
         <param-name>dbUrl</param-name>
-        <param-value>jdbc:postgresql://localhost:5432/souq</param-value>
+        <param-value>jdbc:postgresql://localhost:5432/souq2</param-value>
     </context-param>
     <context-param>
         <param-name>dbUserName</param-name>
-        <param-value>postgres</param-value>
+        <param-value>java</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>1022591400</param-value>
+        <param-value>password</param-value>
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
@@ -65,10 +65,6 @@
     <servlet>
         <servlet-name>trialServlet</servlet-name>
         <servlet-class>servlets.usersServlets.trialServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>checkRegistred</servlet-name>
-        <servlet-class>servlets.usersServlets.checkRegistred</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>editProfile</servlet-name>

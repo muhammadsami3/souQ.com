@@ -39,7 +39,7 @@ public class trialServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
 //          response.sendRedirect("html/usersHTML/registration.html");
             Connection conn = DBConnector.getConnection();
-            String query = " insert into customer (uname,fname,lname,passwd,birthday,email,job,address,interests) values (?,?,?,?,?,?,?,?,?)";
+            String query = " insert into customer (uname,fname,lname,passwd,birthday,email,job,address,interests,balance) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement prepareStatement = null;
             PreparedStatement prepareStatement2 = null;
             prepareStatement = conn.prepareStatement(query);
@@ -62,6 +62,8 @@ public class trialServlet extends HttpServlet {
             prepareStatement.setString(7, job);
             prepareStatement.setString(8, address);
             prepareStatement.setString(9, interests);
+            prepareStatement.setDouble(10, 100000);
+
 
             PrintWriter out = response.getWriter();
             RequestDispatcher r1;

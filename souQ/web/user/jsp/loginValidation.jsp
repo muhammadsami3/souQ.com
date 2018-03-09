@@ -36,6 +36,7 @@
         String job = rs.getString(8);
         String address = rs.getString(9);
         String interests = rs.getString(10);
+        Double credit = rs.getDouble(11);
         session.setAttribute("Id", id);
         session.setAttribute("uname", uname);
         session.setAttribute("fname", fname);
@@ -46,6 +47,7 @@
         session.setAttribute("job", job);
         session.setAttribute("address", address);
         session.setAttribute("interests", interests);
+        session.setAttribute("credit", credit);
         session.setAttribute("check","2");
         
         response.sendRedirect("home.jsp");

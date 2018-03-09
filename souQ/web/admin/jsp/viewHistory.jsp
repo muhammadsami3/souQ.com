@@ -12,11 +12,11 @@
     int id = Integer.parseInt(request.getParameter("userid"));
 
     dbMethods dbqMethods = new dbMethods();
-    
-    ResultSet rs = dbqMethods.getUserorders(id);
-    while (rs.next()) {      
-        int orderid=Integer.parseInt(rs.getString(1));
-             ResultSet rs2 = dbqMethods.getCarts(orderid);
+//    
+//    ResultSet rs = dbqMethods.getUserorders(id);
+//    while (rs.next()) {      
+//        int orderid=Integer.parseInt(rs.getString(1));
+//             ResultSet rs2 = dbqMethods.getCarts(orderid);
              
              
 

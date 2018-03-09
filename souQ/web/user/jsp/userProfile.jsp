@@ -8,7 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     out.flush();
-    RequestDispatcher r1 = request.getRequestDispatcher("../../html/usersHTML/header.html");
+//    RequestDispatcher r1 = request.getRequestDispatcher("../../html/usersHTML/header.html");
+    RequestDispatcher r1 = request.getRequestDispatcher("header.jsp");    
     r1.include(request, response);
     out.flush();
 %>
@@ -34,6 +35,7 @@
             String job = (String) session.getAttribute("job");
             String address = (String) session.getAttribute("address");
             String interests = (String) session.getAttribute("interests");
+            Double credit = (Double) session.getAttribute("credit");
             out.flush();
             String s = uname + "\n" + fname + "\n" + lname + "\n" + birthday + "\n" + email + "\n";
         %> 
@@ -45,8 +47,6 @@
             <h4 class="w3-bar-item"><b>Categories</b></h4>
             <a class="w3-bar-item w3-button w3-hover-black" href="#">Watches</a>
             <a class="w3-bar-item w3-button w3-hover-black" href="#">Perfumes</a>
-            <a class="w3-bar-item w3-button w3-hover-black" href="#">Electronics</a>
-            <h4><a class="w3-bar- w3-button w3-hover-black"><b>Contact Us</b></a></h4>
             <h4><a class="w3-bar-item w3-button w3-hover-black" href="logout.jsp"><b>Logout</b><a></h4>
 
         </nav>
@@ -124,6 +124,14 @@
                                     <div class="w3-twothird w3-container">
                                         <h4 class="w3-text-teal">Interests</h4>
                                         <p><% out.println(interests);
+                                            out.flush();
+                                            %>                    
+                                        </p>
+                                    </div>
+                                 <div class="w3-row">
+                                    <div class="w3-twothird w3-container">
+                                        <h4 class="w3-text-teal">Credit Points</h4>
+                                        <p><% out.println(credit);
                                             out.flush();
                                             %>                    
                                         </p>

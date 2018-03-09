@@ -42,7 +42,7 @@ public class LoginValidation extends HttpServlet {
     HttpSession session=request.getSession();
     Connection conn = DBConnector.getConnection();
     Statement stmt = conn.createStatement();
-    request.getSession(false);
+//    request.getSession(false);
     String name = request.getParameter("uname");
     String pass = request.getParameter("passwd");
     String queryString = new String("select * from Customer where uname like '%" + name + "%' AND passwd like '%" + pass + "%'");
@@ -51,9 +51,9 @@ public class LoginValidation extends HttpServlet {
     System.out.println(found);
     if (!found) {
         PrintWriter out=response.getWriter();
-        out.println("<p>Please Enter a valid user name and password</p>");
-        RequestDispatcher r1 = request.getRequestDispatcher("user/jsp/login.jsp");
-        r1.include(request, response);
+        response.sendRedirect("user/jsp/login.jsp");
+//        RequestDispatcher r2 = request.getRequestDispatcher("user/html/loginFailed.html");
+//        r2.include(request, response);
     } else {
         int id = rs.getInt(1);
         String uname = rs.getString(2);

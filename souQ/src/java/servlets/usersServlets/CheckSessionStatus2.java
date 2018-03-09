@@ -36,7 +36,7 @@ public class CheckSessionStatus2 extends HttpServlet {
         if (status!=null) {
             response.sendRedirect("user/jsp/home.jsp");
         } else {
-            response.sendRedirect("user/html/registration.html");
+            response.sendRedirect("user/jsp/registration.jsp");
 
         }
     }

@@ -37,7 +37,6 @@ public class Registeration extends HttpServlet {
             throws ServletException, IOException {
         try {
             response.setContentType("text/html;charset=UTF-8");
-//          response.sendRedirect("html/usersHTML/registration.html");
             Connection conn = DBConnector.getConnection();
             String query = " insert into customer (uname,fname,lname,passwd,birthday,email,job,address,interests,balance) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement prepareStatement = null;
@@ -75,7 +74,7 @@ public class Registeration extends HttpServlet {
                 response.sendRedirect("user/jsp/login.jsp");
             } else {
                 out.println("Failed To create account !");
-                r1 = request.getRequestDispatcher("user/html/registration.html");
+                r1 = request.getRequestDispatcher("user/jsp/registration.jsp");
                 r1.include(request, response);
             }
 

@@ -154,7 +154,7 @@ public ResultSet getUserInfo(int customerid) throws SQLException {
 
     public ResultSet getallProductInfo(String cat) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from product where cat='" + cat + "'");
+        String queryString = new String("Select * from product where cat='" + cat + "' and qyn != 0");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
@@ -345,14 +345,15 @@ public ResultSet getUserInfo(int customerid) throws SQLException {
     
     
     
-    public boolean isProductExist1(String pname,int id) throws SQLException {
+    public boolean isProductExist1(int productid,int id) throws SQLException {
 
         boolean isProductExist = false;
         ResultSet rs = showcartProducts(id);
 
         while (rs.next()) {
+            int tempID=Integer.parseInt(rs.getString("productid"));
 
-            if (pname.equals(rs.getString("name"))) {
+            if (productid==tempID) {
                 isProductExist = true;
                 break;
             }

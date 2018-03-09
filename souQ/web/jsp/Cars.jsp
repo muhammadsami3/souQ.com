@@ -56,7 +56,7 @@
          
          
      
-            <input type="submit" value="more information">
+            <input id="btn" type="submit" value="Read more">
           </form>
           
       </li>       

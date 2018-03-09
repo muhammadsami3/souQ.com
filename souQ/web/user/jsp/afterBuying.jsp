@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="../../html/usersHTML/header.html" %>
+<%@include file="../../user/jsp/header.jsp" %>
 
 <div style="margin-top: 42px;height: 559px;">
      <br>
@@ -21,4 +21,4 @@
     
 </div>
 
-<%@include file="../../html/usersHTML/footer.html"%>
+<%@include file="../../user/html/footer.html"%>

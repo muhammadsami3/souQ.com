@@ -36,21 +36,25 @@
    
 %>
 
+
+<br>
+<br>
 <form action="/souQ/addtoCart">
 <h1>product name</h1>
-<h2><%=name.toUpperCase() %></h2>
+<h3 style="color:purple;"><%=name.toUpperCase() %></h3>
 <input id="img" type="image" src="../imgs/<%=rs.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
 
 <h1>price</h1>
-<h2><%=rs.getString("price").toUpperCase() %></h2>
+<h3 style="color:purple;"><%=rs.getString("price").toUpperCase() %></h3>
 <%if(qyn==0){%>
 
 <h1 style="color:red;">out of stock</h1>
         
        <% } %>
-<h2><%=rs.getString("qyn").toUpperCase() %></h2>
+     <h1>Remaining pieces in Stock</h1>  
+<h3 style="color:purple;"><%=rs.getString("qyn").toUpperCase() %></h3>
 <h1>category</h1>
-<h2><%=rs.getString("cat").toUpperCase() %></h2>
+<h3 style="color:purple;"><%=rs.getString("cat").toUpperCase() %></h3>
 
 
 <% if(!dbobj.isProductExist1(id2,c_id)){ %>
@@ -67,11 +71,12 @@
    
   <% }  else{%>
   
-  <h1>You added this product to cart</h1>
+  <h2 style="color:red;">You added this product to cart</h2>
   
    <%}%> 
    
 </from>
 
 
-    <%@include  file="../../user/html/footer.html" %>
+</body>
+</html>

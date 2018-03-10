@@ -18,7 +18,8 @@
 %>
         
     
-        
+        <br>
+<br>
         <div id="wrapper">
                 <section>
                     <ul id="gallery">
@@ -62,4 +63,5 @@
                 </ul>
   </section>
           </div>
-   <%@include  file="../../user/html/footer.html" %>
+</body>
+</html>

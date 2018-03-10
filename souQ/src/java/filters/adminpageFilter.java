@@ -12,6 +12,9 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +34,20 @@ public class adminpageFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+//          HttpServletRequest req=(HttpServletRequest)request;
+//
+//        HttpSession session=req.getSession(true);
+//        
+//        if(session .getAttribute("Id")!=null){
+//        chain.doFilter(request, response);
+//        System.out.println("isLoginFilter.doFilter()chain cont");
+//    }
+//    else{
+//        System.out.println("isLoginFilter.doFilter() Chain Stoped");
+//      HttpServletResponse res=(HttpServletResponse)response;
+//      res.sendRedirect("/souQ/user/jsp/login.jsp");
+//      
+//    }
     }
 
     @Override

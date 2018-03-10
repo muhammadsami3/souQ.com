@@ -109,7 +109,7 @@ pname = "";
                 <input  type="reset" value="reset" class="btn" >
                 &nbsp;
                 <input type="text"  name="edit" value="yes" style="display: none" > 
-                <input type="submit" value="Edit" class="btn" style="margin-left: 28px;" > 
+                <input type="submit" value="Edit" class="btn" style="margin-left: 27px;" > 
                 <br>
                 <ul type="circle" id="errMsg">
 

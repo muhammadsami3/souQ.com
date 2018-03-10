@@ -67,6 +67,7 @@
                     <option >perfumes</option>
                 </select></br><br>
                 Image
+                
                 <input  type="file" name="img" >
                 <br>
                 <br>
@@ -75,7 +76,7 @@
                 <br>
 
                 <input type="reset" value="reset" class="btn" >                &nbsp;
-                <input type="button" value="Add" onclick="validateAdd()" class="btn" style="margin-left: 28px;" > 
+                <input type="button" value="Add" onclick="validateAdd()" class="btn" style="margin-left: 27px;" > 
                 <br>
                 <ul type="circle" id="errMsg">
 

@@ -36,6 +36,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servlets.usersServlets.DBConnector;
 
 public class dbMethods {
 
@@ -50,23 +51,29 @@ public class dbMethods {
     }
 
     public static void connectToDatabase() {
-        conn = null;
+        DBConnector dBConnector=new DBConnector();
+        conn = dBConnector.getConnection();
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "334866");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Class.forName("org.postgresql.Driver");
+//
+//            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
+//
+//            
+//
+//
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
 //        try {
 //            dbMethods db = new dbMethods();
+//            rs2 = db.getUserInfo(3);
 //            while (rs2.next()) {
 //                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(1));
 //            }
@@ -104,16 +111,23 @@ public class dbMethods {
     }
     
    
-public ResultSet getUserorders(int customerid) throws SQLException {
+public ResultSet getUserInfo(int customerid) throws SQLException {
 
-        String queryString = "select orderid from orders where customerid=? order by orderdate ";
+        String queryString = "select * from customer where id=? ";
         PreparedStatement stmt = conn.prepareStatement(queryString);
         stmt.setInt(1, customerid);
         ResultSet rs = stmt.executeQuery();
         return rs;
     }
+public ResultSet getUserorders(int customerid) throws SQLException {
 
-        public ResultSet getCarts(int orderid) throws SQLException {
+        String queryString = "select * from orders where customerid=? order by orderdate ";
+        PreparedStatement stmt = conn.prepareStatement(queryString);
+        stmt.setInt(1, customerid);
+        ResultSet rs = stmt.executeQuery();
+        return rs;
+    }
+   public ResultSet getFinalCartInfo(int orderid) throws SQLException {
 
         String queryString = "select * from finalcart where orderid=? order by cartid ";
         PreparedStatement stmt = conn.prepareStatement(queryString);
@@ -124,20 +138,11 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
     public ResultSet showProducts() throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select name from product");
+        String queryString = new String("Select * from product");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
 
-   //take cutomerid of current session 
-    public ResultSet showcartProducts(int id) throws SQLException {
-        Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from cart where customerid=" + id + "");
-        ResultSet rs = stmt2.executeQuery(queryString);
-        return rs;
-    }
-    
-    
     public ResultSet getProductInfo(String pname) throws SQLException {
         Statement stmt2 = conn.createStatement();
         String queryString = new String("Select * from product where name='" + pname + "'");
@@ -156,7 +161,7 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
     public ResultSet getallProductInfo(String cat) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from product where cat='" + cat + "' and qyn != 0");
+        String queryString = new String("Select * from product where cat='" + cat + "'");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
@@ -310,8 +315,7 @@ public ResultSet getUserorders(int customerid) throws SQLException {
     }
 
     public void removeProduct(String pname) throws SQLException {
-
-        String query = "delete from product where name=?";
+        String query = "update product set qyn=0 where name=?";
 
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, pname);
@@ -345,26 +349,4 @@ public ResultSet getUserorders(int customerid) throws SQLException {
         return isProductExist;
     }
 
-    
-    
-    
-    public boolean isProductExist1(int productid,int id) throws SQLException {
-
-        boolean isProductExist = false;
-        ResultSet rs = showcartProducts(id);
-
-        while (rs.next()) {
-            int tempID=Integer.parseInt(rs.getString("productid"));
-
-            if (productid==tempID) {
-                isProductExist = true;
-                break;
-            }
-        }
-
-        return isProductExist;
-    }
-    
-    
 }
-

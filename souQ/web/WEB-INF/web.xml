@@ -58,7 +58,7 @@
         <servlet-name>cart</servlet-name>
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
-<!--    <filter>
+    <filter>
         <filter-name>adminpageFilter</filter-name>
         <filter-class>filters.adminpageFilter</filter-class>
     </filter>
@@ -68,7 +68,7 @@
         <url-pattern>/admin/*</url-pattern>
         <url-pattern>/jsp/getproductId.jsp</url-pattern>
         <url-pattern>/user/jsp/checkOutPage.jsp</url-pattern>
-    </filter-mapping>-->
+    </filter-mapping>
     
     <listener>
         <description>ServletContextListener</description>

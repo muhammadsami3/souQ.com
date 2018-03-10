@@ -29,8 +29,8 @@
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a id="reg" href="/souQ/CheckSessionStatus2" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Register</a>
     <a id="login" href="/souQ/CheckSessionStatus" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Login</a>
-    <a href="../../user/jsp/home.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Home</a>
-    <a href="../../CheckSessionStatus3" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">
+    <a href="/souQ/user/jsp/home.jsp" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Home</a>
+    <a href="/souQ/CheckSessionStatus3" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">
         <%  
         String uname=(String)session.getAttribute("uname");
         if(uname!=null)

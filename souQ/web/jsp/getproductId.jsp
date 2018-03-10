@@ -41,7 +41,7 @@
 <form action="/souQ/addtoCart">
     <h1>product name</h1>
     <h3 style="color:purple;"><%=name.toUpperCase()%></h3>
-    <input id="img" type="image" src="../imgs/<%=rs.getString("img")%>" width="200" height="150" width="200" alt="car" name="car1" value="1">
+    <input id="img" type="image" src="../imgs/<%=rs.getString("img")%>" Style="width: 200px" height="150" width="200" alt="car" name="car1" value="1">
 
     <h1>price</h1>
     <h3 style="color:purple;"><%=rs.getString("price").toUpperCase()%></h3>

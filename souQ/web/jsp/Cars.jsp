@@ -44,7 +44,7 @@
                     <h2><%=rs2.getString("name").toUpperCase()%></h2>  
                     <br><br>
 
-                    <input id="img" type="image" src="../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+                    <input id="img" type="image" src="../imgs/<%=rs2.getString("img")%>" Style="width: 200px" height="150" alt="car" namheight="150"e="car1" value="1">
 
                     <br>
                     <p><%=rs2.getString("description")%></p>

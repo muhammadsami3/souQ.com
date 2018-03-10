@@ -20,8 +20,8 @@
 %>
 
 <%totalPrice = 0;
-//customerid =(int)session.getAttribute("ID");
-    customerid = 1;//just for tring
+customerid =(int)session.getAttribute("Id");
+    
     credit = doQuery.getCredit(customerid);
 %>
 

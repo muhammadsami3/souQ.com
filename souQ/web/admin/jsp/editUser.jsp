@@ -70,7 +70,7 @@
                             <input type="text" name="balance" />
                 <td> <input type="submit" name="submit"/>
         </form>
-<!--                    <a href=<!%=s2%>> <img src="../../imgs/edit.png"> </a--></td>
+    </td>
 
             </tr>
 

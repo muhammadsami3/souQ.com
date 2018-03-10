@@ -122,8 +122,4 @@ pname = "";
 
 </div>
 
-
-
-
-
 <%@include file="../html/footer.html" %>

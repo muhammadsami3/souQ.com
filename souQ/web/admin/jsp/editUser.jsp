@@ -24,10 +24,11 @@
                 <td>Last Name </td>
                 <td>User Name</td>
                 <td>Password</td>
-                <td>Password</td>
-                <td>Password</td>
-                <td>Password</td>
-                <td>Password</td>
+                <td>Birthday</td>
+                <td>Email</td>
+                <td>Job</td>
+                <td>Address</td>
+                <td>Interests</td>
             </tr>
             <%
                 dbMethods dbqMethods = new dbMethods();

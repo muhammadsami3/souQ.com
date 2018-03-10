@@ -19,7 +19,7 @@
 
         <tbody>
             <tr>
-                <td>id</td>  
+                <td>ID</td>  
                 <td>First Name </td>
                 <td>Last Name </td>
                 <td>User Name</td>

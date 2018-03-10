@@ -168,9 +168,11 @@ public ResultSet getUserorders(int customerid) throws SQLException {
     
     
     
-    public ResultSet search(String search) throws SQLException {
+    public ResultSet search(String search,int price) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("select * from product where name like '%" + search + "%' or price=" + search + "");
+        //String queryString = new String("select * from product where name like '%" + search + "%' or price=" + search + "");
+        String queryString = new String("select * from product where cat like '%" + search + "%' or price=" + price + "");
+        // String queryString = new String("select * from product where cat like '%" + search + "%'");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }

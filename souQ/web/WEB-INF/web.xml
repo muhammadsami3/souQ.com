@@ -16,7 +16,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>334866</param-value>
+        <param-value>123@home</param-value>
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>

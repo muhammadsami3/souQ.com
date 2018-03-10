@@ -4,6 +4,7 @@
     Author     : maryam - Raghda
 --%>
 
+
 <%@page import="dataBaseFunction.dbMethods"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
@@ -20,6 +21,9 @@
     </head>
 
 <body>
+    
+    <br>
+    <br>
         
         <div id="wrapper">
                 <section>
@@ -29,6 +33,8 @@
    dbMethods doQuery = new dbMethods();
     ResultSet rs;
     ResultSet rs2;
+    String s;
+     int p;
 %>
         <%--
     RequestDispatcher r3 = request.getRequestDispatcher("../html/sidebar.html");
@@ -38,9 +44,19 @@
     
     <%
        doQuery.connectToDatabase(); 
-   String s=request.getParameter("search");
-           rs=doQuery.search(s);
-           while (rs.next()) {
+       try {
+    s=request.getParameter("search");
+    p = Integer.parseInt(s);
+   
+           rs=doQuery.search(s,p);
+       }
+       
+       catch (NumberFormatException nfe)
+    {   p=0;
+      System.out.println("NumberFormatException: " + nfe.getMessage());
+    }
+        rs=doQuery.search(s,p);
+       while (rs.next()) {
                     String tempId = rs.getString("productid");
                     int id = Integer.parseInt(tempId);
                     rs2 = doQuery.getProductInfoById(id);

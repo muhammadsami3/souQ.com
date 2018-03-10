@@ -10,32 +10,12 @@ package dataBaseFunction;
  *
  * @author Muhammad Sami
  */
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
-import java.sql.Array;
-import java.sql.Blob;
-import java.sql.Clob;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.NClob;
-import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
-import java.sql.Ref;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.RowId;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
-import java.sql.SQLXML;
 import java.sql.Statement;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import servlets.usersServlets.DBConnector;
 
 public class dbMethods {
@@ -58,15 +38,6 @@ public class dbMethods {
 
     public static void main(String[] args) throws SQLException {
         connectToDatabase();
-//        try {
-//            dbMethods db = new dbMethods();
-//            rs2 = db.getUserInfo(3);
-//            while (rs2.next()) {
-//                System.out.println("dataBaseFunction.dbMethods.main()-->  " + rs2.getString(1));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     public  ResultSet editUsers() throws SQLException {
@@ -155,9 +126,11 @@ public ResultSet getUserorders(int customerid) throws SQLException {
     
     
     
-    public ResultSet search(String search) throws SQLException {
+    public ResultSet search(String search,int price) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("select * from product where name like '%" + search + "%' or price=" + search + "");
+        //String queryString = new String("select * from product where name like '%" + search + "%' or price=" + search + "");
+        String queryString = new String("select * from product where cat like '%" + search + "%' or price=" + price + "");
+        // String queryString = new String("select * from product where cat like '%" + search + "%'");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
@@ -344,6 +317,30 @@ public ResultSet getUserorders(int customerid) throws SQLException {
         }
 
         return isProductExist;
+    }
+    
+    public boolean isProductExist1(int productid,int id) throws SQLException {
+
+        boolean isProductExist = false;
+        ResultSet rs = showcartProducts(id);
+
+        while (rs.next()) {
+            int tempID=Integer.parseInt(rs.getString("productid"));
+
+            if (productid==tempID) {
+                isProductExist = true;
+                break;
+            }
+        }
+
+        return isProductExist;
+    }
+     public ResultSet showcartProducts(int id) throws SQLException {
+        Statement stmt2;
+        stmt2 = conn.createStatement();
+        String queryString = new String("Select * from cart where customerid=" + id + "");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        return rs;
     }
 
 }

@@ -32,6 +32,7 @@
                     <ul id="gallery">
           
           <%  String category = request.getParameter("c");
+          session.setAttribute("category", category);
            rs=doQuery.getallProductInfo(category);
            while (rs.next()) {
                     String tempId = rs.getString("productid");

@@ -54,19 +54,6 @@ public class dbMethods {
         DBConnector dBConnector=new DBConnector();
         conn = dBConnector.getConnection();
 
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//
-//            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "123@home");
-//
-//            
-//
-//
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }
 
     public static void main(String[] args) throws SQLException {
@@ -161,7 +148,7 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
     public ResultSet getallProductInfo(String cat) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from product where cat='" + cat + "'");
+        String queryString = new String("Select * from product where cat='"+cat+"' and qyn!=0");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }

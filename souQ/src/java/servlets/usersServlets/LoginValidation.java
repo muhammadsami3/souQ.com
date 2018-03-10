@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import servlets.usersServlets.DBConnector;
+
 /**
  *
  * @author maryam
@@ -39,48 +40,54 @@ public class LoginValidation extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-    HttpSession session=request.getSession();
-    Connection conn = DBConnector.getConnection();
-    Statement stmt = conn.createStatement();
+        HttpSession session = request.getSession();
+        Connection conn = DBConnector.getConnection();
+        Statement stmt = conn.createStatement();
 //    request.getSession(false);
-    String name = request.getParameter("uname");
-    String pass = request.getParameter("passwd");
-    String queryString = new String("select * from Customer where uname like '%" + name + "%' AND passwd like '%" + pass + "%'");
-    ResultSet rs = stmt.executeQuery(queryString);
-    boolean found = rs.next();
-    System.out.println(found);
-    if (!found) {
-        PrintWriter out=response.getWriter();
-        response.sendRedirect("user/jsp/login.jsp");
+        String name = request.getParameter("uname");
+        String pass = request.getParameter("passwd");
+        String queryString = new String("select * from Customer where uname like '%" + name + "%' AND passwd like '%" + pass + "%'");
+        ResultSet rs = stmt.executeQuery(queryString);
+        boolean found = rs.next();
+        System.out.println(found);
+        if (!found) {
+            PrintWriter out = response.getWriter();
+            response.sendRedirect("user/jsp/login.jsp");
 //        RequestDispatcher r2 = request.getRequestDispatcher("user/html/loginFailed.html");
 //        r2.include(request, response);
-    } else {
-        int id = rs.getInt(1);
-        String uname = rs.getString(2);
-        String fname = rs.getString(3);
-        String lname = rs.getString(4);
-        String passwd = rs.getString(5);
-        String birthday = rs.getString(6);
-        String email = rs.getString(7);
-        String job = rs.getString(8);
-        String address = rs.getString(9);
-        String interests = rs.getString(10);
-        Double credit = rs.getDouble(11);
-        session.setAttribute("status", "yes");
-        session.setAttribute("Id", id);
-        session.setAttribute("uname", uname);
-        session.setAttribute("fname", fname);
-        session.setAttribute("lname", lname);
-        session.setAttribute("passwd", passwd);
-        session.setAttribute("birthday", birthday);
-        session.setAttribute("email", email);
-        session.setAttribute("job", job);
-        session.setAttribute("address", address);
-        session.setAttribute("interests", interests);
-        session.setAttribute("credit", credit);
-        
-        response.sendRedirect("user/jsp/home.jsp");
-    }
+        } else {
+            int id = rs.getInt(1);
+            String uname = rs.getString(2);
+            String fname = rs.getString(3);
+            String lname = rs.getString(4);
+            String passwd = rs.getString(5);
+            String birthday = rs.getString(6);
+            String email = rs.getString(7);
+            String job = rs.getString(8);
+            String address = rs.getString(9);
+            String interests = rs.getString(10);
+            Double credit = rs.getDouble(11);
+            session.setAttribute("status", "yes");
+            session.setAttribute("Id", id);
+            session.setAttribute("uname", uname);
+            session.setAttribute("fname", fname);
+            session.setAttribute("lname", lname);
+            session.setAttribute("passwd", passwd);
+            session.setAttribute("birthday", birthday);
+            session.setAttribute("email", email);
+            session.setAttribute("job", job);
+            session.setAttribute("address", address);
+            session.setAttribute("interests", interests);
+            session.setAttribute("credit", credit);
+            if (id == 1) {
+                response.sendRedirect("/souQ/admin/jsp/introPage.jsp");
+
+            } else {
+                response.sendRedirect("user/jsp/home.jsp");
+
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

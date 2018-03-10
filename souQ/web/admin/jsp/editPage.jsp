@@ -93,7 +93,7 @@ pname = "";
 
                 <select  name="cat"  required="">
                     <option >watches</option>
-                    <option <%if (cat.equals("Motocycles")) {%><%="selected"%> <% }%> >perfumes</option>
+                    <option <%if (cat.equals("perfumes")) {%><%="selected"%> <% }%> >perfumes</option>
                 </select>
                 </br><br>
                 Image

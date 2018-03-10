@@ -7,7 +7,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dataBaseFunction.dbMethods"%>
 <%@include file="../html/adminheader.html" %>
-<%!String fname, lname, uname, password,s , s2 ,s3;%>
+<%!String fname, lname, uname, password,birthday,email,job,address,interests,s , s2 ,s3;%>
 <%!Float balance;%>
 <%!int id;%>
 
@@ -24,6 +24,11 @@
                 <td>Last Name </td>
                 <td>User Name</td>
                 <td>Password</td>
+                <td>Birthday</td>
+                <td>Email</td>
+                <td>Job</td>
+                <td>Address</td>
+                <td>Interests</td>
             </tr>
             <%
                 dbMethods dbqMethods = new dbMethods();
@@ -33,6 +38,12 @@
                     fname = rs.getString("fname");
                     lname = rs.getString("lname");
                     password = rs.getString("passwd");
+                     birthday = rs.getString("birthday");
+                      email = rs.getString("email");
+                       job = rs.getString("job");
+                        address = rs.getString("address");
+                         interests = rs.getString("interests");
+                        
                     int id = rs.getInt("id");
                     //out.print(id + "uid");
                     s = "/souQ/admin/jsp/removeUser.jsp?userid=" + id;

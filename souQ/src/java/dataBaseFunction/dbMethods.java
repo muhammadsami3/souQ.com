@@ -158,6 +158,16 @@ public ResultSet getUserInfo(int customerid) throws SQLException {
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
+    
+    
+    
+    public ResultSet search(String search) throws SQLException {
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("select * from product where name like '%" + search + "%' or price=" + search + "");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        return rs;
+    }
+    
 
     public ResultSet getProductInfoById(int id) throws SQLException {
         Statement stmt2 = conn.createStatement();

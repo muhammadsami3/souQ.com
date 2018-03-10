@@ -36,6 +36,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servlets.usersServlets.DBConnector;
 
 public class dbMethods {
 
@@ -50,17 +51,8 @@ public class dbMethods {
     }
 
     public static void connectToDatabase() {
-        conn = null;
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/souq", "postgres", "334866");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(dbMethods.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        DBConnector dBConnector=new DBConnector();
+        conn = dBConnector.getConnection();
     }
 
     public static void main(String[] args) throws SQLException {
@@ -124,7 +116,7 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
     public ResultSet showProducts() throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select name from product");
+        String queryString = new String("Select * from product");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }

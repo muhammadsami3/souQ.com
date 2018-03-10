@@ -66,11 +66,11 @@
     %>
  
  <li>
-          <form>
+          <form  action="/souQ/cart">
                    <h2><%=rs2.getString("name").toUpperCase()%></h2>  
           <br><br>
   
-              <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+              <input id="img" type="image" src="../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
     
               <br>
               <p><%=rs2.getString("description")%></p>
@@ -78,7 +78,7 @@
               <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
          <br><br>
          
-        
+        <input id="btn" type="submit" value="Read more">
           </form>
           
       </li>       

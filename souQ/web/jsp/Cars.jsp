@@ -3,11 +3,12 @@
     Created on : Feb 25, 2018, 11:58:03 PM
     Author     : Raghda
 --%>
-
+<%@include file="../../user/jsp/header.jsp" %>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dataBaseFunction.dbMethods"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<link rel="stylesheet"   type="text/css" href="../css/style3.css">
 <%!
     Integer id;
     dbMethods doQuery = new dbMethods();
@@ -15,17 +16,8 @@
     ResultSet rs2;
    
 %>
-
-
-
-
-<html>
-    <head>
-        <link rel="stylesheet"   type="text/css" href="../css/style3.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>cars Page</title>
-    </head>
-    <body>
+        
+    
         
         <div id="wrapper">
                 <section>
@@ -47,7 +39,7 @@
                    <h2><%=rs2.getString("name").toUpperCase()%></h2>  
           <br><br>
   
-              <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+              <input id="img" type="image" src="../imgs/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
     
               <br>
               <p><%=rs2.getString("description")%></p>
@@ -70,5 +62,4 @@
                 </ul>
   </section>
           </div>
-    </body>
-</html>
+   <%@include  file="../../user/html/footer.html" %>

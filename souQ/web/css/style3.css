@@ -14,9 +14,10 @@ input{
    
 }
 
-form{
-    background-color:aliceblue;
-
+#btn{
+    width: 50%;
+    alignment-adjust: middle;
+    
 }
 
 
@@ -34,8 +35,8 @@ form{
     float:left;
     width:20%;
     margin:2.5%;
-    background-color: #f5f5f5;
-    color: #bdc3c7;
+    
+    
 }
 
 #gallery li a p {

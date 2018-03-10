@@ -129,6 +129,15 @@ public ResultSet getUserorders(int customerid) throws SQLException {
         return rs;
     }
 
+   //take cutomerid of current session 
+    public ResultSet showcartProducts(int id) throws SQLException {
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("Select * from cart where customerid=" + id + "");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        return rs;
+    }
+    
+    
     public ResultSet getProductInfo(String pname) throws SQLException {
         Statement stmt2 = conn.createStatement();
         String queryString = new String("Select * from product where name='" + pname + "'");
@@ -147,7 +156,7 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
     public ResultSet getallProductInfo(String cat) throws SQLException {
         Statement stmt2 = conn.createStatement();
-        String queryString = new String("Select * from product where cat='" + cat + "'");
+        String queryString = new String("Select * from product where cat='" + cat + "' and qyn != 0");
         ResultSet rs = stmt2.executeQuery(queryString);
         return rs;
     }
@@ -336,4 +345,26 @@ public ResultSet getUserorders(int customerid) throws SQLException {
         return isProductExist;
     }
 
+    
+    
+    
+    public boolean isProductExist1(int productid,int id) throws SQLException {
+
+        boolean isProductExist = false;
+        ResultSet rs = showcartProducts(id);
+
+        while (rs.next()) {
+            int tempID=Integer.parseInt(rs.getString("productid"));
+
+            if (productid==tempID) {
+                isProductExist = true;
+                break;
+            }
+        }
+
+        return isProductExist;
+    }
+    
+    
 }
+

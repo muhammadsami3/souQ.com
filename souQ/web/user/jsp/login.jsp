@@ -5,22 +5,19 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Log in</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../css/style2.css">    
+<%@include file="../html/sidebar.html" %>
 
-    </head>
-    <body>
-        <div>
-            <form method="post"class="w3-container w3-padding-64" action="../../LoginValidation">
-                <table align="center">
+<head>
+    
+<title>Log in</title>     
+</head>
+<body>
+        <div class="container w3-row w3-padding-64 w3-padding-large">
+            <form method="post" action="../../LoginValidation">
+                <table align="center" class="w3-table" style="margin-left: 500px">
                     <tr><td>User Name</td></tr>
                     <tr><td>
-                            <input type="text" name="uname" required>   
+                            <input type="text"  name="uname" required>   
                         </td>
                     </tr>
                     <tr><td>Password</td></tr>
@@ -29,11 +26,16 @@
                         </td>
                     </tr>
                     <tr><td>
-                            <input type="submit" value="submit"/>
-                        </td></tr>
-                </table>
-            </form>
-        </div>
-        </body>
-</html>
- 
+                   
+                    <input type="submit" class="w3-button w3-black" value="submit"/>  
+                    </form>
+            <form method="post" style="margin-top: 20px" action="registration.jsp">
+                     <input type="submit" class="w3-button w3-black"  value="Sign Up"/>
+                     </form>
+                     </td>
+                   </tr>  
+                   </table>
+            
+                 
+             </div>
+</body>

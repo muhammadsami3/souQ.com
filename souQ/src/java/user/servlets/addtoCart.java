@@ -44,7 +44,7 @@ public class addtoCart extends HttpServlet {
              int qyn=Integer.parseInt(quantity);
              int p_id=Integer.parseInt(id);
              
-             int customer_id =(int)request.getSession().getAttribute("Id");
+             int customer_id = 1;//(int)request.getSession().getAttribute("Id");
              //String check =(String)request.getSession().getAttribute("check");
            //  out.println(check);
              

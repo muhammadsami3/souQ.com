@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<%@include file="header.jsp" %>
+<%@include file="../html/sidebar.html" %>
     <head>
         <title>Register & Begin your shopping</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../css/style2.css">    
     </head>
 
     <body>
-        <div>
-            <form method="post" action="../../Registeration">
+        <div class="container w3-row w3-padding-64 w3-padding-large">
+            <form method="post"action="../../Registeration">
                 <table align="center">
                     <tr><td>User Name</td></tr
                     <tr><td>
@@ -62,10 +54,13 @@ and open the template in the editor.
                         </td>
                     </tr>
                     <tr><td>
-                            <input type="submit" value="submit"/>
+                            <input type="submit" class="w3-button w3-black" value="submit"/>
+                            </form>
+                     <form method="post" style="margin-top: 20px" action="home.jsp">
+                     <input type="submit" class="w3-button w3-black"  value="Cancel"/>
+                     </form>
+
                         </td></tr>
                 </table>
-            </form>    
         </div>
     </body>
-</html>

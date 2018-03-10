@@ -5,9 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="header.jsp" %>
+<%@include file="../html/sidebar.html" %>
 <%
 int id = (Integer) session.getAttribute("Id");
-        String uname = (String) session.getAttribute("uname");
+        String uname1 = (String) session.getAttribute("uname");
         String fname = (String) session.getAttribute("fname");
         String lname = (String) session.getAttribute("lname");
         String passwd = (String) session.getAttribute("passwd");
@@ -19,20 +21,18 @@ int id = (Integer) session.getAttribute("Id");
         String s =uname + "\n" + fname + "\n" + lname + "\n" + birthday + "\n" + email + "\n";
 //        out.println(s);
 //        out.flush();
- %>       
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/style2.css">    
+ %> 
+ 
+ <head>
         <title>Edit Profile</title>
     </head>
     <body>
+        <div class="container w3-row w3-padding-64 w3-padding-large">
                <form method="post" action="../../editProfile">
                 <table align="center">
                     <tr><td>User Name</td></tr>
                     <tr><td>
-                            <input type="text" name="uname" value=<%out.println(uname);
+                            <input type="text" name="uname" value=<%out.println(uname1);
                                                                         out.flush();%> >
                         </td>
                     </tr>
@@ -82,8 +82,9 @@ int id = (Integer) session.getAttribute("Id");
                         </td>
                   </tr>
                    <tr><td>
-                           <input type="submit" value="submit"/>
+                           <input type="submit" class="w3-black" value="submit"/>
                        </td></tr>
               </table>
+               </form>
+                        </div>
     </body>
-</html>

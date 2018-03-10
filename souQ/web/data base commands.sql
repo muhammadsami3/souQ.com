@@ -65,15 +65,15 @@ CREATE TABLE home_page (
 );
 
 ALTER TABLE Orders ADD CONSTRAINT fk_Order_CustomerID FOREIGN KEY(CustomerID)
-REFERENCES Customer (id);
+REFERENCES Customer (id) on delete cascade;
 
 
 
-ALTER TABLE finalcart ADD CONSTRAINT fk_cart_OrderID FOREIGN KEY(OrderID)
-REFERENCES Orders (OrderID);
+ALTER TABLE finalcart ADD CONSTRAINT fk FOREIGN KEY(OrderID)
+REFERENCES Orders (OrderID) on delete cascade;
 
 ALTER TABLE cart ADD CONSTRAINT fk_cart_customerID FOREIGN KEY(CustomerID)
-REFERENCES Customer (id);
+REFERENCES Customer (id) on delete cascade;
 
 
 ALTER TABLE finalcart ADD CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID)

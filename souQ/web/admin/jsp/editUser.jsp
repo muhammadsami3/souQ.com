@@ -6,6 +6,7 @@
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="dataBaseFunction.dbMethods"%>
+<%@include file="../html/adminheader.html" %>
 <%!String fname, lname, uname, password,s , s2 ,s3;%>
 <%!Float balance;%>
 <%!int id;%>
@@ -18,7 +19,7 @@
 
         <tbody>
             <tr>
-                <td>id</td>  
+                <td>ID</td>  
                 <td>First Name </td>
                 <td>Last Name </td>
                 <td>User Name</td>
@@ -33,7 +34,7 @@
                     lname = rs.getString("lname");
                     password = rs.getString("passwd");
                     int id = rs.getInt("id");
-                    out.print(id + "uid");
+                    //out.print(id + "uid");
                     s = "/souQ/admin/jsp/removeUser.jsp?userid=" + id;
                     s2 = "/souQ/admin/jsp/editInfoUser.jsp?userid=" + id;
                     s3 = "/souQ/admin/jsp/viewHistory.jsp?userid=" + id;
@@ -76,3 +77,4 @@
     </table>
 
 </div>
+<%@include file="../html/footer.html" %>

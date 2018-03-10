@@ -30,16 +30,16 @@
 
             if (pnameExist.equals("yes")) { %>
         <div class="msg center"> 
-            <font style="color: red;margin-left: 15%; " class="center">This Product Already Exist !</font>
+            <font style="color: red;width: auto; margin-left: 27%; " class="center">This Product Already Exist !</font>
         </div>
 
         <div class="center">
             <form   id="editform" action="/souQ/admin/getproductInfo" method="Get">
                 <div class="center">
-                    <input calss="btn" type="text"  value="" name="pname" style="display: none"> 
+                    <input calss="btn" type="text"  value="<%=(String)session.getAttribute("pname")%>" name="pname" style="display: none"> 
                     &nbsp;
                     <br>
-                    <input class="center btn " type="submit" value=">> click here to update information <<" style="margin-left: 25%;">
+                    <input class="center btn " type="submit" value=">> click here to update information <<" style="width: auto;">
                     <input tybe="text" value="edit" name="requestFrom" style="display: none">
 
                 </div>

@@ -10,6 +10,7 @@ CREATE TABLE Customer (
     job text  NOT NULL ,
     address text  NOT NULL ,
     interests text  NOT NULL ,
+    balance int,
     CONSTRAINT pk_Customer PRIMARY KEY (
         id
     )
@@ -60,7 +61,7 @@ CREATE TABLE finalcart (
 );
 
 CREATE TABLE home_page (
-    id integer ,
+    id serial ,
     image_path text
 );
 
@@ -77,7 +78,7 @@ REFERENCES Customer (id) on delete cascade;
 
 
 ALTER TABLE finalcart ADD CONSTRAINT fk_cart_ProductID FOREIGN KEY(ProductID)
-REFERENCES Product (ProductID);
+REFERENCES Product (ProductID) on delete cascade;
 
 ALTER TABLE product
 ADD COLUMN description text ,ADD COLUMN img varchar(256);

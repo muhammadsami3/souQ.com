@@ -30,8 +30,13 @@
     rs.next();
    String stock_amount= rs.getString("qyn");
    int qyn=Integer.parseInt(stock_amount);
+   if(session.getAttribute("Id") == null){
+       response.sendRedirect("/souQ/user/jsp/login.jsp");
+ 
+ }
    
  int c_id = (int)session.getAttribute("Id");
+ 
  String name=rs.getString("name");
    
 %>

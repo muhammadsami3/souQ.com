@@ -347,5 +347,28 @@ public ResultSet getUserorders(int customerid) throws SQLException {
 
         return isProductExist;
     }
+    
+    public boolean isProductExist1(int productid,int id) throws SQLException {
+
+        boolean isProductExist = false;
+        ResultSet rs = showcartProducts(id);
+
+        while (rs.next()) {
+            int tempID=Integer.parseInt(rs.getString("productid"));
+
+            if (productid==tempID) {
+                isProductExist = true;
+                break;
+            }
+        }
+
+        return isProductExist;
+    }
+     public ResultSet showcartProducts(int id) throws SQLException {
+        Statement stmt2 = conn.createStatement();
+        String queryString = new String("Select * from cart where customerid=" + id + "");
+        ResultSet rs = stmt2.executeQuery(queryString);
+        return rs;
+    }
 
 }

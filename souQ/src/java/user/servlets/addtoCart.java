@@ -52,8 +52,9 @@ public class addtoCart extends HttpServlet {
              dbMethods dbobj=new dbMethods();
             try {
                 dbobj.addCart(customer_id,p_id,qyn);
+                HttpSession session=request.getSession(false);
                 
-                response.sendRedirect("/souQ/html/categories.html");
+                response.sendRedirect("/souQ/html/Cars.jsp?c="+(String)session.getAttribute("category"));
                 //addCart(int orderid, int productid, int quantity)
             } catch (SQLException ex) {
                 Logger.getLogger(addtoCart.class.getName()).log(Level.SEVERE, null, ex);

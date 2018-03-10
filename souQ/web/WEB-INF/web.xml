@@ -16,7 +16,7 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>123@home</param-value>
+        <param-value>1022591400</param-value>
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>
@@ -62,10 +62,14 @@
         <filter-name>adminpageFilter</filter-name>
         <filter-class>filters.adminpageFilter</filter-class>
     </filter>
+   
     <filter-mapping>
         <filter-name>adminpageFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/jsp/getproductId.jsp</url-pattern>
+        <url-pattern>/user/jsp/checkOutPage.jsp</url-pattern>
     </filter-mapping>
+    
     <listener>
         <description>ServletContextListener</description>
         <listener-class>listeners.sessionListener</listener-class>

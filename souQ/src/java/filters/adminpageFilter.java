@@ -36,9 +36,9 @@ public class adminpageFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
           HttpServletRequest req=(HttpServletRequest)request;
 
-        HttpSession session=req.getSession(false);
+        HttpSession session=req.getSession(true);
         
-        if(session!=null){
+        if(session.getAttribute("Id")!=null){
         chain.doFilter(request, response);
         System.out.println("isLoginFilter.doFilter()chain cont");
     }

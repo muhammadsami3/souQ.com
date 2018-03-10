@@ -16,7 +16,11 @@
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
+<<<<<<< HEAD
+        <param-value>334866</param-value>
+=======
         <param-value>1022591400</param-value>
+>>>>>>> 2a9c95e25c0775b1d27bc42e45d1ac4b6837caa7
     </context-param>
     <error-page>
         <exception-type>java.lang.NumberFormatException</exception-type>

@@ -4,98 +4,76 @@
     Author     : maryam - Raghda
 --%>
 
+<%@page import="dataBaseFunction.dbMethods"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="servlets.usersServlets.DBConnector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
+
+<html>
+    <head>
+        <link rel="stylesheet"   type="text/css" href="../css/style3.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>search Page</title>
+    </head>
+
+<body>
+        
+        <div id="wrapper">
+                <section>
+                    <ul id="gallery">
 <%!String   name,description, img, product ;
    int  price, quantity ;
+   dbMethods doQuery = new dbMethods();
+    ResultSet rs;
+    ResultSet rs2;
 %>
-        <%
+        <%--
     RequestDispatcher r3 = request.getRequestDispatcher("../html/sidebar.html");
-    r3.include(request, response);
-    String search=request.getParameter("search");
-//        out.flush();
-//        out.print(search);
-//        out.flush();
-    Connection conn = DBConnector.getConnection();
-    Statement stmt = conn.createStatement();
-   
+    r3.include(request, response)--%>
+    
 
-    String queryString = new String("select * from product where name like '%" + search + "%'");
-    ResultSet rs = stmt.executeQuery(queryString);       
-    while(rs.next())
-    {
-     %>   
-<div class="w3-main w3-padding-64" style="margin-left:250px"> 
-<%
-    out.flush();
-    name=rs.getString("name");
-    price=(int)rs.getDouble("price"); 
-    quantity=rs.getInt("qyn");
-    description=rs.getString("description");
-    img="../../imgs/"+rs.getString("img");
+    
+    <%
+       doQuery.connectToDatabase(); 
+   String s=request.getParameter("search");
+           rs=doQuery.search(s);
+           while (rs.next()) {
+                    String tempId = rs.getString("productid");
+                    int id = Integer.parseInt(tempId);
+                    rs2 = doQuery.getProductInfoById(id);
+                    while (rs2.next()) {
+
+           
     %>
-<!--    product="Product Name : "+name+"\n"+"Price : "+price+"\n"+"Available in stock : "+quantity+"\n"+
-             "Description : "+description;
-    out.println(product);
-    out.flush();-->
-<table>
-    <tr>
-        
-            <img src=<%=img%>>
-        
-    </tr>
-    <tr>
-        
-        <td>
-            Product Name :
-        </td>
-        <td>
-            <%
-            out.print(name);
-            out.flush();
-            %>
-        </td>
-        
-    </tr>
-    <tr>
-        <td>
-            Price :
-        </td>
-        <td>
-            <%
-            out.print(price);
-            out.flush();
-            %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-           Available in stock : 
-        </td>
-        <td>
-            <%
-            out.print(quantity);
-            out.flush();
-            %>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Description :
-        </td>
-        <td>
-            <%
-            out.print(description);
-            out.flush();
-            %>
-        </td>
-    </tr>
-</table>
-</div>
-
-<%}%>
  
+ <li>
+          <form>
+                   <h2><%=rs2.getString("name").toUpperCase()%></h2>  
+          <br><br>
+  
+              <input id="img" type="image" src="../img/<%=rs2.getString("img")%>" width="200" height="150" alt="car" name="car1" value="1">
+    
+              <br>
+              <p><%=rs2.getString("description")%></p>
+              
+              <input type="hidden" name="id" value=<%=rs2.getString("productid")%> >
+         <br><br>
+         
+        
+          </form>
+          
+      </li>       
+               
+     <%
+                    }
+                }%>
+     
+  
+                </ul>
+  </section>
+          </div>
+    </body>
+</html>

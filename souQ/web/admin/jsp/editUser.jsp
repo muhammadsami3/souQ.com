@@ -60,22 +60,22 @@
    <td><%=email%></td>
    <td><%=job%></td>
    <td><%=address%></td>
+     
    <td><%=interests%></td>
-   
-   
-             
-                <td> <a href=<%=s%>><img src="../../imgs/delete.png"> </a></td>
-                <td> <a href=<%=s3%>>History </a></td>
-        <form  action=<%=s2%> method="post" > 
-            <tr>  <td><input type="text" name="balance" /></td>
-                <td>  <input type="submit" name="submit" value="Update balance"/></td>
-            </tr>
+
+   <td> <a href=<%=s%>><img src="../../imgs/delete.png"> </a></td>
+   <td> <a href=<%=s3%>>History </a></td>
+       <form  action=<%=s2%> method="post" > 
+           <tr>
+             <td><input type="text" name="balance" /></td>
+             <td> <input type="submit" name="submit" value="Update balance"/></td>
+            </tr> 
         </form>
-<<<<<<< HEAD
+
 <!--                    <a href=<!%=s2%>> <img src="../../imgs/edit.png"> </a-->
-=======
-    </td>
->>>>>>> 2a9c95e25c0775b1d27bc42e45d1ac4b6837caa7
+
+    
+
 
             </tr>
 

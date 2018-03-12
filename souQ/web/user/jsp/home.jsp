@@ -25,7 +25,7 @@
 <%
     Connection conn = DBConnector.getConnection();
     Statement stmt = conn.createStatement();
-    String queryString = new String("select * from home_page where id<4");
+    String queryString = new String("select * from home_page where id<3");
     rs = stmt.executeQuery(queryString);
 %>
       <div class="w3-twothird w3-container">
@@ -80,7 +80,7 @@
     }
         </script> 
         <%
-         String queryString2 = new String("select * from home_page where id>3 AND id<10");
+         String queryString2 = new String("select * from home_page where id>2 AND id<10");
         rs = stmt.executeQuery(queryString2);
         while (rs.next()) {
             path = rs.getString(2);

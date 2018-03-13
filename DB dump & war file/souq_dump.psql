@@ -340,22 +340,22 @@ COPY finalcart (cartid, orderid, productid, quantity) FROM stdin;
 --
 
 COPY home_page (id, image_path) FROM stdin;
-27	../../imgs/slideShow/watchlogos3.jpg
-28	../../imgs/slideShow/perfumelogos2
-29	../../imgs/watches/watch1.png
-30	../../imgs/watches/watch2.png
-31	../../imgs/perfumes/212.png
-32	../../imgs/watches/watch3.png
-33	../../imgs/perfumes/gucci.png
-34	../../imgs/perfumes/femme.png
-35	../../imgs/watches/watch4.png
-36	../../imgs/watches/watch4.png
-37	../../imgs/watches/watch5.png
-38	../../imgs/watches/watch6.png
-39	../../imgs/perfumes/212_2.png
-40	../../imgs/perfumes/212_men.png
-41	../../imgs/perfumes/amarige.png
-42	../../imgs/perfumes/bvlgari.png
+1	../../imgs/slideShow/watchlogos3.jpg
+2	../../imgs/slideShow/perfumelogos2
+3	../../imgs/watches/watch1.png
+4	../../imgs/watches/watch2.png
+5	../../imgs/perfumes/212.png
+6	../../imgs/watches/watch3.png
+7	../../imgs/perfumes/gucci.png
+8	../../imgs/perfumes/femme.png
+9	../../imgs/watches/watch4.png
+10	../../imgs/watches/watch4.png
+11	../../imgs/watches/watch5.png
+12	../../imgs/watches/watch6.png
+13	../../imgs/perfumes/212_2.png
+14	../../imgs/perfumes/212_men.png
+15	../../imgs/perfumes/amarige.png
+16	../../imgs/perfumes/bvlgari.png
 \.
 
 
@@ -415,7 +415,7 @@ SELECT pg_catalog.setval('finalcart_cartid_seq', 23, true);
 -- Name: home_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('home_page_id_seq', 42, true);
+SELECT pg_catalog.setval('home_page_id_seq', 16, true);
 
 
 --
